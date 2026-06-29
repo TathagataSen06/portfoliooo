@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0a">
+  <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" fill="#0a0a0a"/>
+    <text x="60" y="65" font-family="serif" font-size="48" font-style="italic" font-weight="300" letter-spacing="-1" fill="#f5f5f5" text-anchor="middle">TS</text>
+  </svg>
+</template>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#0A0A0A;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  ::selection{background:#89AACC;color:#0A0A0A}
+  a{color:inherit;text-decoration:none}
+  [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+  [data-reveal][data-shown]{opacity:1;transform:none}
+  [data-blur]{opacity:0;filter:blur(11px);transform:translateY(16px);transition:opacity 1.1s ease,filter 1.1s ease,transform 1.1s cubic-bezier(.16,1,.3,1)}
+  [data-blur][data-shown]{opacity:1;filter:blur(0);transform:none}
+  @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(7%,5%)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-6%,-5%)}}
+  @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-2%,-3%)}40%{transform:translate(2%,-2%)}60%{transform:translate(-2%,2%)}80%{transform:translate(3%,1%)}}
+  @keyframes pdot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.4}}
+  @keyframes scrolldn{0%{transform:translateY(-100%)}100%{transform:translateY(260%)}}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes mqR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  @keyframes gshift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  @keyframes rolein{0%{opacity:0;transform:translateY(9px);filter:blur(3px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+  @keyframes footerDotsMove{from{transform:translate3d(0,-50%,0)}to{transform:translate3d(-50%,-50%,0)}}
+  @keyframes expDriftA{0%,100%{transform:translate(0,0)}50%{transform:translate(5%,4%)}}
+  @keyframes expDriftB{0%,100%{transform:translate(0,0)}50%{transform:translate(-4%,-3%)}}
+  @keyframes expShimmer{0%{background-position:150% 0}9%{background-position:-60% 0}100%{background-position:-60% 0}}
+  @keyframes expPulse{0%{filter:brightness(1)}38%{filter:brightness(1.5) drop-shadow(0 0 16px color-mix(in srgb,var(--acSolid,#89AACC) 50%,transparent))}100%{filter:brightness(1)}}
+  @media (prefers-reduced-motion: reduce){[data-glow]{animation:none !important}[data-card-shimmer]{animation:none !important}}
+  .ft-mark::before{content:"";position:absolute;inset:-18%;background:#000000;clip-path:polygon(0 20%,100% 8%,100% 19%,0 31%,0 43%,100% 31%,100% 42%,0 54%,0 66%,100% 54%,100% 65%,0 77%)}
+  .about-link:hover .about-ico{transform:translateY(-2px)}
+  .rec-num{will-change:opacity}
+  .rec-row.is-hot .rec-preview{opacity:0;transform:translateY(-8px);pointer-events:none}
+  .rec-row.is-hot .rec-scrim{opacity:1 !important}
+  .rec-row.is-hot .rec-cap{opacity:1 !important;transform:none !important}
+  @media (max-width:980px){.ft-top{grid-template-columns:1fr 1fr !important}.ft-h2{grid-column:1/-1 !important}.about-top{grid-template-columns:1fr !important;gap:46px !important}.about-fig{justify-self:center !important;max-width:430px !important}.about-cards{grid-template-columns:1fr 1fr !important}.about-card2{margin-top:0 !important}}
+  @media (max-width:560px){.ft-top{grid-template-columns:1fr !important}.about-cards{grid-template-columns:1fr !important}.ft-word{font-size:clamp(45px,18vw,84px) !important}}
+  @media (max-width:920px){.bento{grid-template-columns:1fr !important}.bento>*{grid-column:auto !important;aspect-ratio:16/11 !important}.exp-grid{grid-template-columns:1fr !important}.two-col{grid-template-columns:1fr !important}.foot-row{flex-direction:column;align-items:flex-start !important;gap:34px}.nav-x{display:none !important}.work-head{flex-direction:column;align-items:flex-start !important;gap:20px}}
+  @media (max-width:860px){.rec-row{width:100% !important;align-self:stretch !important}}
+  @media (max-width:560px){.stat-grid{grid-template-columns:1fr 1fr !important}.rec-preview{grid-template-columns:1fr !important;gap:10px !important;padding:22px 22px !important}.rec-num{font-size:48px !important;line-height:0.8 !important}}
+</style>
+</helmet>
+
+<div style="font-family:'Inter',system-ui,-apple-system,sans-serif;background:#0A0A0A;color:#F5F5F5;overflow-x:hidden;position:relative">
+
+  <!-- ============================ LOADER ============================ -->
+  <div data-loader="" style="position:fixed;inset:0;z-index:9999;background:#0A0A0A;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(26px,4vw,40px) 6vw;transition:opacity .6s ease,visibility .6s;cursor:pointer">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#878787">Portfolio</div>
+      <div style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#878787">MMXXVI</div>
+    </div>
+    <div style="display:flex;justify-content:center;align-items:center;flex:1">
+      <div data-loader-word="" style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(40px,8vw,92px);color:rgba(245,245,245,0.82);letter-spacing:-0.02em;animation:rolein .5s ease both">Build</div>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px">
+        <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#5b5b5b;max-width:180px;line-height:1.5">Tathagata&nbsp;Sen</div>
+        <div data-loader-count="" style="font-family:'Instrument Serif',serif;font-size:clamp(64px,13vw,144px);line-height:0.78;color:#F5F5F5;font-variant-numeric:tabular-nums">000</div>
+      </div>
+      <div style="height:3px;width:100%;background:rgba(255,255,255,0.08);overflow:hidden">
+        <div data-loader-bar="" style="height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF));box-shadow:0 0 8px rgba(137,170,204,0.4)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ NAV ============================ -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:center;padding:18px 16px">
+    <div data-navpill="" style="display:inline-flex;align-items:center;gap:5px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:rgba(20,20,20,0.5);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);padding:7px;transition:box-shadow .4s ease,background .4s ease">
+      <a href="#top" data-magnetic="0.2" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--acA,#89AACC),var(--acB,#4E85BF));padding:1.5px">
+        <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:50%;background:#0A0A0A;font-family:'Instrument Serif',serif;font-style:italic;font-size:14px;color:#F5F5F5;padding-right:1px">TS</span>
+      </a>
+      <span class="nav-x" style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 3px"></span>
+      <a href="#about" data-navlink="about" class="nav-x" style="font-size:13px;color:#878787;padding:8px 14px;border-radius:999px;transition:color .3s,background .3s">About</a>
+      <a href="#experience" data-navlink="experience" class="nav-x" style="font-size:13px;color:#878787;padding:8px 14px;border-radius:999px;transition:color .3s,background .3s">Experience</a>
+      <a href="#work" data-navlink="work" class="nav-x" style="font-size:13px;color:#878787;padding:8px 14px;border-radius:999px;transition:color .3s,background .3s">Work</a>
+      <a href="#recognition" data-navlink="recognition" class="nav-x" style="font-size:13px;color:#878787;padding:8px 14px;border-radius:999px;transition:color .3s,background .3s">Recognition</a>
+      <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 3px"></span>
+      <a href="mailto:sen.tathagata5@gmail.com" data-magnetic="0.2" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#F5F5F5;padding:8px 16px;border-radius:999px;transition:background .3s" style-hover="background:rgba(255,255,255,0.07)">Say hi <span style="color:var(--acSolid,#89AACC)">↗</span></a>
+    </div>
+  </nav>
+
+  <!-- ============================ HERO ============================ -->
+  <section id="top" style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 6vw 100px;overflow:hidden">
+    <div style="position:absolute;inset:0;overflow:hidden;background:#0A0A0A;z-index:0">
+      <div data-cine-blobs="">
+        <div data-blob="" style="position:absolute;top:-18%;left:-12%;width:72vw;height:72vw;border-radius:50%;background:radial-gradient(circle at center, rgba(125,158,206,0.22), rgba(78,133,191,0.07) 44%, transparent 67%);filter:blur(28px);animation:drift1 22s ease-in-out infinite"></div>
+        <div data-blob="" style="position:absolute;bottom:-22%;right:-14%;width:64vw;height:64vw;border-radius:50%;background:radial-gradient(circle at center, rgba(96,124,178,0.18), transparent 64%);filter:blur(34px);animation:drift2 26s ease-in-out infinite"></div>
+      </div>
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 78% 66% at 50% 44%, transparent 34%, rgba(10,10,10,0.55) 76%, #0A0A0A 100%)"></div>
+      <div style="position:absolute;inset:-25%;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');opacity:0.05;mix-blend-mode:overlay;animation:grain 8s steps(5) infinite;pointer-events:none"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;height:190px;background:linear-gradient(to top,#0A0A0A,transparent)"></div>
+    </div>
+
+    <div style="position:relative;z-index:2;max-width:980px;display:flex;flex-direction:column;align-items:center">
+      <div data-blur="" data-delay="60" style="font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:#878787;margin-bottom:30px">Software&nbsp;Engineer &nbsp;·&nbsp; Portfolio&nbsp;’26</div>
+      <h1 data-blur="" data-delay="160" style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(54px,11vw,148px);line-height:0.9;letter-spacing:-0.02em;color:#F5F5F5;text-wrap:balance">Tathagata Sen</h1>
+      <p data-blur="" data-delay="320" style="margin-top:30px;font-size:clamp(17px,2.2vw,26px);color:#9aa0a6;font-weight:300">A <em data-role="" style="font-style:italic;font-family:'Instrument Serif',serif;color:#F5F5F5;display:inline-block">Backend Engineer</em> based in Mumbai.</p>
+      <p data-blur="" data-delay="420" style="margin-top:22px;max-width:540px;font-size:clamp(14px,1.6vw,16px);line-height:1.65;color:#878787">Building scalable systems and intelligent software across various domains and managing the real world problems</p>
+      <div data-blur="" data-delay="520" style="margin-top:42px;display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center">
+        <a href="#work" data-cta="solid" style="position:relative;border-radius:999px;display:inline-block;transition:transform .3s cubic-bezier(.16,1,.3,1)">
+          <span data-ring="" style="position:absolute;inset:-1.5px;border-radius:999px;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF));opacity:0;transition:opacity .3s;z-index:0"></span>
+          <span data-inner="" style="position:relative;z-index:1;display:inline-flex;align-items:center;gap:9px;background:#F5F5F5;color:#0A0A0A;border:1.5px solid transparent;border-radius:999px;padding:14px 28px;font-size:14px;font-weight:500;transition:background .3s,color .3s">See Work</span>
+        </a>
+        <a href="mailto:sen.tathagata5@gmail.com" data-cta="outline" style="position:relative;border-radius:999px;display:inline-block;transition:transform .3s cubic-bezier(.16,1,.3,1)">
+          <span data-ring="" style="position:absolute;inset:-1.5px;border-radius:999px;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF));opacity:0;transition:opacity .3s;z-index:0"></span>
+          <span data-inner="" style="position:relative;z-index:1;display:inline-flex;align-items:center;gap:9px;background:#0A0A0A;color:#F5F5F5;border:1.5px solid #2A2A2A;border-radius:999px;padding:14px 28px;font-size:14px;font-weight:500;transition:border-color .3s">Get in touch <span style="color:var(--acSolid,#89AACC)">↗</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div style="position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:13px">
+      <span style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#6a6a6a">Scroll</span>
+      <div style="width:1px;height:44px;background:rgba(255,255,255,0.12);overflow:hidden;position:relative">
+        <div style="position:absolute;top:0;left:0;width:100%;height:38%;background:linear-gradient(to bottom,var(--acA,#89AACC),transparent);animation:scrolldn 1.7s ease-in-out infinite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ ABOUT ============================ -->
+  <section id="about" style="position:relative;min-height:100vh;background:#0A0A0A;color:#F5F5F5;padding:clamp(88px,11vw,132px) 6vw;display:flex;flex-direction:column;justify-content:center;overflow:hidden">
+    <div style="width:100%;max-width:1240px;margin:0 auto;position:relative;z-index:2">
+      <div class="about-top" style="display:grid;grid-template-columns:minmax(280px,0.82fr) 1fr;align-items:center;gap:clamp(40px,6vw,86px)">
+        <figure class="about-fig" data-reveal="" style="position:relative;margin:0;width:100%;max-width:500px;aspect-ratio:758/773;justify-self:start">
+          <img src="portrait.png" alt="Tathagata Sen" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%">
+          <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to right, #0A0A0A 0%, rgba(10,10,10,0) 20%, rgba(10,10,10,0) 80%, #0A0A0A 100%), linear-gradient(to bottom, #0A0A0A 0%, rgba(10,10,10,0) 24%, rgba(10,10,10,0) 52%, #0A0A0A 97%)"></div>
+        </figure>
+        <div data-reveal="" data-delay="80" style="display:flex;flex-direction:column;max-width:560px">
+          <h2 style="margin:0 0 26px;font-weight:600;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95;font-size:clamp(36px,4.6vw,56px);color:#F5F5F5">About<br>the engineer</h2>
+          <p style="font-size:clamp(16px,1.5vw,18px);line-height:1.55;color:#9aa0a6">I'm a final-year Computer Science student at BIT Mesra and am currently interning at Bhabha Atomic Research Center as a SDE Intern.</p>
+          <p style="margin-top:16px;font-size:clamp(16px,1.5vw,18px);line-height:1.55;color:#9aa0a6">My work ranges from processing huge amounts of data pipelines from actual sources to building scalable applcations which address the real world gaps and challenges. These include majorly ML and Full Stack engineering. Apart from these I play multiple sports such as Tennis, Football, etc., for fun as well as professionally and watch anime such as One Piece, Attack on Titan, Bleach, etc.</p>
+          <a href="https://github.com/TathagataSen06" target="_blank" rel="noreferrer" class="about-link" style="display:inline-flex;align-items:center;gap:16px;margin-top:26px;font-size:14px;font-weight:500;color:#F5F5F5">
+            GitHub profile
+            <span class="about-ico" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;font-size:14px;border:1px solid rgba(255,255,255,0.35);transition:transform .2s ease;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="about-cards" style="margin-top:clamp(46px,6vw,72px);display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        <div data-reveal="" style="position:relative;width:100%;height:clamp(300px,34vw,360px);background:rgba(255,255,255,0.12);padding:1.5px;clip-path:polygon(64px 0,calc(100% - 14px) 0,calc(100% - 4px) 4px,100% 14px,100% calc(100% - 14px),calc(100% - 4px) calc(100% - 4px),calc(100% - 14px) 100%,14px 100%,4px calc(100% - 4px),0 calc(100% - 14px),0 64px)">
+          <div style="position:relative;width:100%;height:100%;overflow:hidden;clip-path:polygon(64px 0,calc(100% - 14px) 0,calc(100% - 4px) 4px,100% 14px,100% calc(100% - 14px),calc(100% - 4px) calc(100% - 4px),calc(100% - 14px) 100%,14px 100%,4px calc(100% - 4px),0 calc(100% - 14px),0 64px)">
+            <img src="lecture-hall.webp" alt="University lecture hall" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.82) 30%, rgba(10,10,10,0.18) 60%, transparent 78%)"></div>
+            <div style="position:absolute;left:24px;right:24px;bottom:24px;max-width:66%">
+              <div style="font-weight:600;text-transform:uppercase;line-height:1;font-size:clamp(36px,3.6vw,52px);background:linear-gradient(294deg,#89AACC 20%,#CFE2F4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">8.12</div>
+              <div style="margin-top:12px;font-size:14px;line-height:1.4;color:#9aa0a6">CGPA in B.tech Computer Science and Engineering at BIT Mesra</div>
+            </div>
+          </div>
+        </div>
+        <div data-reveal="" data-delay="80" class="about-card2" style="position:relative;width:100%;height:clamp(300px,34vw,360px);margin-top:clamp(28px,6vw,90px);background:rgba(255,255,255,0.12);padding:1.5px;clip-path:polygon(0 14px,4px 4px,14px 0,calc(100% - 64px) 0,100% 64px,100% calc(100% - 14px),calc(100% - 4px) calc(100% - 4px),calc(100% - 14px) 100%,64px 100%,0 calc(100% - 64px))">
+          <div style="position:relative;width:100%;height:100%;overflow:hidden;clip-path:polygon(0 14px,4px 4px,14px 0,calc(100% - 64px) 0,100% 64px,100% calc(100% - 14px),calc(100% - 4px) calc(100% - 4px),calc(100% - 14px) 100%,64px 100%,0 calc(100% - 64px))">
+            <img src="js-code.webp" alt="Coding an Express.js app" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.82) 34%, rgba(10,10,10,0.18) 64%, transparent 82%)"></div>
+            <div style="position:absolute;left:24px;bottom:80px;max-width:66%">
+              <div style="font-weight:600;text-transform:uppercase;line-height:1;font-size:clamp(36px,3.6vw,52px);background:linear-gradient(294deg,#89AACC 20%,#CFE2F4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">1876</div>
+              <div style="margin-top:12px;font-size:14px;line-height:1.4;color:#9aa0a6">peak LeetCode contest rating, with 500+ problems solved across DSA</div>
+            </div>
+          </div>
+        </div>
+        <div data-reveal="" data-delay="160" style="position:relative;width:100%;height:clamp(300px,34vw,360px);background:rgba(255,255,255,0.12);padding:1.5px;clip-path:polygon(0 14px,4px 4px,14px 0,calc(100% - 64px) 0,100% 64px,100% calc(100% - 64px),calc(100% - 64px) 100%,14px 100%,4px calc(100% - 4px),0 calc(100% - 14px))">
+          <div style="position:relative;width:100%;height:100%;overflow:hidden;clip-path:polygon(0 14px,4px 4px,14px 0,calc(100% - 64px) 0,100% 64px,100% calc(100% - 64px),calc(100% - 64px) 100%,14px 100%,4px calc(100% - 4px),0 calc(100% - 14px))">
+            <img src="workstation.jpeg" alt="Coding at a cafe workstation" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.82) 30%, rgba(10,10,10,0.18) 60%, transparent 78%)"></div>
+            <div style="position:absolute;left:24px;right:112px;bottom:24px;max-width:66%">
+              <div style="font-weight:600;text-transform:uppercase;line-height:1;font-size:clamp(36px,3.6vw,52px);background:linear-gradient(294deg,#89AACC 20%,#CFE2F4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">5+</div>
+              <div style="margin-top:12px;font-size:14px;line-height:1.4;color:#9aa0a6">live projects across different domains</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="pointer-events:none;position:absolute;left:0;right:0;bottom:0;height:clamp(110px,16vw,200px);z-index:1;background:linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,0.7) 60%, #0A0A0A 100%)"></div>
+  </section>
+
+  <!-- ============================ EXPERIENCE ============================ -->
+  <section id="experience" data-exp="" style="position:relative;overflow:hidden;padding:clamp(96px,12vw,158px) 6vw">
+
+    <div style="position:relative;z-index:2;max-width:1240px;margin:0 auto">
+
+      <!-- eyebrow + divider -->
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:clamp(40px,5vw,56px)">
+        <span data-e="divider" style="height:1px;width:clamp(40px,7vw,96px);transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg, color-mix(in srgb,var(--acSolid,#89AACC) 75%, transparent), rgba(255,255,255,0.12));transition:transform .9s cubic-bezier(0.22,1,0.36,1) .06s"></span>
+        <span data-e="fade" style="opacity:0;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:#9aa0a6;transition:opacity .8s cubic-bezier(0.22,1,0.36,1) .14s">Experience</span>
+      </div>
+
+      <!-- header -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:clamp(38px,5vw,54px)">
+        <div style="display:flex;align-items:center;gap:22px">
+          <span data-e="logo" style="opacity:0;transform:scale(0.96);flex:0 0 auto;width:74px;height:74px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,0.16),0 10px 30px rgba(0,0,0,0.4),0 0 32px color-mix(in srgb,var(--acSolid,#89AACC) 20%, transparent);transition:opacity .9s cubic-bezier(0.22,1,0.36,1) .22s, transform .9s cubic-bezier(0.22,1,0.36,1) .22s">
+            <img src="barc-logo.png" alt="BARC" style="width:100%;height:100%;object-fit:contain;padding:7px;box-sizing:border-box">
+          </span>
+          <div>
+            <h3 data-e="title" style="opacity:0;transform:translateY(16px);filter:blur(9px);font-size:clamp(28px,3.6vw,48px);font-weight:300;letter-spacing:-0.02em;line-height:1.02;color:#F5F5F5;transition:opacity .95s cubic-bezier(0.22,1,0.36,1) .32s, transform .95s cubic-bezier(0.22,1,0.36,1) .32s, filter .95s ease .32s">Bhabha Atomic <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400">Research Centre</em></h3>
+            <div data-e="fade" style="opacity:0;margin-top:14px;font-size:16px;color:#9aa0a6;transition:opacity .8s cubic-bezier(0.22,1,0.36,1) .46s">Software Development Engineer — Intern</div>
+          </div>
+        </div>
+        <div data-e="fade" style="opacity:0;text-align:right;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#5b5b5b;padding-top:12px;transition:opacity .8s cubic-bezier(0.22,1,0.36,1) .54s">May 2026 — Jul 2026 · Mumbai</div>
+      </div>
+
+      <!-- metric cards -->
+      <div class="exp-grid" data-exp-cards="" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,22px)">
+
+        <div data-e="card" style="opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(0.22,1,0.36,1) .60s, transform .9s cubic-bezier(0.22,1,0.36,1) .60s">
+          <div data-card="" style="position:relative;overflow:hidden;height:100%;min-height:clamp(218px,22vw,258px);border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.014));box-shadow:inset 0 1px 0 rgba(255,255,255,0.07), 0 2px 4px rgba(0,0,0,0.4), 0 14px 40px rgba(0,0,0,0.28);padding:clamp(28px,3vw,38px) clamp(26px,2.6vw,34px);will-change:transform;transition:transform .22s cubic-bezier(0.22,1,0.36,1), box-shadow .22s cubic-bezier(0.22,1,0.36,1), border-color .22s cubic-bezier(0.22,1,0.36,1), background .22s ease, opacity .4s ease, filter .4s ease">
+            <div data-card-light="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .3s ease;background:radial-gradient(230px 230px at var(--cx,50%) var(--cy,50%), color-mix(in srgb,var(--acA,#89AACC) 20%, transparent), transparent 62%)"></div>
+            <div data-card-sheen="" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s ease;background:linear-gradient(105deg, transparent 42%, rgba(255,255,255,0.10) 50%, transparent 58%);background-size:220% 100%;background-position:var(--shx,50%) 0"></div>
+            <div data-card-shimmer="" aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:20px;padding:1px;background:linear-gradient(110deg, transparent 38%, color-mix(in srgb,var(--acSolid,#89AACC) 72%, transparent) 50%, transparent 62%);background-size:260% 100%;background-position:150% 0;-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);mask-composite:exclude;animation:expShimmer 18s cubic-bezier(0.22,1,0.36,1) infinite;animation-delay:0s"></div>
+            <div style="position:relative;z-index:3;display:flex;flex-direction:column;height:100%">
+              <div data-metric="" data-target="40000000" data-type="M" data-final="40M+" style="font-family:'Instrument Serif',serif;font-size:clamp(44px,5vw,62px);line-height:0.86;letter-spacing:-0.01em;color:#F5F5F5;font-variant-numeric:tabular-nums">40M+</div>
+              <div style="height:1px;width:100%;margin:clamp(17px,2vw,23px) 0;background:linear-gradient(90deg, color-mix(in srgb,var(--acSolid,#89AACC) 38%, transparent), rgba(255,255,255,0.06) 58%, transparent)"></div>
+              <p style="font-size:14px;line-height:1.62;color:#9aa0a6;margin:0">Python pipelines (NumPy, SciPy, Pandas, OpenCV) that ingested and validated 40M+ raw detector readings, running multi-stage statistical checks across 10+ metrics — from FWHM and R² to Z-score and confidence scoring.</p>
+            </div>
+          </div>
+        </div>
+
+        <div data-e="card" style="opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(0.22,1,0.36,1) .72s, transform .9s cubic-bezier(0.22,1,0.36,1) .72s">
+          <div data-card="" style="position:relative;overflow:hidden;height:100%;min-height:clamp(218px,22vw,258px);border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.014));box-shadow:inset 0 1px 0 rgba(255,255,255,0.07), 0 2px 4px rgba(0,0,0,0.4), 0 14px 40px rgba(0,0,0,0.28);padding:clamp(28px,3vw,38px) clamp(26px,2.6vw,34px);will-change:transform;transition:transform .22s cubic-bezier(0.22,1,0.36,1), box-shadow .22s cubic-bezier(0.22,1,0.36,1), border-color .22s cubic-bezier(0.22,1,0.36,1), background .22s ease, opacity .4s ease, filter .4s ease">
+            <div data-card-light="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .3s ease;background:radial-gradient(230px 230px at var(--cx,50%) var(--cy,50%), color-mix(in srgb,var(--acA,#89AACC) 20%, transparent), transparent 62%)"></div>
+            <div data-card-sheen="" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s ease;background:linear-gradient(105deg, transparent 42%, rgba(255,255,255,0.10) 50%, transparent 58%);background-size:220% 100%;background-position:var(--shx,50%) 0"></div>
+            <div data-card-shimmer="" aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:20px;padding:1px;background:linear-gradient(110deg, transparent 38%, color-mix(in srgb,var(--acSolid,#89AACC) 72%, transparent) 50%, transparent 62%);background-size:260% 100%;background-position:150% 0;-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);mask-composite:exclude;animation:expShimmer 18s cubic-bezier(0.22,1,0.36,1) infinite;animation-delay:6s"></div>
+            <div style="position:relative;z-index:3;display:flex;flex-direction:column;height:100%">
+              <div data-metric="" data-target="70" data-type="pct" data-final="70%" style="font-family:'Instrument Serif',serif;font-size:clamp(44px,5vw,62px);line-height:0.86;letter-spacing:-0.01em;color:#F5F5F5;font-variant-numeric:tabular-nums">70%</div>
+              <div style="height:1px;width:100%;margin:clamp(17px,2vw,23px) 0;background:linear-gradient(90deg, color-mix(in srgb,var(--acSolid,#89AACC) 38%, transparent), rgba(255,255,255,0.06) 58%, transparent)"></div>
+              <p style="font-size:14px;line-height:1.62;color:#9aa0a6;margin:0">A scientific-computing platform for detector-spectra analysis — Gaussian fitting, feature extraction and signal-processing workflows that reduced manual analysis effort by 70%.</p>
+            </div>
+          </div>
+        </div>
+
+        <div data-e="card" style="opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(0.22,1,0.36,1) .84s, transform .9s cubic-bezier(0.22,1,0.36,1) .84s">
+          <div data-card="" style="position:relative;overflow:hidden;height:100%;min-height:clamp(218px,22vw,258px);border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.014));box-shadow:inset 0 1px 0 rgba(255,255,255,0.07), 0 2px 4px rgba(0,0,0,0.4), 0 14px 40px rgba(0,0,0,0.28);padding:clamp(28px,3vw,38px) clamp(26px,2.6vw,34px);will-change:transform;transition:transform .22s cubic-bezier(0.22,1,0.36,1), box-shadow .22s cubic-bezier(0.22,1,0.36,1), border-color .22s cubic-bezier(0.22,1,0.36,1), background .22s ease, opacity .4s ease, filter .4s ease">
+            <div data-card-light="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .3s ease;background:radial-gradient(230px 230px at var(--cx,50%) var(--cy,50%), color-mix(in srgb,var(--acA,#89AACC) 20%, transparent), transparent 62%)"></div>
+            <div data-card-sheen="" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s ease;background:linear-gradient(105deg, transparent 42%, rgba(255,255,255,0.10) 50%, transparent 58%);background-size:220% 100%;background-position:var(--shx,50%) 0"></div>
+            <div data-card-shimmer="" aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:20px;padding:1px;background:linear-gradient(110deg, transparent 38%, color-mix(in srgb,var(--acSolid,#89AACC) 72%, transparent) 50%, transparent 62%);background-size:260% 100%;background-position:150% 0;-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);mask-composite:exclude;animation:expShimmer 18s cubic-bezier(0.22,1,0.36,1) infinite;animation-delay:12s"></div>
+            <div style="position:relative;z-index:3;display:flex;flex-direction:column;height:100%">
+              <div data-metric="" data-target="4000" data-type="K" data-final="4K+" style="font-family:'Instrument Serif',serif;font-size:clamp(44px,5vw,62px);line-height:0.86;letter-spacing:-0.01em;color:#F5F5F5;font-variant-numeric:tabular-nums">4K+</div>
+              <div style="height:1px;width:100%;margin:clamp(17px,2vw,23px) 0;background:linear-gradient(90deg, color-mix(in srgb,var(--acSolid,#89AACC) 38%, transparent), rgba(255,255,255,0.06) 58%, transparent)"></div>
+              <p style="font-size:14px;line-height:1.62;color:#9aa0a6;margin:0">An interactive desktop app (CustomTkinter, Matplotlib) automating calibration diagnostics, improving analyst efficiency across 4K+ channel datasets.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SELECTED WORK ============================ -->
+  <section id="work" style="padding:clamp(80px,11vw,140px) 6vw">
+    <div style="max-width:1240px;margin:0 auto">
+      <div class="work-head" data-reveal="" style="display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:54px">
+        <div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+            <span style="width:32px;height:1px;background:rgba(255,255,255,0.2)"></span>
+            <span style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#878787">Selected Work</span>
+          </div>
+          <h2 style="font-size:clamp(32px,5vw,62px);font-weight:300;letter-spacing:-0.02em;line-height:1.02;color:#F5F5F5">Featured <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400">projects</em></h2>
+          <p style="margin-top:18px;max-width:440px;font-size:15px;line-height:1.6;color:#878787">Systems and products I've designed and shipped — from concept to production.</p>
+        </div>
+        <a href="https://github.com/TathagataSen06" target="_blank" rel="noopener" data-cta="outline" style="position:relative;border-radius:999px;display:inline-block;transition:transform .3s cubic-bezier(.16,1,.3,1);flex:none">
+          <span data-ring="" style="position:absolute;inset:-1.5px;border-radius:999px;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF));opacity:0;transition:opacity .3s;z-index:0"></span>
+          <span data-inner="" style="position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;background:#0A0A0A;color:#F5F5F5;border:1.5px solid #2A2A2A;border-radius:999px;padding:11px 22px;font-size:13px;font-weight:500;transition:border-color .3s">View all work <span style="color:var(--acSolid,#89AACC)">↗</span></span>
+        </a>
+      </div>
+
+      <div class="bento" style="display:grid;grid-template-columns:repeat(12,1fr);gap:20px">
+
+        <!-- Card 1 — SaanchaarSetu (span 7) -->
+        <a href="https://github.com/TathagataSen06/SanchaarSetu" target="_blank" rel="noopener" data-card="" data-reveal="" style="grid-column:span 7;position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(255,255,255,0.08);background:#121212;aspect-ratio:16/11;display:block">
+          <img data-cardimg="" src="sanchaarsetu-dashboard.png?v=2" alt="SaanchaarSetu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
+          <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,0.12) 72%, transparent 100%);pointer-events:none"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
+            <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">01 · Government · Real-time</div>
+            <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(28px,3.6vw,48px);line-height:1;color:#F5F5F5">SaanchaarSetu</h3>
+          </div>
+          <div data-cardov="" style="position:absolute;inset:0;background:rgba(10,10,10,0.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,44px);gap:20px">
+            <p style="max-width:480px;font-size:15px;line-height:1.6;color:#cfd6dd">Real-time interoperability middleware syncing 40+ legacy government systems across Karnataka — three-tier ingestion (webhooks · polling · CDC), a semantic schema-mapping engine, PII scrubbing and hash-chained audit logging.</p>
+            <div style="display:flex;gap:34px">
+              <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">40+</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">systems linked</div></div>
+              <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">days→5s</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">propagation</div></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">FastAPI</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Kafka</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Debezium</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">pgvector</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Redis</span>
+            </div>
+            <span style="display:inline-block;border-radius:999px;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF),var(--acA,#89AACC));background-size:200% 100%;padding:1.5px;animation:gshift 6s ease infinite;align-self:flex-start;margin-top:2px">
+              <span style="display:inline-flex;align-items:center;gap:8px;background:#0A0A0A;border-radius:999px;padding:9px 18px;font-size:13px;color:#F5F5F5">View — <em style="font-family:'Instrument Serif',serif;font-style:italic">SaanchaarSetu</em> ↗</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- Card 2 — Digital Twin (span 5) -->
+        <a href="https://github.com/TathagataSen06/digital-twin" target="_blank" rel="noopener" data-card="" data-reveal="" data-delay="80" style="grid-column:span 5;position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(255,255,255,0.08);background:#121212;aspect-ratio:1/1;display:block">
+          <img data-cardimg="" src="digital-twin-market.png?v=2" alt="Digital Twin Market" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
+          <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 42%, rgba(10,10,10,0.12) 74%, transparent 100%);pointer-events:none"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:26px 28px">
+            <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">02 · ML · Simulation</div>
+            <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,40px);line-height:1;color:#F5F5F5">Digital Twin Market</h3>
+          </div>
+          <div data-cardov="" style="position:absolute;inset:0;background:rgba(10,10,10,0.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,3.5vw,38px);gap:18px">
+            <p style="font-size:14.5px;line-height:1.6;color:#cfd6dd">FMCG launch simulator modelling outcomes across 25,000 synthetic consumer personas — neural demand prediction, K-Means segmentation and automated CLV metrics.</p>
+            <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">25,000</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">synthetic personas</div></div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">TensorFlow.js</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Llama 3.1</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Chart.js</span>
+            </div>
+            <span style="display:inline-block;border-radius:999px;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF),var(--acA,#89AACC));background-size:200% 100%;padding:1.5px;animation:gshift 6s ease infinite;align-self:flex-start;margin-top:2px">
+              <span style="display:inline-flex;align-items:center;gap:8px;background:#0A0A0A;border-radius:999px;padding:9px 18px;font-size:13px;color:#F5F5F5">View — <em style="font-family:'Instrument Serif',serif;font-style:italic">Digital Twin</em> ↗</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- Card 3 — GraphSentinel (span 5) -->
+        <a href="https://github.com/TathagataSen06/graph-sentinel" target="_blank" rel="noopener" data-card="" data-reveal="" style="grid-column:span 5;position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(255,255,255,0.08);background:#121212;aspect-ratio:1/1;display:block">
+          <img data-cardimg="" src="graph-sentinel-dashboard.png?v=2" alt="GraphSentinel federated learning dashboard" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
+          <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 42%, rgba(10,10,10,0.12) 74%, transparent 100%);pointer-events:none"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:26px 28px">
+            <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">03 · Graph ML · Fraud Detection</div>
+            <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,40px);line-height:1;color:#F5F5F5">GraphSentinel</h3>
+          </div>
+          <div data-cardov="" style="position:absolute;inset:0;background:rgba(10,10,10,0.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,3.5vw,38px);gap:18px">
+            <p style="font-size:14.5px;line-height:1.6;color:#cfd6dd">A real-time transaction-graph engine that replaces rule-based AML — Temporal GNNs with SHAP explainability surface multi-hop layering, circular round-trips and sub-threshold structuring natively at scale.</p>
+            <div style="display:flex;gap:30px">
+              <div><div style="font-family:'Instrument Serif',serif;font-size:28px;color:#F5F5F5;line-height:1">0.89</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">GNN F1-score</div></div>
+              <div><div style="font-family:'Instrument Serif',serif;font-size:28px;color:#F5F5F5;line-height:1">94%</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">fewer false positives</div></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Temporal GNN</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Neo4j</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Kafka · Flink</span>
+            </div>
+            <span style="display:inline-block;border-radius:999px;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF),var(--acA,#89AACC));background-size:200% 100%;padding:1.5px;animation:gshift 6s ease infinite;align-self:flex-start;margin-top:2px">
+              <span style="display:inline-flex;align-items:center;gap:8px;background:#0A0A0A;border-radius:999px;padding:9px 18px;font-size:13px;color:#F5F5F5">View — <em style="font-family:'Instrument Serif',serif;font-style:italic">GraphSentinel</em> ↗</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- Card 4 — SaviHer (span 7) -->
+        <a href="https://github.com/TathagataSen06/saviher" target="_blank" rel="noopener" data-card="" data-reveal="" data-delay="80" style="grid-column:span 7;position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(255,255,255,0.08);background:#121212;aspect-ratio:16/11;display:block">
+          <img data-cardimg="" src="saviher.png" alt="SaviHer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
+          <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,0.12) 72%, transparent 100%);pointer-events:none"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
+            <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">04 · Mobile · Safety · Startup</div>
+            <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(28px,3.6vw,48px);line-height:1;color:#F5F5F5">SaviHer</h3>
+          </div>
+          <div data-cardov="" style="position:absolute;inset:0;background:rgba(10,10,10,0.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,44px);gap:20px">
+            <p style="max-width:480px;font-size:15px;line-height:1.6;color:#cfd6dd">Cross-platform Flutter safety app with a sub-2.5s SOS trigger that captures a photo and alerts contacts, plus a GCP geofencing layer. Incubated at Bhamasha Techno Hub; submitted to iSTART for state seed funding.</p>
+            <div style="display:flex;gap:34px">
+              <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">&lt;2.5s</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">SOS alert</div></div>
+              <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">-70%</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">help time</div></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Flutter</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Dart</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Firebase</span>
+              <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">GCP</span>
+            </div>
+            <span style="display:inline-block;border-radius:999px;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF),var(--acA,#89AACC));background-size:200% 100%;padding:1.5px;animation:gshift 6s ease infinite;align-self:flex-start;margin-top:2px">
+              <span style="display:inline-flex;align-items:center;gap:8px;background:#0A0A0A;border-radius:999px;padding:9px 18px;font-size:13px;color:#F5F5F5">View — <em style="font-family:'Instrument Serif',serif;font-style:italic">SaviHer</em> ↗</span>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ STACK MARQUEE ============================ -->
+  <section style="padding:clamp(64px,9vw,108px) 0;overflow:hidden">
+    <div style="display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:clamp(40px,5vw,58px);padding:0 20px">
+      <span style="height:1px;width:clamp(30px,8vw,80px);background:rgba(255,255,255,0.18)"></span>
+      <span style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#878787">Stack &amp; Tooling</span>
+      <span style="height:1px;width:clamp(30px,8vw,80px);background:rgba(255,255,255,0.18)"></span>
+    </div>
+    <div style="overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
+      <div style="display:flex;width:max-content;align-items:center;animation:mq 44s linear infinite" style-hover="animation-play-state:paused">
+        <sc-for list="{{ stackA }}" as="t" hint-placeholder-count="20">
+          <div style="display:inline-flex;align-items:center;gap:11px;flex:none;padding:0 12px">
+            <img src="{{ t.i }}" alt="" loading="lazy" style="width:20px;height:20px;object-fit:contain;opacity:1">
+            <span style="font-size:13px;letter-spacing:0.13em;text-transform:uppercase;color:#9aa6b0;font-weight:400;white-space:nowrap">{{ t.n }}</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:var(--acSolid,#89AACC);opacity:0.55;margin-left:14px"></span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="overflow:hidden;width:100%;margin-top:20px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
+      <div style="display:flex;width:max-content;align-items:center;animation:mqR 40s linear infinite" style-hover="animation-play-state:paused">
+        <sc-for list="{{ stackB }}" as="t" hint-placeholder-count="20">
+          <div style="display:inline-flex;align-items:center;gap:11px;flex:none;padding:0 12px">
+            <img src="{{ t.i }}" alt="" loading="lazy" style="width:20px;height:20px;object-fit:contain;opacity:1">
+            <span style="font-size:13px;letter-spacing:0.13em;text-transform:uppercase;color:#9aa6b0;font-weight:400;white-space:nowrap">{{ t.n }}</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:var(--acSolid,#89AACC);opacity:0.55;margin-left:14px"></span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div data-reveal="" style="max-width:900px;margin:clamp(48px,6vw,72px) auto 0;padding:0 6vw;text-align:center">
+      <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5b5b5b">Core CS &nbsp;·&nbsp; </span>
+      <span style="font-size:14.5px;line-height:1.7;color:#9aa0a6">Data Structures &amp; Algorithms · Object-Oriented Programming · DBMS · Operating Systems · Computer Networks · System Design · Distributed Systems</span>
+    </div>
+  </section>
+
+  <!-- ============================ RECOGNITION ============================ -->
+  <section id="recognition" style="position:relative;overflow:hidden;padding:clamp(80px,11vw,140px) 6vw">
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 80% at 22% 0%, color-mix(in srgb,var(--acB,#4E85BF) 13%, transparent), transparent 55%),radial-gradient(110% 90% at 86% 102%, color-mix(in srgb,var(--acA,#89AACC) 10%, transparent), transparent 52%)"></div>
+    <canvas data-rec-gl="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 1.4s ease"></canvas>
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#0A0A0A 0%,rgba(10,10,10,0) 15%,rgba(10,10,10,0) 85%,#0A0A0A 100%)"></div>
+    <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto">
+      <div data-reveal="" style="margin-bottom:54px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+          <span style="width:32px;height:1px;background:rgba(255,255,255,0.2)"></span>
+          <span style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#878787">Recognition</span>
+        </div>
+        <h2 style="font-size:clamp(32px,5vw,62px);font-weight:300;letter-spacing:-0.02em;line-height:1.02;color:#F5F5F5">Selected <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400">honours</em></h2>
+        <p style="margin-top:18px;max-width:440px;font-size:15px;line-height:1.6;color:#878787">Awards, research and competitive milestones.</p>
+      </div>
+
+      <div class="rec-stack" style="display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)">
+
+        <div class="rec-row" data-rec="" data-photo="honour-hackathon.png" data-reveal="" style="--rec:var(--acSolid,#89AACC);position:relative;overflow:hidden;align-self:flex-start;width:min(100%,78%);min-height:clamp(150px,16vw,196px);border:1px solid rgba(255,255,255,0.08);border-radius:26px;background:rgba(13,13,13,0.55);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s" style-hover="background:rgba(20,20,20,0.82);border-color:color-mix(in srgb,var(--rec) 60%,transparent);transform:translateY(-4px)">
+          <canvas data-card-gl="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .3s ease"></canvas>
+          <div class="rec-scrim" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .5s ease;background:linear-gradient(180deg,rgba(7,8,10,0.16) 0%,rgba(7,8,10,0.03) 36%,rgba(7,8,10,0.60) 78%,rgba(7,8,10,0.88) 100%)"></div>
+          <div class="rec-preview" style="position:relative;z-index:2;display:grid;grid-template-columns:clamp(60px,8vw,112px) 1fr;align-items:start;gap:clamp(18px,2.6vw,40px);padding:clamp(24px,3vw,36px) clamp(26px,3vw,40px);transition:opacity .45s ease,transform .45s ease">
+            <div class="rec-num" aria-hidden="true" style="font-family:'Instrument Serif',serif;font-size:clamp(54px,7vw,104px);line-height:0.72;color:transparent;-webkit-text-stroke:1.4px var(--rec)">01</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:9px">
+                <span class="rec-date" style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">May 2026</span>
+                <span style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.22)"></span>
+                <span style="font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#a7adb4;border:1px solid color-mix(in srgb,var(--rec) 42%,transparent);border-radius:999px;padding:3px 11px">PAN IIT · ₹1,00,000</span>
+              </div>
+              <h4 style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2.6vw,32px);color:#F5F5F5;line-height:1.08">AI for Bharat Hackathon — Winner</h4>
+              <p style="margin-top:11px;font-size:14.5px;line-height:1.62;color:#9aa0a6;max-width:560px">Awarded for SaanchaarSetu and recognised by the Joint Directors, Department of Industry &amp; Commerce, Government of Karnataka — with EY as EODB knowledge partner.</p>
+            </div>
+          </div>
+          <div class="rec-cap" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding:clamp(20px,2.4vw,30px) clamp(26px,3vw,40px);opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;pointer-events:none">
+            <span style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">May 2026</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:var(--rec)"></span>
+            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,26px);color:#F5F5F5;line-height:1.1">AI for Bharat Hackathon — Winner</span>
+          </div>
+        </div>
+
+        <div class="rec-row" data-rec="" data-photo="honour-paper.png" data-reveal="" data-delay="80" style="--rec:var(--acSolid,#89AACC);position:relative;overflow:hidden;align-self:flex-end;width:min(100%,74%);min-height:clamp(150px,16vw,196px);border:1px solid rgba(255,255,255,0.08);border-radius:26px;background:rgba(13,13,13,0.55);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s" style-hover="background:rgba(20,20,20,0.82);border-color:color-mix(in srgb,var(--rec) 60%,transparent);transform:translateY(-4px)">
+          <canvas data-card-gl="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .3s ease"></canvas>
+          <div class="rec-scrim" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .5s ease;background:linear-gradient(180deg,rgba(7,8,10,0.16) 0%,rgba(7,8,10,0.03) 36%,rgba(7,8,10,0.60) 78%,rgba(7,8,10,0.88) 100%)"></div>
+          <div class="rec-preview" style="position:relative;z-index:2;display:grid;grid-template-columns:clamp(60px,8vw,112px) 1fr;align-items:start;gap:clamp(18px,2.6vw,40px);padding:clamp(24px,3vw,36px) clamp(26px,3vw,40px);transition:opacity .45s ease,transform .45s ease">
+            <div class="rec-num" aria-hidden="true" style="font-family:'Instrument Serif',serif;font-size:clamp(54px,7vw,104px);line-height:0.72;color:transparent;-webkit-text-stroke:1.4px var(--rec)">02</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:9px">
+                <span class="rec-date" style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">Jul 2026</span>
+                <span style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.22)"></span>
+                <span style="font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#a7adb4;border:1px solid color-mix(in srgb,var(--rec) 42%,transparent);border-radius:999px;padding:3px 11px">Springer · LAIS</span>
+              </div>
+              <h4 style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2.6vw,32px);color:#F5F5F5;line-height:1.08">Research Paper Accepted — IDBA 2026</h4>
+              <p style="margin-top:11px;font-size:14.5px;line-height:1.62;color:#9aa0a6;max-width:560px">“A Knowledge-Graph-Driven ML Framework for Predictive Market Intelligence &amp; Economic Decision Analytics,” accepted at the 8th Intl. Conference on Data Science &amp; Big Data Analytics.</p>
+            </div>
+          </div>
+          <div class="rec-cap" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding:clamp(20px,2.4vw,30px) clamp(26px,3vw,40px);opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;pointer-events:none">
+            <span style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">Jul 2026</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:var(--rec)"></span>
+            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,26px);color:#F5F5F5;line-height:1.1">Research Paper Accepted — IDBA 2026</span>
+          </div>
+        </div>
+
+        <div class="rec-row" data-rec="" data-photo="honour-incubation.png" data-reveal="" data-delay="160" style="--rec:var(--acSolid,#89AACC);position:relative;overflow:hidden;align-self:flex-start;width:min(100%,84%);min-height:clamp(150px,16vw,196px);border:1px solid rgba(255,255,255,0.08);border-radius:26px;background:rgba(13,13,13,0.55);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s" style-hover="background:rgba(20,20,20,0.82);border-color:color-mix(in srgb,var(--rec) 60%,transparent);transform:translateY(-4px)">
+          <canvas data-card-gl="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .3s ease"></canvas>
+          <div class="rec-scrim" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .5s ease;background:linear-gradient(180deg,rgba(7,8,10,0.16) 0%,rgba(7,8,10,0.03) 36%,rgba(7,8,10,0.60) 78%,rgba(7,8,10,0.88) 100%)"></div>
+          <div class="rec-preview" style="position:relative;z-index:2;display:grid;grid-template-columns:clamp(60px,8vw,112px) 1fr;align-items:start;gap:clamp(18px,2.6vw,40px);padding:clamp(24px,3vw,36px) clamp(26px,3vw,40px);transition:opacity .45s ease,transform .45s ease">
+            <div class="rec-num" aria-hidden="true" style="font-family:'Instrument Serif',serif;font-size:clamp(54px,7vw,104px);line-height:0.72;color:transparent;-webkit-text-stroke:1.4px var(--rec)">03</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:9px">
+                <span class="rec-date" style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">Sep 2025</span>
+                <span style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.22)"></span>
+                <span style="font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#a7adb4;border:1px solid color-mix(in srgb,var(--rec) 42%,transparent);border-radius:999px;padding:3px 11px">SaviHer · iSTART</span>
+              </div>
+              <h4 style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2.6vw,32px);color:#F5F5F5;line-height:1.08">Incubated at Bhamashah Techno Hub</h4>
+              <p style="margin-top:11px;font-size:14.5px;line-height:1.62;color:#9aa0a6;max-width:560px">SaviHer secured incubation at Bhamashah Techno Hub, with an application filed for iSTART state startup funding.</p>
+            </div>
+          </div>
+          <div class="rec-cap" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding:clamp(20px,2.4vw,30px) clamp(26px,3vw,40px);opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;pointer-events:none">
+            <span style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">Sep 2025</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:var(--rec)"></span>
+            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,26px);color:#F5F5F5;line-height:1.1">Incubated at Bhamashah Techno Hub</span>
+          </div>
+        </div>
+
+        <a href="https://leetcode.com/u/dedsora/" target="_blank" rel="noopener" class="rec-row" data-rec="" data-photo="honour-leetcode.png" data-reveal="" data-delay="240" style="--rec:var(--acSolid,#89AACC);position:relative;overflow:hidden;align-self:flex-end;width:min(100%,72%);min-height:clamp(150px,16vw,196px);border:1px solid rgba(255,255,255,0.08);border-radius:26px;background:rgba(13,13,13,0.55);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);text-decoration:none;color:inherit;transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s" style-hover="background:rgba(20,20,20,0.82);border-color:color-mix(in srgb,var(--rec) 60%,transparent);transform:translateY(-4px)">
+          <span aria-hidden="true" style="position:absolute;top:18px;right:20px;z-index:4;font-size:18px;color:var(--rec)">↗</span>
+          <canvas data-card-gl="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .3s ease"></canvas>
+          <div class="rec-scrim" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .5s ease;background:linear-gradient(180deg,rgba(7,8,10,0.16) 0%,rgba(7,8,10,0.03) 36%,rgba(7,8,10,0.60) 78%,rgba(7,8,10,0.88) 100%)"></div>
+          <div class="rec-preview" style="position:relative;z-index:2;display:grid;grid-template-columns:clamp(60px,8vw,112px) 1fr;align-items:start;gap:clamp(18px,2.6vw,40px);padding:clamp(24px,3vw,36px) clamp(26px,3vw,40px);transition:opacity .45s ease,transform .45s ease">
+            <div class="rec-num" aria-hidden="true" style="font-family:'Instrument Serif',serif;font-size:clamp(54px,7vw,104px);line-height:0.72;color:transparent;-webkit-text-stroke:1.4px var(--rec)">04</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:9px">
+                <span class="rec-date" style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">Ongoing</span>
+                <span style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.22)"></span>
+                <span style="font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#a7adb4;border:1px solid color-mix(in srgb,var(--rec) 42%,transparent);border-radius:999px;padding:3px 11px">@dedsora · 1876</span>
+              </div>
+              <h4 style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2.6vw,32px);color:#F5F5F5;line-height:1.08">LeetCode Knight</h4>
+              <p style="margin-top:11px;font-size:14.5px;line-height:1.62;color:#9aa0a6;max-width:560px">Peak contest rating of 1876 with 500+ problems solved across graphs, DP and greedy — competitive-programming depth that shows in systems thinking.</p>
+            </div>
+          </div>
+          <div class="rec-cap" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding:clamp(20px,2.4vw,30px) clamp(26px,3vw,40px);opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;pointer-events:none">
+            <span style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">Ongoing</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:var(--rec)"></span>
+            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,26px);color:#F5F5F5;line-height:1.1">LeetCode Knight</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FOOTER (EngineTech-style) ============================ -->
+  <footer id="contact" style="position:relative;z-index:100;overflow:hidden;background:#0A0A0A;color:#ffffff">
+    <div aria-hidden="true" style="position:relative;height:120px;overflow:hidden;background:transparent">
+      <div style="position:absolute;left:0;top:50%;width:200%;height:70px;opacity:0.75;transform:translateY(-50%);background-image:radial-gradient(circle, rgba(255,255,255,0.55) 1.5px, transparent 2px),radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1.5px),radial-gradient(circle, rgba(255,255,255,0.45) 1.2px, transparent 1.8px);background-position:0 8px,24px 22px,48px 14px;background-size:72px 38px,110px 44px,160px 52px;animation:footerDotsMove 18s linear infinite"></div>
+    </div>
+    <div style="width:min(100% - 8vw, 1480px);margin:0 auto;padding:clamp(40px,4vw,66px) 0 clamp(20px,2vw,34px)">
+      <div class="ft-top" style="display:grid;grid-template-columns:minmax(300px,1.4fr) repeat(2, minmax(150px,0.5fr));gap:clamp(28px,4vw,72px);min-height:clamp(200px,22vw,300px)">
+        <h2 class="ft-h2" data-reveal="" style="max-width:680px;margin:0;color:#ffffff;font-size:clamp(34px,3.5vw,60px);font-weight:300;letter-spacing:-0.01em;line-height:1.06">Let’s build something <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400">real.</em></h2>
+        <nav aria-label="Profiles" style="display:flex;flex-direction:column;align-items:flex-start;gap:clamp(14px,1.35vw,22px)">
+          <a href="https://github.com/TathagataSen06" target="_blank" rel="noreferrer" style="color:rgba(255,255,255,0.88);font-size:16px;font-weight:650;line-height:1.1;transition:color 180ms ease,transform 180ms ease" style-hover="color:#ffffff;transform:translateX(3px)">GitHub</a>
+          <a href="https://www.linkedin.com/in/tathagatasen05/" target="_blank" rel="noreferrer" style="color:rgba(255,255,255,0.88);font-size:16px;font-weight:650;line-height:1.1;transition:color 180ms ease,transform 180ms ease" style-hover="color:#ffffff;transform:translateX(3px)">LinkedIn</a>
+          <a href="https://leetcode.com/u/dedsora/" target="_blank" rel="noreferrer" style="color:rgba(255,255,255,0.88);font-size:16px;font-weight:650;line-height:1.1;transition:color 180ms ease,transform 180ms ease" style-hover="color:#ffffff;transform:translateX(3px)">LeetCode</a>
+        </nav>
+        <nav aria-label="Connect" style="display:flex;flex-direction:column;align-items:flex-start;gap:clamp(14px,1.35vw,22px)">
+          <a href="mailto:sen.tathagata5@gmail.com" style="color:rgba(255,255,255,0.88);font-size:16px;font-weight:650;line-height:1.1;transition:color 180ms ease,transform 180ms ease" style-hover="color:#ffffff;transform:translateX(3px)">Email</a>
+          <a href="tel:+918452034860" style="color:rgba(255,255,255,0.88);font-size:16px;font-weight:650;line-height:1.1;transition:color 180ms ease,transform 180ms ease" style-hover="color:#ffffff;transform:translateX(3px)">+91 84520 34860</a>
+        </nav>
+      </div>
+
+      <div style="width:100%;margin-top:clamp(18px,3vw,46px)">
+        <a href="#top" aria-label="Tathagata Sen home" style="display:flex;align-items:center;width:100%;color:#ffffff">
+          <span class="ft-mark" aria-hidden="true" style="position:relative;flex:0 0 clamp(58px,6.1vw,118px);aspect-ratio:1;margin-right:clamp(14px,1.6vw,28px);overflow:hidden;border-radius:50%;background:#ffffff"></span>
+          <span class="ft-word" style="display:block;flex:1 1 auto;min-width:0;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(58px,11.1vw,210px);letter-spacing:-0.02em;line-height:0.84;white-space:nowrap">Tathagata Sen</span>
+        </a>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:8px 18px;margin-top:clamp(16px,1.6vw,26px);color:rgba(255,255,255,0.52);font-size:11px;line-height:1.35">
+        <p style="margin:0">© 2026 Tathagata Sen. All rights reserved.</p>
+        <span>Mumbai, India</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentFrom&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#89AACC&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Accent&quot;,&quot;options&quot;:[&quot;#89AACC&quot;,&quot;#8FA6E0&quot;,&quot;#86C0A4&quot;,&quot;#D0A98A&quot;]},&quot;accentTo&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#4E85BF&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Accent&quot;,&quot;options&quot;:[&quot;#4E85BF&quot;,&quot;#4659C4&quot;,&quot;#3F8E68&quot;,&quot;#BE7430&quot;]},&quot;showLoader&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;bgStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;aurora&quot;,&quot;options&quot;:[&quot;aurora&quot;,&quot;minimal&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Background&quot;},&quot;showCursor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const si = (s, c) => 'https://cdn.simpleicons.org/' + s + (c ? '/' + c : '');
+    const t = (n, s, c) => ({ n, i: si(s, c) });
+    const stack = [
+      t('Python','python'), t('Java','openjdk','ffffff'), t('C','c'), t('JavaScript','javascript'),
+      t('PostgreSQL','postgresql'), t('Redis','redis'), t('Kafka','apachekafka','ffffff'), t('FastAPI','fastapi'),
+      t('React','react'), t('Flutter','flutter'), t('Dart','dart'), t('Tailwind','tailwindcss'),
+      t('TensorFlow','tensorflow'), t('Docker','docker'), t('Git','git'), t('GitHub','github','ffffff'),
+      t('GCP','googlecloud'), t('Firebase','firebase'), t('MySQL','mysql'), t('Hugging Face','huggingface')
+    ];
+    const half = Math.ceil(stack.length / 2);
+    const dup = (a) => a.concat(a);
+    return { stackA: dup(stack.slice(0, half)), stackB: dup(stack.slice(half)) };
+  }
+
+  applyTheme() {
+    const r = document.documentElement;
+    const a = this.props.accentFrom || '#89AACC';
+    const b = this.props.accentTo || '#4E85BF';
+    r.style.setProperty('--acA', a);
+    r.style.setProperty('--acB', b);
+    r.style.setProperty('--acSolid', a);
+    const arr = this._hexToRgb(a) || [0.54, 0.67, 0.80];
+    const brr = this._hexToRgb(b) || [0.31, 0.52, 0.75];
+    this._recAcc = arr; this._recAcc2 = brr;
+    const hsl = this._rgbToHsl(arr);
+    const rots = [0, 16, 32, 48];
+    document.querySelectorAll('.rec-row').forEach((el, i) => {
+      const h = (((hsl[0] + rots[i % rots.length]) % 360) + 360) % 360;
+      const L = Math.min(80, Math.max(60, hsl[2]));
+      const S = Math.max(35, hsl[1]);
+      el.style.setProperty('--rec', 'hsl(' + h.toFixed(1) + ' ' + S.toFixed(1) + '% ' + L.toFixed(1) + '%)');
+    });
+  }
+  _hexToRgb(hex) {
+    if (typeof hex !== 'string') return null;
+    let h = hex.trim().replace('#', '');
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    if (h.length < 6) return null;
+    const n = parseInt(h.slice(0, 6), 16);
+    if (isNaN(n)) return null;
+    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+  }
+  _rgbToHsl(c) {
+    const r = c[0], g = c[1], b = c[2];
+    const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
+    let h = 0, s = 0; const l = (mx + mn) / 2; const d = mx - mn;
+    if (d > 1e-6) {
+      s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn);
+      if (mx === r) h = (g - b) / d + (g < b ? 6 : 0);
+      else if (mx === g) h = (b - r) / d + 2;
+      else h = (r - g) / d + 4;
+      h *= 60;
+    }
+    return [h, s * 100, l * 100];
+  }
+  applyBg() {
+    const minimal = this.props.bgStyle === 'minimal';
+    document.querySelectorAll('[data-blob]').forEach(el => { el.style.opacity = minimal ? '0' : '1'; });
+  }
+  componentDidUpdate() { this.applyTheme(); this.applyBg(); }
+
+  componentDidMount() {
+    this.applyTheme();
+    this.applyBg();
+    this._cl = [];
+    const on = (t, e, f, o) => { t.addEventListener(e, f, o); this._cl.push(() => t.removeEventListener(e, f, o)); };
+    const fine = window.matchMedia('(pointer:fine)').matches;
+
+    // ---- LOADER ----
+    const loader = document.querySelector('[data-loader]');
+    const showLoader = this.props.showLoader !== false;
+    if (loader && showLoader) {
+      const countEl = loader.querySelector('[data-loader-count]');
+      const barEl = loader.querySelector('[data-loader-bar]');
+      const wordEl = loader.querySelector('[data-loader-word]');
+      const words = ['Build', 'Scale', 'Ship'];
+      let wi = 0;
+      const wint = setInterval(() => {
+        wi = (wi + 1) % words.length;
+        if (wordEl) { wordEl.style.animation = 'none'; void wordEl.offsetWidth; wordEl.textContent = words[wi]; wordEl.style.animation = 'rolein .5s ease both'; }
+      }, 800);
+      this._cl.push(() => clearInterval(wint));
+      let done = false;
+      const finish = () => {
+        if (done) return; done = true; clearInterval(wint);
+        loader.style.opacity = '0'; loader.style.visibility = 'hidden';
+        setTimeout(() => { loader.style.display = 'none'; }, 650);
+      };
+      const dur = 2400, t0 = performance.now();
+      const step = (t) => {
+        let p = Math.min(1, (t - t0) / dur);
+        const v = Math.round(p * 100);
+        if (countEl) countEl.textContent = String(v).padStart(3, '0');
+        if (barEl) barEl.style.transform = 'scaleX(' + p + ')';
+        if (p < 1) requestAnimationFrame(step); else setTimeout(finish, 400);
+      };
+      requestAnimationFrame(step);
+      on(loader, 'click', finish);
+    } else if (loader) {
+      loader.style.display = 'none';
+    }
+
+    // ---- REVEAL on view (rect-based, robust in embeds) ----
+    const checkReveals = () => {
+      const vh = window.innerHeight; if (vh <= 0) return;
+      document.querySelectorAll('[data-reveal],[data-blur]').forEach(el => {
+        if (el.hasAttribute('data-shown')) return;
+        if (el.getBoundingClientRect().top < vh * 0.9) {
+          const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+          if (d > 0) setTimeout(() => el.setAttribute('data-shown', ''), d);
+          else el.setAttribute('data-shown', '');
+        }
+      });
+    };
+
+    // ---- COUNT-UPS ----
+    const fmt = (v, dec) => Number(v.toFixed(dec)).toLocaleString('en-IN');
+    const runCount = (el) => {
+      const end = parseFloat(el.getAttribute('data-count'));
+      const dec = parseInt(el.getAttribute('data-decimals') || '0');
+      const suf = el.getAttribute('data-suffix') || '';
+      const t0 = performance.now(), dur = 1600;
+      const step = (t) => {
+        let p = Math.min(1, (t - t0) / dur);
+        p = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(end * p, dec) + suf;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const checkCounts = () => {
+      const vh = window.innerHeight;
+      document.querySelectorAll('[data-count]').forEach(el => {
+        if (!el._done && el.getBoundingClientRect().top < vh * 0.85) { el._done = true; runCount(el); }
+      });
+    };
+
+    // ---- HERO ROLE CYCLE ----
+    const roleEl = document.querySelector('[data-role]');
+    const roles = ['Backend Engineer', 'ML Engineer', 'Systems Builder', 'Researcher'];
+    let ri = 0;
+    if (roleEl) {
+      const rint = setInterval(() => {
+        ri = (ri + 1) % roles.length;
+        roleEl.style.animation = 'none'; void roleEl.offsetWidth;
+        roleEl.textContent = roles[ri];
+        roleEl.style.animation = 'rolein .5s ease-out both';
+      }, 2200);
+      this._cl.push(() => clearInterval(rint));
+    }
+
+    // ---- BENTO HOVER ----
+    document.querySelectorAll('[data-card]').forEach(card => {
+      const img = card.querySelector('[data-cardimg]');
+      const ov = card.querySelector('[data-cardov]');
+      on(card, 'mouseenter', () => { if (img) img.style.transform = 'scale(1.06)'; if (ov) ov.style.opacity = '1'; });
+      on(card, 'mouseleave', () => { if (img) img.style.transform = 'scale(1)'; if (ov) ov.style.opacity = '0'; });
+    });
+
+    // ---- CTA GRADIENT-RING HOVER ----
+    document.querySelectorAll('[data-cta]').forEach(b => {
+      const ring = b.querySelector('[data-ring]');
+      const inner = b.querySelector('[data-inner]');
+      const kind = b.getAttribute('data-cta');
+      on(b, 'mouseenter', () => {
+        b.style.transform = 'scale(1.05)';
+        if (ring) ring.style.opacity = '1';
+        if (inner) { if (kind === 'solid') { inner.style.background = '#0A0A0A'; inner.style.color = '#F5F5F5'; } inner.style.borderColor = 'transparent'; }
+      });
+      on(b, 'mouseleave', () => {
+        b.style.transform = 'scale(1)';
+        if (ring) ring.style.opacity = '0';
+        if (inner) {
+          if (kind === 'solid') { inner.style.background = '#F5F5F5'; inner.style.color = '#0A0A0A'; inner.style.borderColor = 'transparent'; }
+          else { inner.style.borderColor = '#2A2A2A'; }
+        }
+      });
+    });
+
+    // ---- MAGNETIC ----
+    if (fine) {
+      document.querySelectorAll('[data-magnetic]').forEach(btn => {
+        const s = parseFloat(btn.getAttribute('data-magnetic')) || 0.3;
+        btn.style.transition = 'transform .35s cubic-bezier(.16,1,.3,1)';
+        on(btn, 'mousemove', (e) => {
+          const r = btn.getBoundingClientRect();
+          btn.style.transform = 'translate(' + ((e.clientX - (r.left + r.width / 2)) * s) + 'px,' + ((e.clientY - (r.top + r.height / 2)) * s) + 'px)';
+        });
+        on(btn, 'mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
+      });
+    }
+
+    // ---- NAV pill + active link ----
+    const navpill = document.querySelector('[data-navpill]');
+    const links = {};
+    document.querySelectorAll('[data-navlink]').forEach(l => { links[l.getAttribute('data-navlink')] = l; });
+    const sectIds = ['about', 'work', 'experience', 'recognition'];
+    const onFrame = () => {
+      const st = window.scrollY || window.pageYOffset || 0;
+      if (navpill) {
+        const sc = st > 60;
+        navpill.style.boxShadow = sc ? '0 12px 34px rgba(0,0,0,0.55)' : 'none';
+        navpill.style.background = sc ? 'rgba(16,16,16,0.8)' : 'rgba(20,20,20,0.5)';
+      }
+      const mid = window.innerHeight * 0.42; let cur = null;
+      sectIds.forEach(id => { const s = document.getElementById(id); if (s && s.getBoundingClientRect().top <= mid) cur = id; });
+      Object.keys(links).forEach(k => {
+        const a = (k === cur);
+        links[k].style.color = a ? '#F5F5F5' : '#878787';
+        links[k].style.background = a ? 'rgba(255,255,255,0.06)' : 'transparent';
+      });
+      checkReveals(); checkCounts();
+    };
+    on(window, 'scroll', onFrame, { passive: true });
+    on(window, 'resize', onFrame, { passive: true });
+
+    let stopped = false, raf = 0; const tStart = performance.now();
+    const loop = () => { onFrame(); if (!stopped && performance.now() - tStart < 4500) raf = requestAnimationFrame(loop); };
+    raf = requestAnimationFrame(loop); onFrame();
+    this._cl.push(() => { stopped = true; cancelAnimationFrame(raf); });
+    const iv = setInterval(onFrame, 90);
+    this._cl.push(() => clearInterval(iv));
+
+    // ---- RECOGNITION WEBGL BACKDROP ----
+    this.initRecGL();
+    document.querySelectorAll('.rec-row[data-photo]').forEach(c => this.initCardGL(c));
+
+    // ---- PREMIUM EXPERIENCE SECTION ----
+    this.initExperience();
+
+    // ---- OPTIONAL CUSTOM CURSOR ----
+    if (fine && this.props.showCursor === true) {
+      const ring = document.createElement('div');
+      ring.style.cssText = 'position:fixed;top:0;left:0;width:30px;height:30px;border:1px solid var(--acSolid,#89AACC);border-radius:50%;pointer-events:none;z-index:9000;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;opacity:0';
+      const dot = document.createElement('div');
+      dot.style.cssText = 'position:fixed;top:0;left:0;width:5px;height:5px;background:var(--acSolid,#89AACC);border-radius:50%;pointer-events:none;z-index:9001;transform:translate(-50%,-50%);opacity:0';
+      document.body.appendChild(ring); document.body.appendChild(dot);
+      let tx = 0, ty = 0, rx = 0, ry = 0, started = false;
+      on(window, 'mousemove', (e) => {
+        tx = e.clientX; ty = e.clientY; dot.style.left = tx + 'px'; dot.style.top = ty + 'px';
+        if (!started) { started = true; rx = tx; ry = ty; ring.style.opacity = '1'; dot.style.opacity = '1'; }
+      });
+      let craf;
+      const cloop = () => { rx += (tx - rx) * 0.18; ry += (ty - ry) * 0.18; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; craf = requestAnimationFrame(cloop); };
+      cloop();
+      const grow = () => { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.background = 'color-mix(in srgb, var(--acSolid,#89AACC) 12%, transparent)'; };
+      const shrink = () => { ring.style.width = '30px'; ring.style.height = '30px'; ring.style.background = 'transparent'; };
+      document.querySelectorAll('a,[data-magnetic],[data-card],[data-cta]').forEach(el => { on(el, 'mouseenter', grow); on(el, 'mouseleave', shrink); });
+      this._cl.push(() => { cancelAnimationFrame(craf); ring.remove(); dot.remove(); });
+    }
+  }
+
+  componentWillUnmount() { (this._cl || []).forEach(f => f()); }
+
+  initRecGL() {
+    const canvas = document.querySelector('[data-rec-gl]');
+    const section = document.getElementById('recognition');
+    if (!canvas || !section) return;
+    let gl = null;
+    try { gl = canvas.getContext('webgl', { alpha: true, antialias: false, premultipliedAlpha: false, powerPreference: 'low-power', depth: false, stencil: false }); } catch (e) {}
+    if (!gl) return; // gradient fallback remains
+    const vsSrc = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
+    const fsSrc = [
+      'precision highp float;',
+      'uniform vec2 u_res;uniform float u_time;uniform vec3 u_a;uniform vec3 u_b;',
+      'float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);}',
+      'float noise(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.0-2.0*f);',
+      ' return mix(mix(hash(i),hash(i+vec2(1.0,0.0)),u.x),mix(hash(i+vec2(0.0,1.0)),hash(i+vec2(1.0,1.0)),u.x),u.y);}',
+      'float fbm(vec2 p){float v=0.0,a=0.55;mat2 m=mat2(1.6,1.2,-1.2,1.6);',
+      ' for(int i=0;i<5;i++){v+=a*noise(p);p=m*p;a*=0.5;}return v;}',
+      'void main(){',
+      ' vec2 uv=gl_FragCoord.xy/u_res.xy;',
+      ' float ar=u_res.x/max(u_res.y,1.0);',
+      ' vec2 p=vec2(uv.x*ar,uv.y)*1.8;',
+      ' float t=u_time*0.03;',
+      ' vec2 q=vec2(fbm(p+vec2(0.0,t)),fbm(p+vec2(5.2,t*0.8+1.3)));',
+      ' float f=fbm(p+q*1.6+vec2(t*0.6,0.0));',
+      ' float bands=smoothstep(0.32,0.96,f);',
+      ' vec3 col=mix(u_a,u_b,clamp(q.x+0.3,0.0,1.0));',
+      ' float bright=pow(bands,1.8)*0.42;',
+      ' float cen=smoothstep(0.12,0.85,length((uv-0.5)*vec2(ar,1.0)*1.1));',
+      ' bright*=mix(0.32,1.0,cen);',
+      ' gl_FragColor=vec4(col*bright, bright*0.92);',
+      '}'
+    ].join('\n');
+    const mk = (ty, src) => { const s = gl.createShader(ty); gl.shaderSource(s, src); gl.compileShader(s); return s; };
+    const prog = gl.createProgram();
+    gl.attachShader(prog, mk(gl.VERTEX_SHADER, vsSrc));
+    gl.attachShader(prog, mk(gl.FRAGMENT_SHADER, fsSrc));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const ploc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(ploc);
+    gl.vertexAttribPointer(ploc, 2, gl.FLOAT, false, 0, 0);
+    const uRes = gl.getUniformLocation(prog, 'u_res');
+    const uTime = gl.getUniformLocation(prog, 'u_time');
+    const uA = gl.getUniformLocation(prog, 'u_a');
+    const uB = gl.getUniformLocation(prog, 'u_b');
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.clearColor(0, 0, 0, 0);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const resize = () => {
+      const w = Math.max(1, section.clientWidth), h = Math.max(1, section.clientHeight);
+      const cw = Math.round(w * dpr), ch = Math.round(h * dpr);
+      if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; }
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    };
+    resize();
+    if (window.ResizeObserver) { const ro = new ResizeObserver(resize); ro.observe(section); this._cl.push(() => ro.disconnect()); }
+    else { window.addEventListener('resize', resize); this._cl.push(() => window.removeEventListener('resize', resize)); }
+    const draw = (ts) => {
+      const a = this._recAcc || [0.54, 0.67, 0.80];
+      const b = this._recAcc2 || [0.31, 0.52, 0.75];
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform1f(uTime, ts);
+      gl.uniform3f(uA, a[0], a[1], a[2]);
+      gl.uniform3f(uB, b[0], b[1], b[2]);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    };
+    requestAnimationFrame(() => { canvas.style.opacity = '0.92'; });
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { resize(); draw(14.0); return; }
+    const t0 = performance.now();
+    let raf = 0, running = true;
+    const visible = () => { const r = section.getBoundingClientRect(); const vh = window.innerHeight || 1; return r.bottom > -40 && r.top < vh + 40; };
+    const loop = () => { if (!running) return; if (visible()) draw((performance.now() - t0) / 1000); raf = requestAnimationFrame(loop); };
+    raf = requestAnimationFrame(loop);
+    this._cl.push(() => { running = false; cancelAnimationFrame(raf); const ex = gl.getExtension('WEBGL_lose_context'); if (ex) ex.loseContext(); });
+  }
+
+  initCardGL(card) {
+    const canvas = card.querySelector('[data-card-gl]');
+    const url = card.getAttribute('data-photo');
+    if (!canvas || !url) return;
+    let gl = null;
+    try { gl = canvas.getContext('webgl', { alpha: true, antialias: false, premultipliedAlpha: false, depth: false, stencil: false }); } catch (e) {}
+    if (!gl) { this._cardImgFallback(card, url); return; }
+    const vsSrc = 'attribute vec2 p;varying vec2 v;void main(){v=p*0.5+0.5;gl_Position=vec4(p,0.0,1.0);}';
+    const fsSrc = [
+      'precision highp float;',
+      'varying vec2 v;',
+      'uniform sampler2D u_tex;uniform vec2 u_res;uniform vec2 u_img;uniform float u_prog;uniform float u_time;uniform vec3 u_acc;',
+      'float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);}',
+      'float noise(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.0-2.0*f);',
+      ' return mix(mix(hash(i),hash(i+vec2(1.0,0.0)),u.x),mix(hash(i+vec2(0.0,1.0)),hash(i+vec2(1.0,1.0)),u.x),u.y);}',
+      'float fbm(vec2 p){float s=0.0,a=0.5;for(int i=0;i<4;i++){s+=a*noise(p);p*=2.0;a*=0.5;}return s;}',
+      'void main(){',
+      ' float ca=u_res.x/max(u_res.y,1.0), ia=u_img.x/max(u_img.y,1.0);',
+      ' vec2 sc = ca>ia ? vec2(1.0, ia/ca) : vec2(ca/ia, 1.0);',
+      ' float zoom=mix(1.08,1.0,smoothstep(0.0,1.0,u_prog));',
+      ' vec2 iuv=(v-0.5)*sc/zoom+0.5;',
+      ' vec3 photo=texture2D(u_tex, clamp(iuv,0.0015,0.9985)).rgb;',
+      ' float n=fbm(v*vec2(3.4*ca,3.4)+u_time*0.12);',
+      ' float w=0.16;',
+      ' float x=u_prog*(1.0+2.0*w)-w;',
+      ' float reveal=smoothstep(n-w, n+w, x);',
+      ' float edge=reveal*(1.0-reveal)*4.0;',
+      ' vec3 col=mix(u_acc*0.16, photo, reveal);',
+      ' col+=u_acc*edge*0.55;',
+      ' gl_FragColor=vec4(col, reveal);',
+      '}'
+    ].join('\n');
+    const mk = (ty, src) => { const s = gl.createShader(ty); gl.shaderSource(s, src); gl.compileShader(s); return s; };
+    const program = gl.createProgram();
+    gl.attachShader(program, mk(gl.VERTEX_SHADER, vsSrc));
+    gl.attachShader(program, mk(gl.FRAGMENT_SHADER, fsSrc));
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) { this._cardImgFallback(card, url); return; }
+    gl.useProgram(program);
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const ploc = gl.getAttribLocation(program, 'p');
+    gl.enableVertexAttribArray(ploc);
+    gl.vertexAttribPointer(ploc, 2, gl.FLOAT, false, 0, 0);
+    const uTex = gl.getUniformLocation(program, 'u_tex');
+    const uRes = gl.getUniformLocation(program, 'u_res');
+    const uImg = gl.getUniformLocation(program, 'u_img');
+    const uProg = gl.getUniformLocation(program, 'u_prog');
+    const uTime = gl.getUniformLocation(program, 'u_time');
+    const uAcc = gl.getUniformLocation(program, 'u_acc');
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.clearColor(0, 0, 0, 0);
+    const tex = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([22, 24, 28, 255]));
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    let imgW = 1, imgH = 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    let prog01 = 0, target = 0, raf = 0, running = false, last = 0;
+    const draw = () => {
+      gl.useProgram(program);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.uniform1i(uTex, 0);
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform2f(uImg, imgW, imgH);
+      gl.uniform1f(uProg, prog01);
+      gl.uniform1f(uTime, performance.now() / 1000);
+      const a = this._recAcc || [0.54, 0.67, 0.80];
+      gl.uniform3f(uAcc, a[0], a[1], a[2]);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    };
+    const resize = () => {
+      const w = Math.max(1, card.clientWidth), h = Math.max(1, card.clientHeight);
+      const cw = Math.round(w * dpr), ch = Math.round(h * dpr);
+      if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; }
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      draw();
+    };
+    resize();
+    if (window.ResizeObserver) { const ro = new ResizeObserver(resize); ro.observe(card); this._cl.push(() => ro.disconnect()); }
+    const img = new Image();
+    img.onload = () => {
+      imgW = img.naturalWidth || 1; imgH = img.naturalHeight || 1;
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+      draw();
+    };
+    img.src = url;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const tick = () => {
+      const now = performance.now(); const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      const dir = target > prog01 ? 1 : -1;
+      prog01 += dir * (1 / 0.5) * dt;
+      if ((dir > 0 && prog01 >= target) || (dir < 0 && prog01 <= target)) prog01 = target;
+      draw();
+      if (prog01 !== target) raf = requestAnimationFrame(tick); else running = false;
+    };
+    const kick = () => { if (!running) { running = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const preview = card.querySelector('.rec-preview');
+    const scrim = card.querySelector('.rec-scrim');
+    const cap = card.querySelector('.rec-cap');
+    const setHot = (on) => {
+      if (preview) { preview.style.opacity = on ? '0' : '1'; preview.style.transform = on ? 'translateY(-8px)' : 'none'; preview.style.pointerEvents = on ? 'none' : ''; }
+      if (scrim) scrim.style.opacity = on ? '1' : '0';
+      if (cap) { cap.style.opacity = on ? '1' : '0'; cap.style.transform = on ? 'none' : 'translateY(12px)'; }
+    };
+    const enter = () => { card.classList.add('is-hot'); canvas.style.opacity = '1'; setHot(true); target = 1; if (reduce) { prog01 = 1; draw(); } else kick(); };
+    const leave = () => { card.classList.remove('is-hot'); setHot(false); target = 0; if (reduce) { prog01 = 0; draw(); } else kick(); };
+    card.addEventListener('mouseenter', enter);
+    card.addEventListener('mouseleave', leave);
+    card.addEventListener('focusin', enter);
+    card.addEventListener('focusout', leave);
+    this._cl.push(() => {
+      card.removeEventListener('mouseenter', enter); card.removeEventListener('mouseleave', leave);
+      card.removeEventListener('focusin', enter); card.removeEventListener('focusout', leave);
+      cancelAnimationFrame(raf); const ex = gl.getExtension('WEBGL_lose_context'); if (ex) ex.loseContext();
+    });
+  }
+
+  _cardImgFallback(card, url) {
+    const c = card.querySelector('[data-card-gl]');
+    const img = document.createElement('img');
+    img.src = url; img.alt = ''; img.setAttribute('aria-hidden', 'true');
+    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity .5s ease;pointer-events:none';
+    if (c && c.parentNode) c.parentNode.insertBefore(img, c); else card.appendChild(img);
+    const enter = () => { card.classList.add('is-hot'); img.style.opacity = '1'; };
+    const leave = () => { card.classList.remove('is-hot'); img.style.opacity = '0'; };
+    card.addEventListener('mouseenter', enter); card.addEventListener('mouseleave', leave);
+    card.addEventListener('focusin', enter); card.addEventListener('focusout', leave);
+    this._cl.push(() => { card.removeEventListener('mouseenter', enter); card.removeEventListener('mouseleave', leave); card.removeEventListener('focusin', enter); card.removeEventListener('focusout', leave); img.remove(); });
+  }
+
+  _bezier(p1x, p1y, p2x, p2y) {
+    const cx = 3 * p1x, bx = 3 * (p2x - p1x) - cx, ax = 1 - cx - bx;
+    const cy = 3 * p1y, by = 3 * (p2y - p1y) - cy, ay = 1 - cy - by;
+    const fx = (t) => ((ax * t + bx) * t + cx) * t;
+    const dfx = (t) => (3 * ax * t + 2 * bx) * t + cx;
+    const fy = (t) => ((ay * t + by) * t + cy) * t;
+    return (x) => {
+      let t = x;
+      for (let i = 0; i < 6; i++) { const e = fx(t) - x; if (Math.abs(e) < 1e-4) break; const d = dfx(t); if (Math.abs(d) < 1e-6) break; t -= e / d; }
+      return fy(Math.max(0, Math.min(1, t)));
+    };
+  }
+
+  _runMetric(el, ease, reduce) {
+    const target = parseFloat(el.getAttribute('data-target')) || 0;
+    const type = el.getAttribute('data-type') || 'num';
+    const final = el.getAttribute('data-final') || '';
+    const fmt = (v) => {
+      if (type === 'M') { const x = v / 1e6; return (x >= 10 ? x.toFixed(0) : x.toFixed(1)) + 'M'; }
+      if (type === 'K') { const x = v / 1e3; return (x >= 10 ? x.toFixed(0) : x.toFixed(1)) + 'K'; }
+      if (type === 'pct') return Math.round(v) + '%';
+      return Math.round(v).toLocaleString('en-IN');
+    };
+    if (reduce) { el.textContent = final; return; }
+    const dur = 1400, t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      el.textContent = fmt(target * ease(p));
+      if (p < 1) requestAnimationFrame(step);
+      else { el.textContent = final; el.style.animation = 'expPulse .7s cubic-bezier(0.22,1,0.36,1) 1'; setTimeout(() => { el.style.animation = 'none'; }, 760); }
+    };
+    requestAnimationFrame(step);
+  }
+
+  initExperience() {
+    const section = document.getElementById('experience');
+    if (!section) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fine = window.matchMedia && window.matchMedia('(pointer:fine)').matches;
+    const ease = this._bezier(0.22, 1, 0.36, 1);
+    const amb = section.querySelector('[data-exp-amb]');
+    const glow = section.querySelector('[data-exp-glow]');
+    const spot = section.querySelector('[data-exp-spot]');
+    const cards = [...section.querySelectorAll('[data-card]')];
+    const metrics = [...section.querySelectorAll('[data-metric]')];
+    this._expReady = false;
+
+    // seed metrics at zero so there's no flash of the final value
+    const zero = (t) => t === 'M' ? '0.0M' : t === 'K' ? '0.0K' : t === 'pct' ? '0%' : '0';
+    if (!reduce) metrics.forEach(el => { el.textContent = zero(el.getAttribute('data-type')); });
+
+    // ---- emphasis: scroll active-reading flow + hover focus ----
+    let hovered = -1;
+    const updateEmphasis = () => {
+      if (!this._expReady) return;
+      const vh = window.innerHeight || 1;
+      cards.forEach((card, i) => {
+        let op = 1, sat = 1, br = 1;
+        if (hovered >= 0) {
+          if (i !== hovered) { op = 0.5; sat = 0.78; br = 0.86; }
+        } else {
+          const r = card.getBoundingClientRect();
+          const cc = r.top + r.height / 2;
+          const dist = Math.min(1, Math.abs(cc - vh / 2) / (vh * 0.62));
+          op = 1 - dist * 0.4; sat = 1 - dist * 0.18; br = 1 - dist * 0.08;
+        }
+        card.style.opacity = op.toFixed(3);
+        card.style.filter = 'saturate(' + sat.toFixed(3) + ') brightness(' + br.toFixed(3) + ')';
+      });
+    };
+
+    // ---- orchestrated entrance ----
+    let entered = false;
+    const reveal = () => {
+      if (entered) return; entered = true;
+      if (amb) amb.style.opacity = '1';
+      if (glow) glow.style.opacity = '1';
+      section.querySelectorAll('[data-e]').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; });
+      metrics.forEach((el, i) => {
+        const d = reduce ? 0 : 600 + i * 120 + 520;
+        setTimeout(() => this._runMetric(el, ease, reduce), d);
+      });
+      setTimeout(() => { this._expReady = true; updateEmphasis(); }, reduce ? 0 : 1000);
+    };
+    const checkReveal = () => {
+      if (entered) return;
+      const r = section.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      if (r.top < vh * 0.85 && r.bottom > vh * 0.08) reveal();
+    };
+    if (reduce) { reveal(); }
+    else {
+      checkReveal();
+      const rv = setInterval(() => { if (entered) clearInterval(rv); else checkReveal(); }, 120);
+      this._cl.push(() => clearInterval(rv));
+    }
+
+    // ---- per-card hover physics + cursor light ----
+    cards.forEach((card, i) => {
+      const light = card.querySelector('[data-card-light]');
+      const sheen = card.querySelector('[data-card-sheen]');
+      const onMove = (e) => {
+        const r = card.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width) * 100;
+        const y = ((e.clientY - r.top) / r.height) * 100;
+        card.style.setProperty('--cx', x.toFixed(2) + '%');
+        card.style.setProperty('--cy', y.toFixed(2) + '%');
+        card.style.setProperty('--shx', x.toFixed(2) + '%');
+      };
+      const enter = () => {
+        hovered = i;
+        card.style.transform = 'translateY(-7px) scale(1.015)';
+        card.style.borderColor = 'color-mix(in srgb, var(--acSolid,#89AACC) 42%, transparent)';
+        card.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.022))';
+        card.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.11), 0 2px 6px rgba(0,0,0,0.45), 0 26px 62px rgba(0,0,0,0.42), 0 0 44px color-mix(in srgb, var(--acSolid,#89AACC) 14%, transparent)';
+        if (light) light.style.opacity = '1';
+        if (sheen) sheen.style.opacity = '1';
+        updateEmphasis();
+      };
+      const leave = () => {
+        hovered = -1;
+        card.style.transform = 'none';
+        card.style.borderColor = 'rgba(255,255,255,0.08)';
+        card.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.014))';
+        card.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.07), 0 2px 4px rgba(0,0,0,0.4), 0 14px 40px rgba(0,0,0,0.28)';
+        if (light) light.style.opacity = '0';
+        if (sheen) sheen.style.opacity = '0';
+        updateEmphasis();
+      };
+      if (fine) {
+        card.addEventListener('mousemove', onMove);
+        card.addEventListener('mouseenter', enter);
+        card.addEventListener('mouseleave', leave);
+        this._cl.push(() => { card.removeEventListener('mousemove', onMove); card.removeEventListener('mouseenter', enter); card.removeEventListener('mouseleave', leave); });
+      }
+    });
+
+    // ---- section cursor spotlight (soft, with inertia) ----
+    if (fine && !reduce && spot) {
+      let tx = 50, ty = 50, cx = 50, cy = 50, raf = 0, active = false;
+      const onMove = (e) => {
+        const r = section.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width) * 100;
+        ty = ((e.clientY - r.top) / r.height) * 100;
+      };
+      const loop = () => {
+        cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
+        spot.style.setProperty('--sx', cx.toFixed(2) + '%');
+        spot.style.setProperty('--sy', cy.toFixed(2) + '%');
+        if (active) raf = requestAnimationFrame(loop);
+      };
+      const enter = () => { active = true; spot.style.opacity = '1'; cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); };
+      const leave = () => { active = false; spot.style.opacity = '0'; cancelAnimationFrame(raf); };
+      section.addEventListener('mousemove', onMove);
+      section.addEventListener('mouseenter', enter);
+      section.addEventListener('mouseleave', leave);
+      this._cl.push(() => { section.removeEventListener('mousemove', onMove); section.removeEventListener('mouseenter', enter); section.removeEventListener('mouseleave', leave); cancelAnimationFrame(raf); });
+    }
+
+    // ---- ambient lighting shift on scroll + emphasis refresh ----
+    let sq = false, sraf = 0;
+    const onScroll = () => {
+      if (sq) return; sq = true;
+      sraf = requestAnimationFrame(() => {
+        sq = false;
+        checkReveal();
+        const r = section.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        const prog = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+        if (glow && !reduce) glow.style.transform = 'translate3d(' + ((prog - 0.5) * 4).toFixed(2) + '%,' + ((prog - 0.5) * 3).toFixed(2) + '%,0)';
+        updateEmphasis();
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    this._cl.push(() => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(sraf); });
+  }
+}
+</script>
+</body>
+</html>
