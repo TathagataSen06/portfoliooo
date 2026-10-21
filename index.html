@@ -1,8 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tathagata Sen — Software Engineer</title>
+<meta name="description" content="Portfolio of Tathagata Sen, a software engineer and final-year CS student at BIT Mesra building backend systems, data pipelines and machine learning software.">
+<link rel="canonical" href="https://tathagatasen.vercel.app/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='60' fill='%230a0a0a'/%3E%3Ctext x='60' y='77' font-family='serif' font-size='52' font-style='italic' fill='%23f5f5f5' text-anchor='middle'%3ETS%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tathagatasen.vercel.app/">
+<meta property="og:title" content="Tathagata Sen — Software Engineer">
+<meta property="og:description" content="Backend, data and ML engineering — projects, experience at BARC and selected honours.">
+<meta property="og:image" content="https://tathagatasen.vercel.app/portrait.png">
+<meta name="twitter:card" content="summary">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -50,9 +60,19 @@
   .rec-row.is-hot .rec-cap{opacity:1 !important;transform:none !important}
   @media (max-width:980px){.ft-top{grid-template-columns:1fr 1fr !important}.ft-h2{grid-column:1/-1 !important}.about-top{grid-template-columns:1fr !important;gap:46px !important}.about-fig{justify-self:center !important;max-width:430px !important}.about-cards{grid-template-columns:1fr 1fr !important}.about-card2{margin-top:0 !important}}
   @media (max-width:560px){.ft-top{grid-template-columns:1fr !important}.about-cards{grid-template-columns:1fr !important}.ft-word{font-size:clamp(45px,18vw,84px) !important}}
-  @media (max-width:920px){.bento{grid-template-columns:1fr !important}.bento>*{grid-column:auto !important;aspect-ratio:16/11 !important}.exp-grid{grid-template-columns:1fr !important}.two-col{grid-template-columns:1fr !important}.foot-row{flex-direction:column;align-items:flex-start !important;gap:34px}.nav-x{display:none !important}.work-head{flex-direction:column;align-items:flex-start !important;gap:20px}}
+  @media (max-width:920px){.bento{grid-template-columns:1fr !important}.bento>*{grid-column:auto !important}.exp-grid{grid-template-columns:1fr !important}.two-col{grid-template-columns:1fr !important}.foot-row{flex-direction:column;align-items:flex-start !important;gap:34px}.nav-x{display:none !important}.work-head{flex-direction:column;align-items:flex-start !important;gap:20px}}
   @media (max-width:860px){.rec-row{width:100% !important;align-self:stretch !important}}
-  @media (max-width:560px){.stat-grid{grid-template-columns:1fr 1fr !important}.rec-preview{grid-template-columns:1fr !important;gap:10px !important;padding:22px 22px !important}.rec-num{font-size:48px !important;line-height:0.8 !important}}
+  @media (max-width:560px){.stat-grid{grid-template-columns:1fr 1fr !important}.rec-preview{grid-template-columns:1fr !important;gap:10px !important;padding:22px 22px !important}.rec-num{font-size:48px !important;line-height:0.8 !important}.hero-sep{display:block;height:0;overflow:hidden}}
+  /* project details: show on keyboard focus; on touch / narrow screens stack them under the image instead of hiding them behind hover */
+  .bento>[data-card]:focus-visible [data-cardov]{opacity:1 !important}
+  @media (max-width:920px),(hover:none){
+    .bento>[data-card]{display:grid !important;grid-template-rows:auto auto;align-content:start;aspect-ratio:auto !important}
+    .bento>[data-card]>*{grid-area:1/1;position:relative !important;inset:auto !important}
+    .bento>[data-card]>[data-cardimg]{height:clamp(210px,28vw,340px) !important}
+    .bento>[data-card]>[data-cardcap]{align-self:end}
+    .bento>[data-card]>[data-cardov]{grid-area:2/1;opacity:1 !important;background:none !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;padding:6px 24px 28px !important}
+    .bento>[data-card]>[data-cardov]>[data-cardstats]{display:grid !important;grid-template-columns:1fr 1fr;gap:18px 20px !important}
+  }
 </style>
 </helmet>
 
@@ -107,10 +127,10 @@
     </div>
 
     <div style="position:relative;z-index:2;max-width:980px;display:flex;flex-direction:column;align-items:center">
-      <div data-blur="" data-delay="60" style="font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:#878787;margin-bottom:30px">Software&nbsp;Engineer &nbsp;·&nbsp; Portfolio&nbsp;’26</div>
+      <div data-blur="" data-delay="60" style="font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:#878787;margin-bottom:30px">Software&nbsp;Engineer<span class="hero-sep"> &nbsp;·&nbsp; </span>Portfolio&nbsp;’26</div>
       <h1 data-blur="" data-delay="160" style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(54px,11vw,148px);line-height:0.9;letter-spacing:-0.02em;color:#F5F5F5;text-wrap:balance">Tathagata Sen</h1>
-      <p data-blur="" data-delay="320" style="margin-top:30px;font-size:clamp(17px,2.2vw,26px);color:#9aa0a6;font-weight:300">A <em data-role="" style="font-style:italic;font-family:'Instrument Serif',serif;color:#F5F5F5;display:inline-block">Backend Engineer</em> based in Mumbai.</p>
-      <p data-blur="" data-delay="420" style="margin-top:22px;max-width:540px;font-size:clamp(14px,1.6vw,16px);line-height:1.65;color:#878787">Building scalable systems and intelligent software across various domains and managing the real world problems</p>
+      <p data-blur="" data-delay="320" style="margin-top:30px;font-size:clamp(17px,2.2vw,26px);color:#9aa0a6;font-weight:300"><span data-role-article="">A</span> <em data-role="" style="font-style:italic;font-family:'Instrument Serif',serif;color:#F5F5F5;display:inline-block">Backend Engineer</em> based in Mumbai.</p>
+      <p data-blur="" data-delay="420" style="margin-top:22px;max-width:540px;font-size:clamp(14px,1.6vw,16px);line-height:1.65;color:#878787">Building scalable systems and intelligent software that solve real-world problems.</p>
       <div data-blur="" data-delay="520" style="margin-top:42px;display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center">
         <a href="#work" data-cta="solid" style="position:relative;border-radius:999px;display:inline-block;transition:transform .3s cubic-bezier(.16,1,.3,1)">
           <span data-ring="" style="position:absolute;inset:-1.5px;border-radius:999px;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF));opacity:0;transition:opacity .3s;z-index:0"></span>
@@ -141,8 +161,8 @@
         </figure>
         <div data-reveal="" data-delay="80" style="display:flex;flex-direction:column;max-width:560px">
           <h2 style="margin:0 0 26px;font-weight:600;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95;font-size:clamp(36px,4.6vw,56px);color:#F5F5F5">About<br>the engineer</h2>
-          <p style="font-size:clamp(16px,1.5vw,18px);line-height:1.55;color:#9aa0a6">I'm a final-year Computer Science student at BIT Mesra, currently interning as a SDE Intern at the Bhabha Atomic Research Centre (BARC).</p>
-          <p style="margin-top:16px;font-size:clamp(16px,1.5vw,18px);line-height:1.55;color:#9aa0a6">I work on large-scale data processing pipelines, machine learning systems, and scalable applications that solve real-world problems. It includes scientific computing & full stack engineering with a focus on building production ready software.</p>
+          <p style="font-size:clamp(16px,1.5vw,18px);line-height:1.55;color:#9aa0a6">I'm a final-year Computer Science student at BIT Mesra, and I recently completed a Software Development Engineer internship at the Bhabha Atomic Research Centre (BARC).</p>
+          <p style="margin-top:16px;font-size:clamp(16px,1.5vw,18px);line-height:1.55;color:#9aa0a6">I work on large-scale data processing pipelines, machine learning systems and scalable applications, spanning scientific computing and full-stack engineering, with a focus on building production-ready software.</p>
           <p style="margin-top:16px;font-size:clamp(16px,1.5vw,18px);line-height:1.55;color:#9aa0a6">Outside of engineering, I enjoy playing tennis and football and watching anime😁, with One Piece, Attack on Titan, and Bleach among my favorites.</p>
           <a href="https://github.com/TathagataSen06" target="_blank" rel="noreferrer" class="about-link" style="display:inline-flex;align-items:center;gap:16px;margin-top:26px;font-size:14px;font-weight:500;color:#F5F5F5">
             GitHub profile
@@ -158,7 +178,7 @@
             <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.82) 30%, rgba(10,10,10,0.18) 60%, transparent 78%)"></div>
             <div style="position:absolute;left:24px;right:24px;bottom:24px;max-width:66%">
               <div style="font-weight:600;text-transform:uppercase;line-height:1;font-size:clamp(36px,3.6vw,52px);background:linear-gradient(294deg,#89AACC 20%,#CFE2F4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">8.12</div>
-              <div style="margin-top:12px;font-size:14px;line-height:1.4;color:#9aa0a6">CGPA in B.tech Computer Science and Engineering at BIT Mesra</div>
+              <div style="margin-top:12px;font-size:14px;line-height:1.4;color:#9aa0a6">CGPA in B.Tech Computer Science and Engineering at BIT Mesra</div>
             </div>
           </div>
         </div>
@@ -178,7 +198,7 @@
             <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.82) 30%, rgba(10,10,10,0.18) 60%, transparent 78%)"></div>
             <div style="position:absolute;left:24px;right:112px;bottom:24px;max-width:66%">
               <div style="font-weight:600;text-transform:uppercase;line-height:1;font-size:clamp(36px,3.6vw,52px);background:linear-gradient(294deg,#89AACC 20%,#CFE2F4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">7+</div>
-              <div style="margin-top:12px;font-size:14px;line-height:1.4;color:#9aa0a6">live projects across different domains</div>
+              <div style="margin-top:12px;font-size:14px;line-height:1.4;color:#9aa0a6">projects shipped across different domains</div>
             </div>
           </div>
         </div>
@@ -278,18 +298,18 @@
 
       <div class="bento" style="display:grid;grid-template-columns:repeat(12,1fr);gap:20px">
 
-        <!-- Card 1 — SaanchaarSetu (span 7) -->
+        <!-- Card 1 — SanchaarSetu (span 7) -->
         <a href="https://github.com/TathagataSen06/SanchaarSetu" target="_blank" rel="noopener" data-card="" data-reveal="" style="grid-column:span 7;position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(255,255,255,0.08);background:#121212;aspect-ratio:16/11;display:block">
-          <img data-cardimg="" src="sanchaarsetu-dashboard.png?v=2" alt="SaanchaarSetu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
+          <img data-cardimg="" src="sanchaarsetu-dashboard.png?v=2" alt="SanchaarSetu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
           <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,0.12) 72%, transparent 100%);pointer-events:none"></div>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
+          <div data-cardcap="" style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
             <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">01 · Government · Real-time</div>
-            <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(28px,3.6vw,48px);line-height:1;color:#F5F5F5">SaanchaarSetu</h3>
+            <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(28px,3.6vw,48px);line-height:1;color:#F5F5F5">SanchaarSetu</h3>
           </div>
           <div data-cardov="" style="position:absolute;inset:0;background:rgba(10,10,10,0.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,44px);gap:20px">
             <p style="max-width:480px;font-size:15px;line-height:1.6;color:#cfd6dd">Real-time interoperability middleware syncing 40+ legacy government systems across Karnataka — three-tier ingestion (webhooks · polling · CDC), a semantic schema-mapping engine, PII scrubbing and hash-chained audit logging.</p>
-            <div style="display:flex;gap:34px">
+            <div data-cardstats="" style="display:flex;gap:34px">
               <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">40+</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">systems linked</div></div>
               <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">days→5s</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">propagation</div></div>
             </div>
@@ -301,7 +321,7 @@
               <span style="font-size:11px;letter-spacing:0.04em;color:#cfd6dd;border:1px solid rgba(255,255,255,0.16);border-radius:999px;padding:5px 12px">Redis</span>
             </div>
             <span style="display:inline-block;border-radius:999px;background:linear-gradient(90deg,var(--acA,#89AACC),var(--acB,#4E85BF),var(--acA,#89AACC));background-size:200% 100%;padding:1.5px;animation:gshift 6s ease infinite;align-self:flex-start;margin-top:2px">
-              <span style="display:inline-flex;align-items:center;gap:8px;background:#0A0A0A;border-radius:999px;padding:9px 18px;font-size:13px;color:#F5F5F5">View — <em style="font-family:'Instrument Serif',serif;font-style:italic">SaanchaarSetu</em> ↗</span>
+              <span style="display:inline-flex;align-items:center;gap:8px;background:#0A0A0A;border-radius:999px;padding:9px 18px;font-size:13px;color:#F5F5F5">View — <em style="font-family:'Instrument Serif',serif;font-style:italic">SanchaarSetu</em> ↗</span>
             </span>
           </div>
         </a>
@@ -311,7 +331,7 @@
           <img data-cardimg="" src="digital-twin-market.png?v=2" alt="Digital Twin Market" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
           <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 42%, rgba(10,10,10,0.12) 74%, transparent 100%);pointer-events:none"></div>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:26px 28px">
+          <div data-cardcap="" style="position:absolute;left:0;right:0;bottom:0;padding:26px 28px">
             <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">02 · ML · Simulation</div>
             <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,40px);line-height:1;color:#F5F5F5">Digital Twin Market</h3>
           </div>
@@ -334,13 +354,13 @@
           <img data-cardimg="" src="graph-sentinel-dashboard.png?v=2" alt="GraphSentinel federated learning dashboard" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
           <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 42%, rgba(10,10,10,0.12) 74%, transparent 100%);pointer-events:none"></div>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:26px 28px">
+          <div data-cardcap="" style="position:absolute;left:0;right:0;bottom:0;padding:26px 28px">
             <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">03 · Graph ML · Fraud Detection</div>
             <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,40px);line-height:1;color:#F5F5F5">GraphSentinel</h3>
           </div>
           <div data-cardov="" style="position:absolute;inset:0;background:rgba(10,10,10,0.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,3.5vw,38px);gap:18px">
             <p style="font-size:14.5px;line-height:1.6;color:#cfd6dd">A real-time transaction-graph engine that replaces rule-based AML — Temporal GNNs with SHAP explainability surface multi-hop layering, circular round-trips and sub-threshold structuring natively at scale.</p>
-            <div style="display:flex;gap:30px">
+            <div data-cardstats="" style="display:flex;gap:30px">
               <div><div style="font-family:'Instrument Serif',serif;font-size:28px;color:#F5F5F5;line-height:1">0.89</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">GNN F1-score</div></div>
               <div><div style="font-family:'Instrument Serif',serif;font-size:28px;color:#F5F5F5;line-height:1">94%</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">fewer false positives</div></div>
             </div>
@@ -360,13 +380,13 @@
           <img data-cardimg="" src="saviher.png" alt="SaviHer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
           <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,0.12) 72%, transparent 100%);pointer-events:none"></div>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
+          <div data-cardcap="" style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
             <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">04 · Mobile · Safety · Startup</div>
             <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(28px,3.6vw,48px);line-height:1;color:#F5F5F5">SaviHer</h3>
           </div>
           <div data-cardov="" style="position:absolute;inset:0;background:rgba(10,10,10,0.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,44px);gap:20px">
-            <p style="max-width:480px;font-size:15px;line-height:1.6;color:#cfd6dd">Cross-platform Flutter safety app with a sub-2.5s SOS trigger that captures a photo and alerts contacts, plus a GCP geofencing layer. Incubated at Bhamasha Techno Hub; submitted to iSTART for state seed funding.</p>
-            <div style="display:flex;gap:34px">
+            <p style="max-width:480px;font-size:15px;line-height:1.6;color:#cfd6dd">Cross-platform Flutter safety app with a sub-2.5s SOS trigger that captures a photo and alerts contacts, plus a GCP geofencing layer. Incubated at Bhamashah Techno Hub; submitted to iSTART for state seed funding.</p>
+            <div data-cardstats="" style="display:flex;gap:34px">
               <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">&lt;2.5s</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">SOS alert</div></div>
               <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">-70%</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">help time</div></div>
             </div>
@@ -387,13 +407,13 @@
           <img data-cardimg="" src="ss-supplychain-1.png" alt="PulseChain IQ supply-chain control tower dashboard" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
           <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,0.12) 72%, transparent 100%);pointer-events:none"></div>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
+          <div data-cardcap="" style="position:absolute;left:0;right:0;bottom:0;padding:28px 30px">
             <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">05 · Supply Chain · Decision Intelligence</div>
             <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(28px,3.6vw,48px);line-height:1;color:#F5F5F5">PulseChain IQ</h3>
           </div>
           <div data-cardov="" style="position:absolute;inset:0;background:rgba(10,10,10,0.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,44px);gap:20px">
             <p style="max-width:480px;font-size:15px;line-height:1.6;color:#cfd6dd">A supply-chain control tower that turns raw supplier, demand and shipment feeds into resilience intelligence — rule-based and Random Forest risk detection, stockout and revenue-loss impact modelling, and a Groq-powered decision engine that ranks and explains alternative suppliers.</p>
-            <div style="display:flex;gap:34px">
+            <div data-cardstats="" style="display:flex;gap:34px">
               <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">$24.3M</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">revenue at risk surfaced</div></div>
               <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">687</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">active risks flagged</div></div>
             </div>
@@ -415,7 +435,7 @@
           <img data-cardimg="" src="price-prediction.png" alt="Price Prediction ML" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
           <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 42%, rgba(10,10,10,0.12) 74%, transparent 100%);pointer-events:none"></div>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:26px 28px">
+          <div data-cardcap="" style="position:absolute;left:0;right:0;bottom:0;padding:26px 28px">
             <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">06 · Machine Learning · Pricing</div>
             <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,40px);line-height:1;color:#F5F5F5">Price Prediction</h3>
           </div>
@@ -438,13 +458,13 @@
           <img data-cardimg="" src="rfp-automated.png" alt="Agentic RFP Automation platform" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;transition:transform .7s cubic-bezier(.16,1,.3,1)">
           <div style="position:absolute;inset:0;background-image:radial-gradient(circle, #000 1px, transparent 1px);background-size:4px 4px;opacity:0.22;mix-blend-mode:multiply;pointer-events:none"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.5) 44%, rgba(10,10,10,0.12) 76%, transparent 100%);pointer-events:none"></div>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:32px 40px">
+          <div data-cardcap="" style="position:absolute;left:0;right:0;bottom:0;padding:32px 40px">
             <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#9aa6b0">07 · Agentic AI · Sales Automation</div>
             <h3 style="margin-top:10px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(30px,4vw,54px);line-height:1;color:#F5F5F5">RFP Automation</h3>
           </div>
           <div data-cardov="" style="position:absolute;inset:0;background:rgba(10,10,10,0.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,4vw,52px);gap:20px">
             <p style="max-width:640px;font-size:15px;line-height:1.6;color:#cfd6dd">A multi-agent system that automates the Request-for-Proposal workflow for the paint industry — Sales, Technical, Pricing and Orchestrator agents run in parallel to parse requirements, match specifications against vendor catalogues, optimise margins and return a submission-ready proposal.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:34px">
+            <div data-cardstats="" style="display:flex;flex-wrap:wrap;gap:34px">
               <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">3 hrs→7s</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">response time</div></div>
               <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">90%</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">match accuracy</div></div>
               <div><div style="font-family:'Instrument Serif',serif;font-size:30px;color:#F5F5F5;line-height:1">26%</div><div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#878787;margin-top:5px">faster · parallel agents</div></div>
@@ -519,33 +539,11 @@
 
       <div class="rec-stack" style="display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)">
 
-        <div class="rec-row" data-rec="" data-photo="honour-hackathon.png" data-reveal="" style="--rec:var(--acSolid,#89AACC);position:relative;overflow:hidden;align-self:flex-start;width:min(100%,78%);min-height:clamp(150px,16vw,196px);border:1px solid rgba(255,255,255,0.08);border-radius:26px;background:rgba(13,13,13,0.55);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s" style-hover="background:rgba(20,20,20,0.82);border-color:color-mix(in srgb,var(--rec) 60%,transparent);transform:translateY(-4px)">
+        <div class="rec-row" data-rec="" data-photo="honour-paper.png" data-reveal="" style="--rec:var(--acSolid,#89AACC);position:relative;overflow:hidden;align-self:flex-start;width:min(100%,78%);min-height:clamp(150px,16vw,196px);border:1px solid rgba(255,255,255,0.08);border-radius:26px;background:rgba(13,13,13,0.55);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s" style-hover="background:rgba(20,20,20,0.82);border-color:color-mix(in srgb,var(--rec) 60%,transparent);transform:translateY(-4px)">
           <canvas data-card-gl="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .3s ease"></canvas>
           <div class="rec-scrim" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .5s ease;background:linear-gradient(180deg,rgba(7,8,10,0.16) 0%,rgba(7,8,10,0.03) 36%,rgba(7,8,10,0.60) 78%,rgba(7,8,10,0.88) 100%)"></div>
           <div class="rec-preview" style="position:relative;z-index:2;display:grid;grid-template-columns:clamp(60px,8vw,112px) 1fr;align-items:start;gap:clamp(18px,2.6vw,40px);padding:clamp(24px,3vw,36px) clamp(26px,3vw,40px);transition:opacity .45s ease,transform .45s ease">
             <div class="rec-num" aria-hidden="true" style="font-family:'Instrument Serif',serif;font-size:clamp(54px,7vw,104px);line-height:0.72;color:transparent;-webkit-text-stroke:1.4px var(--rec)">01</div>
-            <div>
-              <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:9px">
-                <span class="rec-date" style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">May 2026</span>
-                <span style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.22)"></span>
-                <span style="font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#a7adb4;border:1px solid color-mix(in srgb,var(--rec) 42%,transparent);border-radius:999px;padding:3px 11px">PAN IIT · ₹1,00,000</span>
-              </div>
-              <h4 style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2.6vw,32px);color:#F5F5F5;line-height:1.08">AI for Bharat Hackathon — Winner</h4>
-              <p style="margin-top:11px;font-size:14.5px;line-height:1.62;color:#9aa0a6;max-width:560px">Awarded for SaanchaarSetu and recognised by the Joint Directors, Department of Industry &amp; Commerce, Government of Karnataka — with EY as EODB knowledge partner.</p>
-            </div>
-          </div>
-          <div class="rec-cap" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding:clamp(20px,2.4vw,30px) clamp(26px,3vw,40px);opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;pointer-events:none">
-            <span style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">May 2026</span>
-            <span style="width:4px;height:4px;border-radius:50%;background:var(--rec)"></span>
-            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,26px);color:#F5F5F5;line-height:1.1">AI for Bharat Hackathon — Winner</span>
-          </div>
-        </div>
-
-        <div class="rec-row" data-rec="" data-photo="honour-paper.png" data-reveal="" data-delay="80" style="--rec:var(--acSolid,#89AACC);position:relative;overflow:hidden;align-self:flex-end;width:min(100%,74%);min-height:clamp(150px,16vw,196px);border:1px solid rgba(255,255,255,0.08);border-radius:26px;background:rgba(13,13,13,0.55);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s" style-hover="background:rgba(20,20,20,0.82);border-color:color-mix(in srgb,var(--rec) 60%,transparent);transform:translateY(-4px)">
-          <canvas data-card-gl="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .3s ease"></canvas>
-          <div class="rec-scrim" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .5s ease;background:linear-gradient(180deg,rgba(7,8,10,0.16) 0%,rgba(7,8,10,0.03) 36%,rgba(7,8,10,0.60) 78%,rgba(7,8,10,0.88) 100%)"></div>
-          <div class="rec-preview" style="position:relative;z-index:2;display:grid;grid-template-columns:clamp(60px,8vw,112px) 1fr;align-items:start;gap:clamp(18px,2.6vw,40px);padding:clamp(24px,3vw,36px) clamp(26px,3vw,40px);transition:opacity .45s ease,transform .45s ease">
-            <div class="rec-num" aria-hidden="true" style="font-family:'Instrument Serif',serif;font-size:clamp(54px,7vw,104px);line-height:0.72;color:transparent;-webkit-text-stroke:1.4px var(--rec)">02</div>
             <div>
               <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:9px">
                 <span class="rec-date" style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">Jul 2026</span>
@@ -560,6 +558,28 @@
             <span style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">Jul 2026</span>
             <span style="width:4px;height:4px;border-radius:50%;background:var(--rec)"></span>
             <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,26px);color:#F5F5F5;line-height:1.1">Research Paper Accepted — IDBA 2026</span>
+          </div>
+        </div>
+
+        <div class="rec-row" data-rec="" data-photo="honour-hackathon.png" data-reveal="" data-delay="80" style="--rec:var(--acSolid,#89AACC);position:relative;overflow:hidden;align-self:flex-end;width:min(100%,74%);min-height:clamp(150px,16vw,196px);border:1px solid rgba(255,255,255,0.08);border-radius:26px;background:rgba(13,13,13,0.55);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s" style-hover="background:rgba(20,20,20,0.82);border-color:color-mix(in srgb,var(--rec) 60%,transparent);transform:translateY(-4px)">
+          <canvas data-card-gl="" aria-hidden="true" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .3s ease"></canvas>
+          <div class="rec-scrim" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .5s ease;background:linear-gradient(180deg,rgba(7,8,10,0.16) 0%,rgba(7,8,10,0.03) 36%,rgba(7,8,10,0.60) 78%,rgba(7,8,10,0.88) 100%)"></div>
+          <div class="rec-preview" style="position:relative;z-index:2;display:grid;grid-template-columns:clamp(60px,8vw,112px) 1fr;align-items:start;gap:clamp(18px,2.6vw,40px);padding:clamp(24px,3vw,36px) clamp(26px,3vw,40px);transition:opacity .45s ease,transform .45s ease">
+            <div class="rec-num" aria-hidden="true" style="font-family:'Instrument Serif',serif;font-size:clamp(54px,7vw,104px);line-height:0.72;color:transparent;-webkit-text-stroke:1.4px var(--rec)">02</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:9px">
+                <span class="rec-date" style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">May 2026</span>
+                <span style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.22)"></span>
+                <span style="font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#a7adb4;border:1px solid color-mix(in srgb,var(--rec) 42%,transparent);border-radius:999px;padding:3px 11px">PAN IIT · ₹1,00,000</span>
+              </div>
+              <h4 style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2.6vw,32px);color:#F5F5F5;line-height:1.08">AI for Bharat Hackathon — Winner</h4>
+              <p style="margin-top:11px;font-size:14.5px;line-height:1.62;color:#9aa0a6;max-width:560px">Awarded for SanchaarSetu and recognised by the Joint Directors, Department of Industry &amp; Commerce, Government of Karnataka — with EY as EODB knowledge partner.</p>
+            </div>
+          </div>
+          <div class="rec-cap" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding:clamp(20px,2.4vw,30px) clamp(26px,3vw,40px);opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;pointer-events:none">
+            <span style="font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--rec)">May 2026</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:var(--rec)"></span>
+            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,26px);color:#F5F5F5;line-height:1.1">AI for Bharat Hackathon — Winner</span>
           </div>
         </div>
 
@@ -727,9 +747,10 @@ class Component extends DCLogic {
       const words = ['Build', 'Scale', 'Ship'];
       let wi = 0;
       const wint = setInterval(() => {
-        wi = (wi + 1) % words.length;
+        if (wi >= words.length - 1) return;
+        wi++;
         if (wordEl) { wordEl.style.animation = 'none'; void wordEl.offsetWidth; wordEl.textContent = words[wi]; wordEl.style.animation = 'rolein .5s ease both'; }
-      }, 800);
+      }, 300);
       this._cl.push(() => clearInterval(wint));
       let done = false;
       const finish = () => {
@@ -737,13 +758,13 @@ class Component extends DCLogic {
         loader.style.opacity = '0'; loader.style.visibility = 'hidden';
         setTimeout(() => { loader.style.display = 'none'; }, 650);
       };
-      const dur = 2400, t0 = performance.now();
+      const dur = 900, t0 = performance.now();
       const step = (t) => {
         let p = Math.min(1, (t - t0) / dur);
         const v = Math.round(p * 100);
         if (countEl) countEl.textContent = String(v).padStart(3, '0');
         if (barEl) barEl.style.transform = 'scaleX(' + p + ')';
-        if (p < 1) requestAnimationFrame(step); else setTimeout(finish, 400);
+        if (p < 1) requestAnimationFrame(step); else setTimeout(finish, 150);
       };
       requestAnimationFrame(step);
       on(loader, 'click', finish);
@@ -788,13 +809,15 @@ class Component extends DCLogic {
 
     // ---- HERO ROLE CYCLE ----
     const roleEl = document.querySelector('[data-role]');
-    const roles = ['Backend Engineer', 'ML Engineer', 'Software Engineer', 'Tennis Player'];
+    const articleEl = document.querySelector('[data-role-article]');
+    const roles = [['A', 'Backend Engineer'], ['An', 'ML Engineer'], ['A', 'Software Engineer'], ['A', 'Tennis Player']];
     let ri = 0;
     if (roleEl) {
       const rint = setInterval(() => {
         ri = (ri + 1) % roles.length;
         roleEl.style.animation = 'none'; void roleEl.offsetWidth;
-        roleEl.textContent = roles[ri];
+        if (articleEl) articleEl.textContent = roles[ri][0];
+        roleEl.textContent = roles[ri][1];
         roleEl.style.animation = 'rolein .5s ease-out both';
       }, 2200);
       this._cl.push(() => clearInterval(rint));
@@ -845,7 +868,7 @@ class Component extends DCLogic {
     const navpill = document.querySelector('[data-navpill]');
     const links = {};
     document.querySelectorAll('[data-navlink]').forEach(l => { links[l.getAttribute('data-navlink')] = l; });
-    const sectIds = ['about', 'work', 'experience', 'recognition'];
+    const sectIds = ['about', 'experience', 'work', 'recognition'];
     const onFrame = () => {
       const st = window.scrollY || window.pageYOffset || 0;
       if (navpill) {
