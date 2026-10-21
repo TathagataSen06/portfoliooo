@@ -4,291 +4,331 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tathagata Sen — Software Engineer</title>
-<meta name="description" content="Tathagata Sen: backend, data-pipeline and ML systems engineer. Final-year CS at BIT Mesra; former SDE intern at the Bhabha Atomic Research Centre.">
+<meta name="description" content="Tathagata Sen: backend and ML engineer in Mumbai. Final-year CS at BIT Mesra; former SDE intern at the Bhabha Atomic Research Centre. Projects, case studies and contact.">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" href="https://tathagatasen.vercel.app/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23fff'/%3E%3Crect width='64' height='9' fill='%23b3261e'/%3E%3Ctext x='32' y='51' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' text-anchor='middle' fill='%23141414'%3ETS%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='60' fill='%230a0a0a'/%3E%3Ccircle cx='60' cy='60' r='57' fill='none' stroke='%2389aacc' stroke-width='5'/%3E%3Ctext x='60' y='76' font-family='Georgia,serif' font-size='50' font-style='italic' fill='%23f5f5f5' text-anchor='middle'%3ETS%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tathagatasen.vercel.app/">
 <meta property="og:title" content="Tathagata Sen — Software Engineer">
-<meta property="og:description" content="Backend, data-pipeline and ML systems. Specifications, revision history and application reports.">
+<meta property="og:description" content="Backend and ML engineer. Data pipelines at BARC, AI for Bharat Hackathon winner, case studies with interactive demos.">
 <meta property="og:image" content="https://tathagatasen.vercel.app/portrait.png">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/site.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#features">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ============================ PAGE 1 ============================ -->
-<article class="sheet">
-  <header class="sheet-head">
-    <span class="brand">Tathagata Sen</span>
-    <span class="lit">TSEN-26 – REVISED OCTOBER 2026</span>
-  </header>
-
-  <nav class="folder" aria-label="Profiles and contact">
-    <a href="https://github.com/TathagataSen06" target="_blank" rel="noopener">GitHub <span class="arrow">↗</span></a>
-    <a href="https://www.linkedin.com/in/tathagatasen05/" target="_blank" rel="noopener">LinkedIn <span class="arrow">↗</span></a>
-    <a href="https://leetcode.com/u/tathagatasen/" target="_blank" rel="noopener">LeetCode <span class="arrow">↗</span></a>
-    <a href="mailto:sen.tathagata5@gmail.com">Email <span class="arrow">→</span></a>
-    <button type="button" onclick="window.print()">Print / PDF <span class="arrow">↓</span></button>
+<header class="nav">
+  <nav class="nav-pill" aria-label="Main">
+    <a class="nav-mono" href="#top" aria-label="Back to top"><span>TS</span></a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <div class="nav-links">
+      <span class="nav-ind" aria-hidden="true"></span>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#honours">Honours</a>
+    </div>
+    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-sheet">Menu <i aria-hidden="true"></i></button>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a class="nav-cta" href="#contact">Say hi <span class="acc">↗</span></a>
   </nav>
-
-  <div class="title">
-    <h1>Tathagata Sen</h1>
-    <p class="subtitle">Backend, Data-Pipeline and Machine-Learning Systems Engineer</p>
+  <div class="nav-sheet" id="nav-sheet">
+    <a href="#experience">Experience <span>01</span></a>
+    <a href="#work">Work <span>02</span></a>
+    <a href="#about">About <span>03</span></a>
+    <a href="#honours">Honours <span>04</span></a>
+    <a href="#contact">Contact <span>05</span></a>
   </div>
+</header>
 
-  <div class="p1">
-    <section aria-labelledby="features">
-      <h2 id="features"><span class="n">1</span>Features</h2>
-      <ul class="features">
-        <li>Backend and event-driven systems
-          <ul>
-            <li>Python (asyncio, multithreading), FastAPI, Node.js</li>
-            <li>Kafka, PostgreSQL, Redis</li>
-            <li>Idempotent ingestion, retries with backoff, dead-letter queues, hash-chained audit logs</li>
-          </ul>
-        </li>
-        <li>Scientific data pipelines
-          <ul>
-            <li>40M+ detector measurements across 64 channels</li>
-            <li>12-stage peak-detection framework, under 100 ms per cycle</li>
-          </ul>
-        </li>
-        <li>Machine learning
-          <ul>
-            <li>TensorFlow / Keras, scikit-learn, sentence-transformers</li>
-            <li>Graph + sequence models for transaction fraud</li>
-          </ul>
-        </li>
-        <li>Front end and mobile: React, D3, Flutter</li>
-        <li>LeetCode Knight: peak rating 1876, 600+ problems</li>
-        <li>Research paper accepted at IDBA 2026 (Springer LAIS)</li>
+<main id="main">
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="hero-inner">
+      <a class="chip" href="#experience" data-reveal style="--d:0ms"><span class="dot"></span>Recently: SDE intern at BARC <span class="acc">→</span></a>
+      <h1 class="display" data-reveal><span class="w" style="--d:120ms">Tathagata</span> <span class="w" style="--d:260ms">Sen</span></h1>
+      <p class="lede" data-reveal style="--d:420ms"><em>Backend &amp; ML engineer</em> based in Mumbai.</p>
+      <p class="hero-text" data-reveal style="--d:520ms">I build data pipelines, event-driven backends and machine-learning systems, most recently for detector commissioning at the Bhabha Atomic Research Centre.</p>
+      <div class="hero-ctas" data-reveal style="--d:640ms">
+        <a class="btn btn-solid" href="#work">See work</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch <span class="ar">↗</span></a>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">Scroll<i></i></div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section" id="experience" aria-labelledby="exp-title">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>Experience</p>
+      <div class="exp-head">
+        <div class="exp-org" data-reveal style="--d:80ms">
+          <span class="exp-logo"><img src="barc-logo.png" alt="BARC logo" width="181" height="148"></span>
+          <div>
+            <h2 class="h2" id="exp-title">Bhabha Atomic <em>Research Centre</em></h2>
+            <p class="exp-role">Software Development Engineer Intern</p>
+          </div>
+        </div>
+        <p class="exp-when" data-reveal style="--d:160ms">May – Jul 2026 · Mumbai</p>
+      </div>
+      <div class="metrics">
+        <article class="metric spot" data-reveal style="--d:0ms">
+          <div class="metric-v" data-count="40" data-suf="M+">40M+</div>
+          <hr>
+          <p>Architected multithreaded Python pipelines processing 40M+ detector measurements across 64 channels, cutting latency 85% with 10–40× throughput gains.</p>
+        </article>
+        <article class="metric spot" data-reveal style="--d:100ms">
+          <div class="metric-v" data-count="99" data-suf="%">99%</div>
+          <hr>
+          <p>Engineered a 12-stage peak-detection framework rooted in CERN high-energy-physics methods: 99%+ accuracy across 10+ validation metrics, under 100 ms per cycle.</p>
+        </article>
+        <article class="metric spot" data-reveal style="--d:200ms">
+          <div class="metric-v" data-count="4" data-suf="K+">4K+</div>
+          <hr>
+          <p>Built desktop automation that cut manual peak identification by 90%, taking detector commissioning from weeks to minutes across 4,000+ datasets.</p>
+        </article>
+      </div>
+      <p class="exp-foot" data-reveal><a class="link-arrow" href="work/barc-detector-pipeline.html">Read the BARC case study</a></p>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="section flush" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="work-head">
+        <div data-reveal>
+          <p class="eyebrow">Selected work</p>
+          <h2 class="h2" id="work-title">Featured <em>projects</em></h2>
+          <p class="sub">Systems and products I've designed and built, from hackathon wins to an incubated startup.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter projects" data-reveal style="--d:120ms">
+          <span class="ind" aria-hidden="true"></span>
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="backend" aria-pressed="false">Backend</button>
+          <button type="button" data-filter="ml" aria-pressed="false">ML &amp; AI</button>
+          <button type="button" data-filter="mobile" aria-pressed="false">Mobile</button>
+        </div>
+      </div>
+
+      <div class="bento" id="bento">
+        <a class="card s7 spot" data-tags="backend" href="work/sanchaarsetu.html" style="view-transition-name:card-sanchaarsetu" data-reveal>
+          <div class="card-media" style="view-transition-name:cover-sanchaarsetu"><img src="sanchaarsetu-dashboard.png" alt="SanchaarSetu operator dashboard with propagation stats and recent events" width="1258" height="717" loading="lazy" decoding="async"></div>
+          <span class="badge">AI for Bharat winner</span>
+          <div class="card-body">
+            <p class="card-meta"><b>01</b>Government · Real-time</p>
+            <h3 class="card-title">SanchaarSetu</h3>
+            <p class="card-desc">Middleware that keeps Karnataka's Single Window System in sync with 40+ department systems it isn't allowed to change.</p>
+            <ul class="tags"><li>FastAPI</li><li>Kafka</li><li>PostgreSQL</li><li>Redis</li></ul>
+            <span class="card-cta">Case study <i>→</i></span>
+          </div>
+        </a>
+
+        <a class="card s5 spot" data-tags="ml backend" href="work/graphsentinel.html" style="view-transition-name:card-graphsentinel" data-reveal>
+          <div class="card-media" style="view-transition-name:cover-graphsentinel"><img class="crop-bottom" src="graph-sentinel-dashboard.png" alt="GraphSentinel dashboard with network and model performance panels" width="1253" height="707" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <p class="card-meta"><b>02</b>Graph ML · Fraud detection</p>
+            <h3 class="card-title">GraphSentinel</h3>
+            <p class="card-desc">Graph walks plus a graph + sequence model that find layering chains and round-trips in bank transfers. Team of four, iDEA 2.0.</p>
+            <ul class="tags"><li>React</li><li>D3</li><li>Node.js</li><li>TensorFlow</li></ul>
+            <span class="card-cta">Case study <i>→</i></span>
+          </div>
+        </a>
+
+        <a class="card s5 spot" data-tags="mobile" href="https://github.com/TathagataSen06/saviher" target="_blank" rel="noopener" style="view-transition-name:card-saviher" data-reveal>
+          <div class="card-media"><img src="saviher.png" alt="SaviHer app screens: SOS button, geofencing map and volunteer dashboard" width="1893" height="908" loading="lazy" decoding="async" style="object-position:center"></div>
+          <span class="badge">Incubated</span>
+          <div class="card-body">
+            <p class="card-meta"><b>03</b>Mobile · Safety</p>
+            <h3 class="card-title">SaviHer</h3>
+            <p class="card-desc">A safety app where one SOS trigger captures a photo and alerts trusted contacts, with GCP geofencing. Incubated at Bhamashah Techno Hub.</p>
+            <ul class="tags"><li>Flutter</li><li>Dart</li><li>Firebase</li><li>GCP</li></ul>
+            <span class="card-cta">GitHub <i class="ext">↗</i></span>
+          </div>
+        </a>
+
+        <a class="card s7 spot" data-tags="ml backend" href="https://github.com/TathagataSen06/supply-chain" target="_blank" rel="noopener" style="view-transition-name:card-pulsechain" data-reveal>
+          <div class="card-media"><img class="crop-top" src="ss-supplychain-1.png" alt="PulseChain IQ control tower dashboard with risk and inventory charts" width="2940" height="1912" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <p class="card-meta"><b>04</b>Supply chain · Decision intelligence</p>
+            <h3 class="card-title">PulseChain IQ</h3>
+            <p class="card-desc">A supply-chain control tower: rule-based and Random Forest risk detection, stockout impact, and LLM-ranked alternative suppliers.</p>
+            <ul class="tags"><li>React</li><li>Flask</li><li>pandas</li><li>Groq · Llama 3.1</li></ul>
+            <span class="card-cta">GitHub <i class="ext">↗</i></span>
+          </div>
+        </a>
+
+        <a class="card s4 spot" data-tags="ml" href="https://github.com/TathagataSen06/digital-twin" target="_blank" rel="noopener" style="view-transition-name:card-digitaltwin" data-reveal>
+          <div class="card-media"><img src="digital-twin-market.png" alt="Digital Twin Market simulator with predicted outcomes" width="1437" height="666" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <p class="card-meta"><b>05</b>ML · Simulation</p>
+            <h3 class="card-title">Digital Twin Market</h3>
+            <p class="card-desc">An FMCG launch simulator across 25,000 synthetic consumer personas, with demand prediction and K-Means segmentation.</p>
+            <ul class="tags"><li>TensorFlow.js</li><li>Llama 3.1</li><li>Chart.js</li></ul>
+            <span class="card-cta">GitHub <i class="ext">↗</i></span>
+          </div>
+        </a>
+
+        <a class="card s4 spot" data-tags="ml" href="https://github.com/TathagataSen06/price-prediction-ml" target="_blank" rel="noopener" style="view-transition-name:card-price" data-reveal>
+          <div class="card-media art" aria-hidden="true">
+            <svg viewBox="0 0 320 180">
+              <path class="ln" d="M24 158 H300 M24 158 V20"/>
+              <path class="hl" d="M34 150 C 110 128, 180 88, 292 30"/>
+              <circle class="dt" cx="48" cy="140" r="3.5"/><circle class="sh" cx="64" cy="128" r="3.5"/><circle class="dt" cx="82" cy="138" r="3.5"/>
+              <circle class="dt" cx="100" cy="120" r="3.5"/><circle class="sh" cx="120" cy="112" r="3.5"/><circle class="dt" cx="138" cy="102" r="3.5"/>
+              <circle class="dt" cx="160" cy="96" r="3.5"/><circle class="sh" cx="178" cy="78" r="3.5"/><circle class="dt" cx="196" cy="76" r="3.5"/>
+              <circle class="dt" cx="216" cy="64" r="3.5"/><circle class="sh" cx="236" cy="56" r="3.5"/><circle class="dt" cx="258" cy="44" r="3.5"/><circle class="dt" cx="278" cy="38" r="3.5"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="card-meta"><b>06</b>ML · Pricing</p>
+            <h3 class="card-title">Price Prediction</h3>
+            <p class="card-desc">A multi-modal model that predicts product prices from catalogue text and images, scored on SMAPE. ML Challenge 2025.</p>
+            <ul class="tags"><li>Python</li><li>scikit-learn</li><li>NLP · Vision</li></ul>
+            <span class="card-cta">GitHub <i class="ext">↗</i></span>
+          </div>
+        </a>
+
+        <a class="card s4 spot" data-tags="ml" href="https://github.com/TathagataSen06/RFP-Automated" target="_blank" rel="noopener" style="view-transition-name:card-rfp" data-reveal>
+          <div class="card-media art" aria-hidden="true">
+            <svg viewBox="0 0 320 180">
+              <rect class="sh" x="62" y="40" width="118" height="128" rx="10" transform="rotate(-7 121 104)"/>
+              <rect class="sh" x="84" y="28" width="118" height="128" rx="10"/>
+              <path class="ln" d="M104 52 H182 M104 68 H170 M104 84 H178 M104 100 H160"/>
+              <path class="hl" d="M104 120 H150"/><path class="hl" d="M104 136 H170"/>
+              <path class="ln" d="M202 70 C 226 70, 226 48, 248 48 M202 92 C 226 92, 226 92, 248 92 M202 114 C 226 114, 226 136, 248 136"/>
+              <circle class="dt" cx="256" cy="48" r="7"/><circle class="dt" cx="256" cy="92" r="7"/><circle class="dt" cx="256" cy="136" r="7"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="card-meta"><b>07</b>Agentic AI · Sales</p>
+            <h3 class="card-title">RFP Automation</h3>
+            <p class="card-desc">A multi-agent pipeline that answers paint-industry RFPs: parse requirements, match specs to catalogues, price the bid.</p>
+            <ul class="tags"><li>React</li><li>PDF.js</li><li>Multi-agent</li></ul>
+            <span class="card-cta">GitHub <i class="ext">↗</i></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section flush" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="about-top">
+        <figure class="portrait" data-reveal><img src="portrait.png" alt="Portrait of Tathagata Sen" width="758" height="773" loading="lazy" decoding="async"></figure>
+        <div class="about-copy" data-reveal style="--d:100ms">
+          <p class="eyebrow">About</p>
+          <h2 class="h2" id="about-title">About<br>the engineer</h2>
+          <p>I'm a final-year Computer Science student at BIT Mesra. This summer I was a Software Development Engineer intern at the Bhabha Atomic Research Centre (BARC), building data pipelines and peak detection for detector commissioning.</p>
+          <p>Most of my work sits in data paths: getting events, measurements or transactions from where they're produced to where they can be trusted, with retries, idempotency, validation and audit along the way.</p>
+          <p>Outside engineering I play tennis and football, and watch anime. One Piece, Attack on Titan and Bleach are my favourites.</p>
+          <div class="about-links">
+            <a class="link-arrow ext" href="https://github.com/TathagataSen06" target="_blank" rel="noopener">GitHub</a>
+            <a class="link-arrow ext" href="https://www.linkedin.com/in/tathagatasen05/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="facts">
+        <div class="fact" data-reveal><div class="fact-in">
+          <img src="lecture-hall.webp" alt="" width="736" height="981" loading="lazy" decoding="async">
+          <div class="fact-txt"><div class="fact-v" data-count="8.12" data-dec="2">8.12</div><p>CGPA in B.Tech Computer Science &amp; Engineering at BIT Mesra</p></div>
+        </div></div>
+        <div class="fact" data-reveal style="--d:100ms"><div class="fact-in">
+          <img src="js-code.webp" alt="" width="736" height="1308" loading="lazy" decoding="async">
+          <div class="fact-txt"><div class="fact-v" data-count="1876" data-group="no">1876</div><p>peak LeetCode contest rating, with 600+ problems solved</p></div>
+        </div></div>
+        <div class="fact" data-reveal style="--d:200ms"><div class="fact-in">
+          <img src="workstation.jpeg" alt="" width="736" height="1308" loading="lazy" decoding="async">
+          <div class="fact-txt"><div class="fact-v" data-count="7" data-suf="+">7+</div><p>projects shipped across different domains</p></div>
+        </div></div>
+      </div>
+
+      <div class="stack">
+        <p class="eyebrow" data-reveal>Stack &amp; tooling</p>
+        <div class="stack-grid" data-reveal style="--d:80ms">
+          <div class="stack-col"><h3>Languages</h3><ul><li>Python</li><li>Java</li><li>C</li><li>JavaScript</li><li>TypeScript</li><li>Dart</li><li>SQL</li></ul></div>
+          <div class="stack-col"><h3>Backend &amp; data</h3><ul><li>FastAPI</li><li>Node.js</li><li>Flask</li><li>Kafka</li><li>PostgreSQL</li><li>Redis</li><li>Supabase</li></ul></div>
+          <div class="stack-col"><h3>ML &amp; AI</h3><ul><li>TensorFlow</li><li>scikit-learn</li><li>pandas</li><li>NumPy</li><li>sentence-transformers</li><li>Hugging Face</li></ul></div>
+          <div class="stack-col"><h3>Frontend &amp; mobile</h3><ul><li>React</li><li>D3</li><li>Tailwind</li><li>Flutter</li><li>Firebase</li></ul></div>
+          <div class="stack-col"><h3>Infra &amp; tools</h3><ul><li>Docker</li><li>GCP</li><li>Git</li><li>GitHub</li><li>MySQL</li></ul></div>
+        </div>
+        <p class="core" data-reveal><b>Core CS</b>Data Structures &amp; Algorithms · OOP · DBMS · Operating Systems · Computer Networks · System Design · Distributed Systems</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HONOURS ============ -->
+  <section class="section flush" id="honours" aria-labelledby="hon-title">
+    <div class="wrap">
+      <div data-reveal style="margin-bottom:44px">
+        <p class="eyebrow">Recognition</p>
+        <h2 class="h2" id="hon-title">Selected <em>honours</em></h2>
+        <p class="sub">Awards, research and competitive milestones.</p>
+      </div>
+      <ol class="honours">
+        <li class="honour" data-reveal><div>
+          <span class="h-num" aria-hidden="true">01</span>
+          <div><p class="h-meta"><time datetime="2026-07">Jul 2026</time><span>Springer · LAIS</span></p>
+            <h3>Research paper accepted — IDBA 2026</h3>
+            <p>“A Knowledge-Graph-Driven ML Framework for Predictive Market Intelligence &amp; Economic Decision Analytics,” accepted at the 8th International Conference on Data Science &amp; Big Data Analytics.</p></div>
+          <span class="h-thumb"><img src="honour-paper.png" alt="" loading="lazy" decoding="async"></span>
+        </div></li>
+        <li class="honour" data-reveal><a href="work/sanchaarsetu.html">
+          <span class="h-num" aria-hidden="true">02</span>
+          <div><p class="h-meta"><time datetime="2026-05">May 2026</time><span>PAN IIT · ₹1,00,000</span><b class="h-go" aria-hidden="true">→</b></p>
+            <h3>AI for Bharat Hackathon — Winner</h3>
+            <p>Awarded for SanchaarSetu and recognised by the Joint Directors, Department of Industry &amp; Commerce, Government of Karnataka, with EY as EODB knowledge partner.</p></div>
+          <span class="h-thumb"><img src="honour-hackathon.png" alt="" loading="lazy" decoding="async"></span>
+        </a></li>
+        <li class="honour" data-reveal><div>
+          <span class="h-num" aria-hidden="true">03</span>
+          <div><p class="h-meta"><time datetime="2025-09">Sep 2025</time><span>SaviHer · iSTART</span></p>
+            <h3>Incubated at Bhamashah Techno Hub</h3>
+            <p>SaviHer secured incubation at Bhamashah Techno Hub, with an application filed for iSTART state startup funding.</p></div>
+          <span class="h-thumb"><img src="honour-incubation.png" alt="" loading="lazy" decoding="async"></span>
+        </div></li>
+        <li class="honour" data-reveal><a href="https://leetcode.com/u/tathagatasen/" target="_blank" rel="noopener">
+          <span class="h-num" aria-hidden="true">04</span>
+          <div><p class="h-meta"><time>Ongoing</time><span>@tathagatasen · 1876</span><b class="h-go" aria-hidden="true">↗</b></p>
+            <h3>LeetCode Knight</h3>
+            <p>Peak contest rating of 1876 with 600+ problems solved across graphs, DP and greedy; best global ranks 280, 313 and 503 across 22 contests.</p></div>
+          <span class="h-thumb"><img src="honour-leetcode.png" alt="" loading="lazy" decoding="async"></span>
+        </a></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact flush" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>Contact</p>
+      <h2 class="h2" id="contact-title" data-reveal style="--d:80ms">Hiring for backend, data or ML work? <em>Let's talk.</em></h2>
+      <div class="mail-row" data-reveal style="--d:160ms">
+        <a class="mail" href="mailto:sen.tathagata5@gmail.com">sen.tathagata5@gmail.com</a>
+        <button class="copy" type="button" data-copy="sen.tathagata5@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy</button>
+      </div>
+      <ul class="socials" data-reveal style="--d:220ms">
+        <li><a href="https://www.linkedin.com/in/tathagatasen05/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a></li>
+        <li><a href="https://github.com/TathagataSen06" target="_blank" rel="noopener">GitHub <span>↗</span></a></li>
+        <li><a href="https://leetcode.com/u/tathagatasen/" target="_blank" rel="noopener">LeetCode <span>↗</span></a></li>
+        <li><a href="tel:+918452034860">+91 84520 34860 <span>→</span></a></li>
       </ul>
-      <table class="tbl devinfo">
-        <caption>Device Information</caption>
-        <thead><tr><th>Name</th><th>Based in</th><th>Status</th></tr></thead>
-        <tbody><tr><td>Tathagata Sen</td><td>Mumbai, India</td><td>Final-year B.Tech CSE, BIT Mesra</td></tr></tbody>
-      </table>
-    </section>
-
-    <div>
-      <section aria-labelledby="applications">
-        <h2 id="applications"><span class="n">2</span>Applications</h2>
-        <ul class="apps">
-          <li>Backend services and APIs</li>
-          <li>Integration between legacy systems that can't be changed</li>
-          <li>Data pipelines for scientific instruments</li>
-          <li>Fraud and anomaly detection</li>
-          <li>Mobile apps with real-time alerts</li>
-        </ul>
-      </section>
-
-      <section class="desc" aria-labelledby="description">
-        <h2 id="description"><span class="n">3</span>Description</h2>
-        <p>I'm a final-year Computer Science student at BIT Mesra. This summer I was a Software Development Engineer intern at the Bhabha Atomic Research Centre, building the multithreaded pipeline and peak-detection framework used in detector commissioning. Before that, I won the AI for Bharat Hackathon with SanchaarSetu, middleware that keeps Karnataka's Single Window System in sync with department systems.</p>
-        <p>Most of my work sits in data paths: getting events, measurements or transactions from where they're produced to where they can be trusted, with retries, idempotency, validation and audit along the way.</p>
-        <p>Outside work: tennis, football, and anime (One Piece, Attack on Titan, Bleach).</p>
-      </section>
+      <footer class="site-foot">
+        <span>© 2026 Tathagata Sen · Mumbai, India</span>
+        <a href="#top">Back to top ↑</a>
+      </footer>
     </div>
-  </div>
-
-  <figure id="block-diagram">
-    <div class="flow" role="list" aria-label="Tools grouped by stage of a data path">
-      <div class="node" role="listitem"><b>Sources</b><ul><li>webhooks</li><li>API polling</li><li>detector readouts</li><li>transaction feeds</li></ul></div>
-      <div class="node" role="listitem"><b>Ingest</b><ul><li>FastAPI</li><li>Kafka</li><li>Redis (idempotency)</li></ul></div>
-      <div class="node" role="listitem"><b>Process</b><ul><li>Python threads</li><li>pandas, NumPy</li><li>TensorFlow</li><li>scikit-learn</li></ul></div>
-      <div class="node" role="listitem"><b>Store</b><ul><li>PostgreSQL</li><li>Redis</li><li>Supabase</li><li>Firebase</li></ul></div>
-      <div class="node" role="listitem"><b>Serve</b><ul><li>React, D3</li><li>Flutter</li><li>desktop tools</li></ul></div>
-    </div>
-    <p class="langs">Languages: <span>Python</span> · <span>Java</span> · <span>C</span> · <span>JavaScript/TypeScript</span> · <span>Dart</span> · <span>SQL</span></p>
-    <figcaption><b>Figure 1.</b> Simplified Block Diagram: tools I've shipped with, grouped by where they sit in a data path</figcaption>
-  </figure>
-
-  <footer class="sheet-foot">
-    <span>Copyright © 2026, Tathagata Sen</span>
-    <a href="mailto:sen.tathagata5@gmail.com?subject=Portfolio%20feedback">Submit document feedback</a>
-    <span>1</span>
-  </footer>
-</article>
-
-<!-- ============================ PAGE 2 ============================ -->
-<article class="sheet">
-  <header class="sheet-head">
-    <a class="brand" href="#">Tathagata Sen</a>
-    <span class="lit">TSEN-26 – REVISED OCTOBER 2026</span>
-  </header>
-
-  <h2 id="contents">Table of Contents</h2>
-  <ol class="toc">
-    <li><a href="#features">1 Features</a><span class="pg">1</span></li>
-    <li><a href="#applications">2 Applications</a><span class="pg">1</span></li>
-    <li><a href="#description">3 Description</a><span class="pg">1</span></li>
-    <li><a href="#revision-history">4 Revision History</a><span class="pg">2</span></li>
-    <li><a href="#specifications">5 Specifications</a><span class="pg">2</span></li>
-    <li><a href="#device-list">6 Detailed Description</a><span class="pg">3</span></li>
-    <li><a href="#application-reports">7 Application Reports</a><span class="pg">3</span></li>
-    <li><a href="#ordering">8 Ordering Information</a><span class="pg">3</span></li>
-  </ol>
-
-  <h2 id="revision-history"><span class="n">4</span>Revision History</h2>
-  <table class="tbl rtable">
-    <thead><tr><th>Date</th><th>Change</th></tr></thead>
-    <tbody>
-      <tr><td class="date">Jul 2026</td><td data-label="Change">Research paper accepted at IDBA 2026, the 8th International Conference on Data Science &amp; Big Data Analytics (Springer LAIS): <i>“A Knowledge-Graph-Driven ML Framework for Predictive Market Intelligence &amp; Economic Decision Analytics.”</i></td></tr>
-      <tr><td class="date">May–Jul 2026</td><td data-label="Change">Software Development Engineer intern, Bhabha Atomic Research Centre, Mumbai. Detector data pipelines and peak detection. <a href="work/barc-detector-pipeline.html">Application report&nbsp;→</a></td></tr>
-      <tr><td class="date">May 2026</td><td data-label="Change">Winner, AI for Bharat Hackathon (PAN IIT, ₹1,00,000) with SanchaarSetu. Recognised by the Joint Directors, Department of Industry &amp; Commerce, Government of Karnataka. <a href="work/sanchaarsetu.html">Application report&nbsp;→</a></td></tr>
-      <tr><td class="date">Sep 2025</td><td data-label="Change">SaviHer incubated at Bhamashah Techno Hub; application filed for iSTART state startup funding.</td></tr>
-      <tr><td class="date">Ongoing</td><td data-label="Change">LeetCode Knight. Peak contest rating 1876, best global ranks 280, 313 and 503 across 22 contests.</td></tr>
-      <tr><td class="date">Current</td><td data-label="Change">B.Tech, Computer Science and Engineering, BIT Mesra (final year). CGPA 8.12.</td></tr>
-    </tbody>
-  </table>
-
-  <h2 id="specifications"><span class="n">5</span>Specifications</h2>
-  <table class="tbl rtable">
-    <caption>5.1 Characteristics</caption>
-    <thead><tr><th>Parameter</th><th>Test conditions</th><th class="num">Min</th><th class="num">Typ</th><th class="num">Max</th><th>Unit</th></tr></thead>
-    <tbody>
-      <tr class="group"><td colspan="6">Detector data pipeline, BARC<sup class="fn">(1)</sup></td></tr>
-      <tr><td>Measurements processed</td><td class="cond" data-label="Conditions">Multithreaded Python pipeline, 64 channels</td><td class="num" data-label="Min">40M</td><td class="num"></td><td class="num"></td><td class="unit" data-label="Unit">samples</td></tr>
-      <tr><td>Latency reduction</td><td class="cond" data-label="Conditions">Versus the previous pipeline</td><td class="num"></td><td class="num" data-label="Typ">85</td><td class="num"></td><td class="unit" data-label="Unit">%</td></tr>
-      <tr><td>Throughput gain</td><td class="cond" data-label="Conditions">Versus the previous pipeline</td><td class="num" data-label="Min">10</td><td class="num"></td><td class="num" data-label="Max">40</td><td class="unit" data-label="Unit">×</td></tr>
-      <tr><td>Peak-detection accuracy</td><td class="cond" data-label="Conditions">12-stage framework, 10+ validation metrics</td><td class="num" data-label="Min">99</td><td class="num"></td><td class="num"></td><td class="unit" data-label="Unit">%</td></tr>
-      <tr><td>Detection cycle time</td><td class="cond" data-label="Conditions">Per cycle</td><td class="num"></td><td class="num"></td><td class="num" data-label="Max">100</td><td class="unit" data-label="Unit">ms</td></tr>
-      <tr><td>Manual peak identification</td><td class="cond" data-label="Conditions">Desktop automation tool, 4K+ datasets</td><td class="num"></td><td class="num" data-label="Typ">−90</td><td class="num"></td><td class="unit" data-label="Unit">%</td></tr>
-      <tr class="group"><td colspan="6">Competitive programming</td></tr>
-      <tr><td>LeetCode contest rating</td><td class="cond" data-label="Conditions">Peak, 22 rated contests</td><td class="num"></td><td class="num"></td><td class="num" data-label="Max">1876</td><td class="unit" data-label="Unit">—</td></tr>
-      <tr><td>Problems solved</td><td class="cond" data-label="Conditions">Graphs, DP, greedy and more</td><td class="num" data-label="Min">600</td><td class="num"></td><td class="num"></td><td class="unit" data-label="Unit">count</td></tr>
-      <tr class="group"><td colspan="6">Academics</td></tr>
-      <tr><td>CGPA</td><td class="cond" data-label="Conditions">B.Tech CSE, BIT Mesra</td><td class="num"></td><td class="num" data-label="Typ">8.12</td><td class="num"></td><td class="unit" data-label="Unit">/ 10</td></tr>
-    </tbody>
-  </table>
-  <ol class="foot-notes">
-    <li>(1) How these were measured: see the <a href="work/barc-detector-pipeline.html">BARC application report</a>.</li>
-  </ol>
-
-  <footer class="sheet-foot">
-    <span>Copyright © 2026, Tathagata Sen</span>
-    <a href="mailto:sen.tathagata5@gmail.com?subject=Portfolio%20feedback">Submit document feedback</a>
-    <span>2</span>
-  </footer>
-</article>
-
-<!-- ============================ PAGE 3 ============================ -->
-<article class="sheet">
-  <header class="sheet-head">
-    <a class="brand" href="#">Tathagata Sen</a>
-    <span class="lit">TSEN-26 – REVISED OCTOBER 2026</span>
-  </header>
-
-  <h2 id="device-list"><span class="n">6</span>Detailed Description</h2>
-  <table class="tbl rtable">
-    <caption>6.1 Device List</caption>
-    <thead><tr><th>Project</th><th>Function</th><th>Built with</th><th>Context</th><th>Docs</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>SanchaarSetu</td>
-        <td data-label="Function">Keeps Karnataka's Single Window System and department systems in sync: idempotent webhooks, Kafka delivery with retries and a dead-letter queue, semantic field mapping, hash-chained audit log.</td>
-        <td class="stack" data-label="Built with">FastAPI, Kafka (Redpanda), PostgreSQL, Redis, sentence-transformers, React</td>
-        <td data-label="Context">AI for Bharat Hackathon, winner</td>
-        <td class="doc" data-label="Docs"><a href="work/sanchaarsetu.html">Report</a> · <a href="https://github.com/TathagataSen06/SanchaarSetu" target="_blank" rel="noopener">Source</a></td>
-      </tr>
-      <tr>
-        <td>GraphSentinel</td>
-        <td data-label="Function">Fund-flow graph for anti-money-laundering: graph walks find layering chains and round-trips; a graph + sequence model scores accounts.</td>
-        <td class="stack" data-label="Built with">React, D3, Node.js, TensorFlow, PostgreSQL</td>
-        <td data-label="Context">iDEA 2.0 (Union Bank), team of four</td>
-        <td class="doc" data-label="Docs"><a href="work/graphsentinel.html">Report</a> · <a href="https://github.com/TathagataSen06/graph-sentinel" target="_blank" rel="noopener">Source</a></td>
-      </tr>
-      <tr>
-        <td>BARC detector pipeline</td>
-        <td data-label="Function">Multithreaded processing and peak detection for detector commissioning.</td>
-        <td class="stack" data-label="Built with">Python</td>
-        <td data-label="Context">SDE internship, BARC</td>
-        <td class="doc" data-label="Docs"><a href="work/barc-detector-pipeline.html">Report</a></td>
-      </tr>
-      <tr>
-        <td>SaviHer</td>
-        <td data-label="Function">Safety app: an SOS trigger captures a photo and alerts trusted contacts; GCP geofencing layer.</td>
-        <td class="stack" data-label="Built with">Flutter, Dart, Firebase, GCP</td>
-        <td data-label="Context">Incubated, Bhamashah Techno Hub</td>
-        <td class="doc" data-label="Docs"><a href="https://github.com/TathagataSen06/saviher" target="_blank" rel="noopener">Source</a></td>
-      </tr>
-      <tr>
-        <td>Digital Twin Market</td>
-        <td data-label="Function">FMCG launch simulator across 25,000 synthetic consumer personas: demand prediction and K-Means segmentation.</td>
-        <td class="stack" data-label="Built with">TensorFlow.js, Llama 3.1, Chart.js</td>
-        <td data-label="Context">Project</td>
-        <td class="doc" data-label="Docs"><a href="https://github.com/TathagataSen06/digital-twin" target="_blank" rel="noopener">Source</a></td>
-      </tr>
-      <tr>
-        <td>PulseChain IQ</td>
-        <td data-label="Function">Supply-chain control tower: rule-based and Random Forest risk detection, stockout impact, LLM-ranked alternative suppliers.</td>
-        <td class="stack" data-label="Built with">React, Flask, pandas, Groq (Llama 3.1)</td>
-        <td data-label="Context">Project</td>
-        <td class="doc" data-label="Docs"><a href="https://github.com/TathagataSen06/supply-chain" target="_blank" rel="noopener">Source</a></td>
-      </tr>
-      <tr>
-        <td>Price Prediction</td>
-        <td data-label="Function">Multi-modal model predicting product prices from catalogue text and images, scored on SMAPE.</td>
-        <td class="stack" data-label="Built with">Python, scikit-learn</td>
-        <td data-label="Context">ML Challenge 2025</td>
-        <td class="doc" data-label="Docs"><a href="https://github.com/TathagataSen06/price-prediction-ml" target="_blank" rel="noopener">Source</a></td>
-      </tr>
-      <tr>
-        <td>RFP Automation</td>
-        <td data-label="Function">Multi-agent pipeline answering paint-industry RFPs: parse requirements, match specs to catalogues, price the bid.</td>
-        <td class="stack" data-label="Built with">React, PDF.js</td>
-        <td data-label="Context">Project</td>
-        <td class="doc" data-label="Docs"><a href="https://github.com/TathagataSen06/RFP-Automated" target="_blank" rel="noopener">Source</a></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 id="application-reports"><span class="n">7</span>Application Reports</h2>
-  <div class="reports">
-    <a href="work/sanchaarsetu.html">
-      <span class="docno">TSEN-AR01</span>
-      <span class="t">SanchaarSetu: syncing systems you're not allowed to change</span>
-      <span class="a">Idempotency windows, async delivery, semantic field mapping, and what's built versus designed.</span>
-      <span class="go">Read report →</span>
-    </a>
-    <a href="work/graphsentinel.html">
-      <span class="docno">TSEN-AR02</span>
-      <span class="t">GraphSentinel: finding layering and round-trips in a transaction graph</span>
-      <span class="a">Time-windowed graph walks plus a graph and sequence model, evaluated on synthetic data.</span>
-      <span class="go">Read report →</span>
-    </a>
-    <a href="work/barc-detector-pipeline.html">
-      <span class="docno">TSEN-AR03</span>
-      <span class="t">Peak detection for detector commissioning at BARC</span>
-      <span class="a">A multithreaded pipeline over 64 channels and a 12-stage peak-detection framework.</span>
-      <span class="go">Read report →</span>
-    </a>
-  </div>
-
-  <h2 id="ordering"><span class="n">8</span>Ordering Information</h2>
-  <table class="tbl rtable">
-    <thead><tr><th>Channel</th><th>Address</th></tr></thead>
-    <tbody>
-      <tr><td>Email</td><td data-label="Address"><a href="mailto:sen.tathagata5@gmail.com">sen.tathagata5@gmail.com</a></td></tr>
-      <tr><td>Phone</td><td data-label="Address"><a href="tel:+918452034860">+91 84520 34860</a></td></tr>
-      <tr><td>LinkedIn</td><td data-label="Address"><a href="https://www.linkedin.com/in/tathagatasen05/" target="_blank" rel="noopener">linkedin.com/in/tathagatasen05</a></td></tr>
-      <tr><td>GitHub</td><td data-label="Address"><a href="https://github.com/TathagataSen06" target="_blank" rel="noopener">github.com/TathagataSen06</a></td></tr>
-      <tr><td>LeetCode</td><td data-label="Address"><a href="https://leetcode.com/u/tathagatasen/" target="_blank" rel="noopener">leetcode.com/u/tathagatasen</a></td></tr>
-    </tbody>
-  </table>
-
-  <p class="notice"><b>IMPORTANT NOTICE.</b> Every figure in this document comes from the work it describes. I'm happy to walk through any of them: how it was measured, and where it stops holding.</p>
-
-  <footer class="sheet-foot">
-    <span>Copyright © 2026, Tathagata Sen</span>
-    <a href="mailto:sen.tathagata5@gmail.com?subject=Portfolio%20feedback">Submit document feedback</a>
-    <span>3</span>
-  </footer>
-</article>
+  </section>
+</main>
+<div class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
