@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GraphSentinel — Application Report · Tathagata Sen</title>
+<meta name="description" content="GraphSentinel: time-windowed graph walks and a graph + sequence model for anti-money-laundering, built for iDEA 2.0 (Union Bank) and evaluated on synthetic data.">
+<link rel="canonical" href="https://tathagatasen.vercel.app/work/graphsentinel.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23fff'/%3E%3Crect width='64' height='9' fill='%23b3261e'/%3E%3Ctext x='32' y='51' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' text-anchor='middle' fill='%23141414'%3ETS%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GraphSentinel: finding layering and round-trips in a transaction graph">
+<meta property="og:description" content="Application report by Tathagata Sen.">
+<meta property="og:image" content="https://tathagatasen.vercel.app/graph-sentinel-dashboard.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@700&family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<article class="sheet report">
+  <header class="sheet-head">
+    <a class="brand" href="../index.html">Tathagata Sen</a>
+    <span class="lit">TSEN-AR02 – OCTOBER 2026</span>
+  </header>
+  <a class="back noprint" href="../index.html#application-reports">← Back to datasheet</a>
+
+  <p class="kicker">Application Report</p>
+  <h1>GraphSentinel: Finding Layering and Round-Trips in a Transaction Graph</h1>
+  <p class="byline">Tathagata Sen, with team Demo Buddies (4 people) · <a href="https://github.com/TathagataSen06/graph-sentinel" target="_blank" rel="noopener">Source on GitHub</a></p>
+
+  <div class="abstract">
+    <b>ABSTRACT</b>
+    <p>Rule-based anti-money-laundering checks look at transactions one at a time, so they miss patterns that only exist across accounts: money hopping through a chain of new accounts, or leaving and coming back in a loop. GraphSentinel, built by a team of four for iDEA 2.0 (Union Bank of India, problem statement PS3), treats transactions as a time-windowed graph. Graph walks find layering chains, round-trips and structuring; a graph + sequence model scores accounts; investigators get a D3 fund-flow view and a goAML report export. Everything was built and evaluated on synthetic data.</p>
+  </div>
+
+  <main id="main">
+  <div class="draft">The team README lists your role as <em>graph analytics &amp; database engineering</em>. Name exactly what you built (the schema? the graph-walk detectors? the fund-flow view?). Interviewers will ask, so be specific.</div>
+
+  <div class="body">
+    <h2><span class="n">1</span>Problem</h2>
+    <p>The problem statement asked for five patterns:</p>
+    <ul>
+      <li><strong>Multi-hop layering:</strong> funds moving rapidly through three or more accounts.</li>
+      <li><strong>Circular round-trips:</strong> money that leaves an account and comes back.</li>
+      <li><strong>Structuring:</strong> clusters of transfers kept just under the ₹10 lakh reporting threshold.</li>
+      <li><strong>Dormant reactivation:</strong> an account silent for months that suddenly moves money.</li>
+      <li><strong>KYC mismatch:</strong> behaviour that doesn't fit the customer's declared profile.</li>
+    </ul>
+    <p>The first two are invisible to per-transaction rules; they're paths in a graph.</p>
+
+    <h2><span class="n">2</span>Approach</h2>
+    <h3><span class="n">2.1</span>Graph walks over a time window</h3>
+    <p>Transactions inside the window become an adjacency list keyed by sender, with each account's outgoing edges sorted by time. A depth-first walk extends chains forward. A chain becomes a layering alert when it touches at least four accounts within 48 hours and, on average, each hop passes on at least 90% of what it received:</p>
+<pre><code>if (timeSpanHours &lt;= (pattern.time_window_hours || 48) &amp;&amp; uniqueAccounts &gt;= 4 &amp;&amp; forwardRatio &gt;= 0.9) {
+  // ...
+  const confidence = clamp(0.56 + path.length * 0.05 + forwardRatio * 0.2 + shellAccounts * 0.04, 0, 0.97);</code></pre>
+    <span class="src">backend/lib/detection.mjs</span>
+    <p>Round-trips use a 72-hour window and need at least 75% of the money to return. Dormant reactivation needs 180+ days of silence. Every alert carries a plain-language narrative and the factors behind it, so an investigator sees <em>why</em>, not just a score.</p>
+
+    <h3><span class="n">2.2</span>A learned scorer</h3>
+    <p>The model takes two views of an account. A GRU evolves over the last 10 graph snapshots (8 aggregate features each), an EvolveGCN-inspired block. Two LSTM layers read the account's last 24 transactions (11 features: amount, direction, time gap, channel, risk score, account age). The two encodings are fused into a nine-way classifier (normal plus eight patterns), and an LSTM decoder reconstructs the transaction sequence so unusual behaviour shows up as reconstruction error.</p>
+
+    <h2><span class="n">3</span>Architecture</h2>
+  </div>
+
+  <figure>
+    <div class="flow" role="list" aria-label="GraphSentinel architecture">
+      <div class="node" role="listitem"><b>Transactions</b><ul><li>simulator</li><li>synthetic seed data</li></ul></div>
+      <div class="node" role="listitem"><b>API</b><ul><li>Node.js</li><li>graph traversal</li></ul></div>
+      <div class="node hl" role="listitem"><b>Detect</b><ul><li>graph walks (JS)</li><li>TensorFlow model (Python)</li></ul></div>
+      <div class="node" role="listitem"><b>Store</b><ul><li>PostgreSQL (Supabase)</li></ul></div>
+      <div class="node" role="listitem"><b>Investigate</b><ul><li>React + D3 fund-flow graph</li><li>goAML XML export</li></ul></div>
+    </div>
+    <figcaption><b>Figure 1.</b> Architecture as built</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot" src="../graph-sentinel-dashboard.png" alt="GraphSentinel federated-learning view showing participating bank nodes, alerts shared and per-round model performance" width="1253" height="707" loading="lazy">
+    <figcaption><b>Figure 2.</b> Federated-learning view. The inter-bank training shown here is simulated (see section 5).</figcaption>
+  </figure>
+
+  <div class="body">
+    <h2><span class="n">4</span>Results (Synthetic Data)</h2>
+  </div>
+  <table class="tbl rtable">
+    <thead><tr><th>Metric</th><th class="num">Value</th><th>Conditions</th></tr></thead>
+    <tbody>
+      <tr><td>Precision</td><td class="num" data-label="Value">0.91</td><td class="cond" data-label="Conditions">Graph + sequence model, synthetic test set</td></tr>
+      <tr><td>Recall</td><td class="num" data-label="Value">0.88</td><td class="cond" data-label="Conditions">Same</td></tr>
+      <tr><td>F1 score</td><td class="num" data-label="Value">0.89</td><td class="cond" data-label="Conditions">Same</td></tr>
+      <tr><td>False positives</td><td class="num" data-label="Value">−94%</td><td class="cond" data-label="Conditions">Versus threshold-based rules, synthetic data</td></tr>
+    </tbody>
+  </table>
+  <div class="body">
+    <p style="margin-top:14px">The data is fully synthetic, and the patterns the model is scored on were injected by the same generator it trained on. These numbers show the pipeline works end to end; they say little about how it would do on a bank's real transactions.</p>
+    <div class="draft">Confirm the metrics came from a held-out split, and define the "threshold-based rules" baseline behind −94%. If you can't, cut that row.</div>
+
+    <h2><span class="n">5</span>Built vs. Designed</h2>
+  </div>
+  <table class="tbl rtable">
+    <thead><tr><th>Component</th><th>Status</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Fund-flow graph (D3), transaction simulator</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">React</td></tr>
+      <tr><td>Graph-walk and rule detectors</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">Node.js</td></tr>
+      <tr><td>Graph + sequence model</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">TensorFlow / Keras</td></tr>
+      <tr><td>Alert explanations</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">Hand-weighted factors; SHAP values are not computed</td></tr>
+      <tr><td>goAML report export</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">XML for STR/CTR filings</td></tr>
+      <tr><td>Neo4j graph database</td><td data-label="Status"><span class="status plan">DESIGNED</span></td><td data-label="Notes">PostgreSQL used instead</td></tr>
+      <tr><td>Kafka + Flink streaming</td><td data-label="Status"><span class="status plan">DESIGNED</span></td><td data-label="Notes">Streams are simulated</td></tr>
+      <tr><td>Federated learning across banks</td><td data-label="Status"><span class="status plan">DESIGNED</span></td><td data-label="Notes">Simulated in the UI</td></tr>
+    </tbody>
+  </table>
+
+  <div class="body">
+    <h2><span class="n">6</span>What I'd Change</h2>
+    <div class="draft">
+      <p>Found by reading the code. Keep, edit or drop each one:</p>
+      <ul>
+        <li><strong>Test on data the generator didn't write.</strong> IBM's public AML transaction dataset (synthetic, but from an independent generator) or the Elliptic Bitcoin dataset (real, labelled) would show whether the detectors generalise.</li>
+        <li><strong>Calibrate the confidence.</strong> Alert confidence is a hand-tuned formula (0.56 plus 0.05 per hop, and so on), so a score of 0.8 doesn't mean 80%. Fit it against labelled outcomes.</li>
+        <li><strong>Windows are relative to now.</strong> The detectors filter on <code>Date.now()</code>, so replaying last month's transactions finds nothing. Anchoring windows to event time would make backtesting possible.</li>
+      </ul>
+    </div>
+
+    <h2><span class="n">7</span>References</h2>
+    <ul>
+      <li><a href="https://github.com/TathagataSen06/graph-sentinel" target="_blank" rel="noopener">Source code</a></li>
+    </ul>
+  </div>
+  </main>
+
+  <footer class="sheet-foot">
+    <span>Copyright © 2026, Tathagata Sen</span>
+    <a href="mailto:sen.tathagata5@gmail.com?subject=GraphSentinel%20report">Submit document feedback</a>
+    <span>TSEN-AR02</span>
+  </footer>
+</article>
+</body>
+</html>

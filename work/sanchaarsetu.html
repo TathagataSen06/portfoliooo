@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SanchaarSetu — Application Report · Tathagata Sen</title>
+<meta name="description" content="How SanchaarSetu keeps Karnataka's Single Window System and department systems in sync without changing any of them: idempotency, async delivery, field mapping, audit.">
+<link rel="canonical" href="https://tathagatasen.vercel.app/work/sanchaarsetu.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23fff'/%3E%3Crect width='64' height='9' fill='%23b3261e'/%3E%3Ctext x='32' y='51' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='30' text-anchor='middle' fill='%23141414'%3ETS%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SanchaarSetu: syncing systems you're not allowed to change">
+<meta property="og:description" content="Application report by Tathagata Sen.">
+<meta property="og:image" content="https://tathagatasen.vercel.app/sanchaarsetu-dashboard.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@700&family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<article class="sheet report">
+  <header class="sheet-head">
+    <a class="brand" href="../index.html">Tathagata Sen</a>
+    <span class="lit">TSEN-AR01 – OCTOBER 2026</span>
+  </header>
+  <a class="back noprint" href="../index.html#application-reports">← Back to datasheet</a>
+
+  <p class="kicker">Application Report</p>
+  <h1>SanchaarSetu: Syncing Systems You're Not Allowed to Change</h1>
+  <p class="byline">Tathagata Sen · <a href="https://github.com/TathagataSen06/SanchaarSetu" target="_blank" rel="noopener">Source on GitHub</a></p>
+
+  <div class="abstract">
+    <b>ABSTRACT</b>
+    <p>A business in Karnataka updates its details once, on the Single Window System (SWS), but 40+ department systems each keep their own copy, and none of them can be modified. SanchaarSetu sits between them. It takes changes in by webhook or polling, drops duplicates, maps fields between schemas, holds conflicting updates for review, delivers through Kafka with retries, and writes every step to a hash-chained audit log. It won the AI for Bharat Hackathon in May 2026.</p>
+  </div>
+
+  <main id="main">
+  <div class="draft">Team or solo? If this was a team entry, say so in the abstract and name the parts you built yourself.</div>
+
+  <div class="body">
+    <h2><span class="n">1</span>Problem</h2>
+    <p>Factories, BBMP, Commercial Taxes, Fire Safety: each department runs its own software, from its own vendor, on its own database. When a business changes its registered address or its authorised signatory on the SWS, those copies drift apart, and someone re-enters the change by hand, department by department.</p>
+    <p>The obvious fix, one master database that everyone reads and writes, isn't available. Departments have vendor contracts and workflows of their own, and direct database access to 40 systems is a security and bureaucratic non-starter. That constraint shaped everything: <strong>SanchaarSetu can only call APIs, receive webhooks, or poll.</strong> It's an adapter, not a replacement.</p>
+
+    <h2><span class="n">2</span>Architecture</h2>
+  </div>
+
+  <figure>
+    <div class="flow" role="list" aria-label="SanchaarSetu data flow">
+      <div class="node" role="listitem"><b>Sources</b><ul><li>SWS webhook</li><li>dept webhooks</li><li>API polling + snapshot diff</li></ul></div>
+      <div class="node" role="listitem"><b>Ingest</b><ul><li>FastAPI</li><li>API key + rate limit</li><li>Redis SET NX</li><li>audit row</li></ul></div>
+      <div class="node" role="listitem"><b>Queue</b><ul><li>Kafka (Redpanda)</li><li>sanchaar-events</li></ul></div>
+      <div class="node hl" role="listitem"><b>Consumer</b><ul><li>conflict check</li><li>field mapping</li><li>deliver</li></ul></div>
+      <div class="node" role="listitem"><b>Targets</b><ul><li>department APIs</li><li>SWS</li></ul></div>
+    </div>
+    <p class="langs">On failure: retry after <span>2, 4, 8, 16 s</span> → <span>sanchaar-dlq</span> → <span>dlq_messages</span> table → operator replay</p>
+    <figcaption><b>Figure 1.</b> Data flow. Every box writes to the hash-chained audit log in PostgreSQL.</figcaption>
+  </figure>
+
+  <figure>
+    <img class="shot" src="../sanchaarsetu-dashboard.png" alt="SanchaarSetu operator dashboard showing propagation counts, success rate, active conflicts and recent propagation events" width="1258" height="717" loading="lazy">
+    <figcaption><b>Figure 2.</b> Operator dashboard (React): propagation outcomes, open conflicts, recent events.</figcaption>
+  </figure>
+
+  <div class="body">
+    <h2><span class="n">3</span>Design Decisions</h2>
+
+    <h3><span class="n">3.1</span>Idempotency by time window, not by history</h3>
+    <p>Source systems retry, so the same change arrives more than once. Remembering every event ever seen would grow forever. Instead, the key is a hash of the business ID, the event type and the current 60-second window, claimed in Redis with <code>SET NX</code>:</p>
+<pre><code>def make_idempotency_key(ubid: str, event_type: str, ts: float, window_seconds: int = 60) -> str:
+    window = int(ts // window_seconds)
+    raw = f"{ubid}:{event_type}:{window}"
+    return hashlib.sha256(raw.encode()).hexdigest()
+
+ok = await redis_client.set(idemp, "1", ex=3600, nx=True)
+if not ok:
+    return {"status": "duplicate", "idempotency_key": idemp}</code></pre>
+    <span class="src">app/full_main.py</span>
+    <p>The trade-off is deliberate: a genuine second change to the same field inside the same minute is dropped as a duplicate. Business records like addresses don't change twice a minute, so I accepted that.</p>
+
+    <h3><span class="n">3.2</span>Accept now, deliver later</h3>
+    <p>The webhook answers straight away and hands the event to Kafka. If five of forty departments are down, a synchronous design would fail the SWS request; queuing keeps a dead department from breaking the source system. The cost is that the SWS can't tell the user immediately whether every department got the update. That status lives on the dashboard instead.</p>
+
+    <h3><span class="n">3.3</span>Learned field mapping, with a human gate</h3>
+    <p>Departments name the same thing differently: <code>registered_address</code>, <code>factory_address</code>, <code>address</code>. Hand-written mappings for 40 schemas break every time a department changes its API. SanchaarSetu compares field names with sentence-transformers (falling back to string similarity if the model isn't available). Matches at 0.85 or above are applied; anything lower waits in a review queue. Once approved, a mapping is stored and reused rather than re-inferred. Emails, phone numbers, Aadhaar and PAN numbers are scrubbed by regex before any text reaches the model.</p>
+
+    <h3><span class="n">3.4</span>A 60-second conflict window</h3>
+    <p>If the SWS and a department both change the same business within 60 seconds, that's treated as a conflict: delivery is held and a conflict record is opened for an operator, who resolves it with a policy (SWS wins, last write wins, or a manual choice). Sixty-five seconds apart, the two updates are simply applied in order.</p>
+
+    <h3><span class="n">3.5</span>An audit log you can't quietly edit</h3>
+    <p>Every row stores the previous row's hash and a SHA-256 over that hash plus its own fields. Change any past row and every hash after it stops matching.</p>
+
+    <h2><span class="n">4</span>Built vs. Designed</h2>
+    <p>The repository's docs describe a production system; the code is a hackathon build. This is what actually runs:</p>
+  </div>
+
+  <table class="tbl rtable">
+    <thead><tr><th>Component</th><th>Status</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Webhook ingest, Redis idempotency, API keys, rate limiting</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">FastAPI</td></tr>
+      <tr><td>Kafka delivery, retries with backoff, dead-letter queue, replay</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">aiokafka on Redpanda</td></tr>
+      <tr><td>Field mapping with review queue, PII scrubbing</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">sentence-transformers, string-similarity fallback</td></tr>
+      <tr><td>Conflict detection and resolution UI</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">In-memory 60 s window</td></tr>
+      <tr><td>Hash-chained audit log</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">PostgreSQL</td></tr>
+      <tr><td>API polling and snapshot diff</td><td data-label="Status"><span class="status built">BUILT</span></td><td data-label="Notes">For systems without webhooks</td></tr>
+      <tr><td>Database change-data-capture (Debezium)</td><td data-label="Status"><span class="status plan">DESIGNED</span></td><td data-label="Notes">Placeholder only</td></tr>
+      <tr><td>Multi-department sagas (Temporal)</td><td data-label="Status"><span class="status plan">DESIGNED</span></td><td data-label="Notes">Not in the code</td></tr>
+      <tr><td>mTLS, Kubernetes, multi-broker Kafka</td><td data-label="Status"><span class="status plan">DESIGNED</span></td><td data-label="Notes">Production plan</td></tr>
+    </tbody>
+  </table>
+
+  <div class="body">
+    <h2><span class="n">5</span>Results</h2>
+    <p>An end-to-end suite (<code>test_e2e.py</code>) runs against the Docker Compose stack: SWS-to-department propagation, duplicate rejection, signatory and GSTIN updates, a simultaneous-update conflict through to resolution and requeue, a batch across many businesses, and change-detection ingest.</p>
+    <p>The project won the AI for Bharat Hackathon (PAN IIT, ₹1,00,000) and was recognised by the Joint Directors of Karnataka's Department of Industry &amp; Commerce.</p>
+    <div class="draft">Add one measured number and how you measured it, for example median SWS-to-department latency on the Compose stack. The "&lt;1 s" in ARCHITECTURE.md is a target, not a measurement, so don't quote it as a result.</div>
+
+    <h2><span class="n">6</span>What I'd Change</h2>
+    <div class="draft">
+      <p>Found by reading the code. Keep, edit or drop each one:</p>
+      <ul>
+        <li><strong>Retries block the queue.</strong> The backoff is an <code>asyncio.sleep</code> inside the only consumer loop, so one department that's down holds up deliveries to every other department for up to 30 s per message. That's the opposite of the isolation in 3.2. A delayed retry topic (or a scheduled-retry table) keeps the main loop moving.</li>
+        <li><strong>No partition key.</strong> Events are produced without a key, so Kafka doesn't keep one business's events in order, and the in-memory conflict window only works with a single consumer. Keying messages by business ID fixes both.</li>
+        <li><strong>The audit chain can fork.</strong> The writer reads the last hash, then inserts in a separate statement. Two writers at once can chain off the same parent. An advisory lock, or a single <code>INSERT … SELECT</code> in one transaction, closes the gap.</li>
+        <li><strong>Silent drops.</strong> A department that returns <code>200 OK</code> but discards the update is invisible today. A reconciliation job comparing SWS state with department state would catch it (risk R02 in the repository).</li>
+      </ul>
+    </div>
+
+    <h2><span class="n">7</span>References</h2>
+    <ul>
+      <li><a href="https://github.com/TathagataSen06/SanchaarSetu" target="_blank" rel="noopener">Source code</a></li>
+      <li><a href="https://github.com/TathagataSen06/SanchaarSetu/blob/main/ARCHITECTURE.md" target="_blank" rel="noopener">ARCHITECTURE.md</a> and <a href="https://github.com/TathagataSen06/SanchaarSetu/blob/main/RISKS_AND_TRADEOFFS.md" target="_blank" rel="noopener">RISKS_AND_TRADEOFFS.md</a></li>
+    </ul>
+  </div>
+  </main>
+
+  <footer class="sheet-foot">
+    <span>Copyright © 2026, Tathagata Sen</span>
+    <a href="mailto:sen.tathagata5@gmail.com?subject=SanchaarSetu%20report">Submit document feedback</a>
+    <span>TSEN-AR01</span>
+  </footer>
+</article>
+</body>
+</html>
