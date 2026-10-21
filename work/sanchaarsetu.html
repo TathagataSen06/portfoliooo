@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SanchaarSetu — Case study · Tathagata Sen</title>
+<meta name="description" content="How SanchaarSetu keeps Karnataka's Single Window System in sync with 40+ department systems without changing them: idempotency, async delivery, field mapping and a hash-chained audit log.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://tathagatasen.vercel.app/work/sanchaarsetu.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='60' fill='%230a0a0a'/%3E%3Ccircle cx='60' cy='60' r='57' fill='none' stroke='%2389aacc' stroke-width='5'/%3E%3Ctext x='60' y='76' font-family='Georgia,serif' font-size='50' font-style='italic' fill='%23f5f5f5' text-anchor='middle'%3ETS%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SanchaarSetu: syncing systems you're not allowed to change">
+<meta property="og:description" content="Case study by Tathagata Sen, with an interactive walkthrough of the pipeline.">
+<meta property="og:image" content="https://tathagatasen.vercel.app/sanchaarsetu-dashboard.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../assets/site.js" defer></script>
+<script src="../assets/demos.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <nav class="nav-pill" aria-label="Main">
+    <a class="nav-mono" href="../index.html" aria-label="Home"><span>TS</span></a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <div class="nav-links">
+      <span class="nav-ind" aria-hidden="true"></span>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#work" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#honours">Honours</a>
+    </div>
+    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-sheet">Menu <i aria-hidden="true"></i></button>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a class="nav-cta" href="../index.html#contact">Say hi <span class="acc">↗</span></a>
+  </nav>
+  <div class="nav-sheet" id="nav-sheet">
+    <a href="../index.html#experience">Experience <span>01</span></a>
+    <a href="../index.html#work">Work <span>02</span></a>
+    <a href="../index.html#about">About <span>03</span></a>
+    <a href="../index.html#honours">Honours <span>04</span></a>
+    <a href="../index.html#contact">Contact <span>05</span></a>
+  </div>
+</header>
+
+<main id="main">
+  <header class="case-hero">
+    <div class="wrap">
+      <p class="crumbs" data-reveal><a href="../index.html#work">Work</a><span aria-hidden="true">/</span><span>Case study 01</span></p>
+      <h1 class="case-title" data-reveal style="--d:80ms">SanchaarSetu</h1>
+      <p class="case-sub" data-reveal style="--d:160ms">Keeping Karnataka's Single Window System in sync with 40+ department systems, without changing any of them.</p>
+      <dl class="case-meta" data-reveal style="--d:240ms">
+        <div><dt>Context</dt><dd>AI for Bharat Hackathon, May 2026</dd></div>
+        <div><dt>Outcome</dt><dd>Winner · ₹1,00,000 (PAN IIT)</dd></div>
+        <div><dt>Built with</dt><dd>FastAPI, Kafka (Redpanda), PostgreSQL, Redis, sentence-transformers, React</dd></div>
+        <div><dt>Links</dt><dd><a href="https://github.com/TathagataSen06/SanchaarSetu" target="_blank" rel="noopener">Source on GitHub ↗</a></dd></div>
+      </dl>
+      <figure class="cover" data-reveal style="--d:320ms;view-transition-name:cover-sanchaarsetu">
+        <img src="../sanchaarsetu-dashboard.png" alt="SanchaarSetu operator dashboard: propagation counts, success rate, open conflicts and recent events" width="1258" height="717" decoding="async">
+      </figure>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="case-layout">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#glance">At a glance</a></li>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#flow">How an update flows</a></li>
+          <li><a href="#decisions">Design decisions</a></li>
+          <li><a href="#built">Built vs. designed</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#change">What I'd change</a></li>
+        </ol>
+      </nav>
+
+      <article class="prose">
+        <section id="glance" data-reveal>
+          <h2><span class="n">01</span>At a <em>glance</em></h2>
+          <p>A business in Karnataka updates its details once, on the Single Window System (SWS), but dozens of department systems each keep their own copy. SanchaarSetu sits between them: it takes changes in by webhook or polling, drops duplicates, maps fields between schemas, holds conflicting updates for review, delivers through Kafka with retries, and writes every step to a hash-chained audit log.</p>
+          <div class="tldr">
+            <div><b>40+</b><span>department systems to keep in sync</span></div>
+            <div><b>0</b><span>changes allowed to any of them</span></div>
+            <div><b>9</b><span>end-to-end test scenarios against the full stack</span></div>
+          </div>
+          <div class="todo"><p>Team or solo? If this was a team entry, say so here and name the parts you built yourself.</p></div>
+        </section>
+
+        <section id="problem" data-reveal>
+          <h2><span class="n">02</span>The <em>problem</em></h2>
+          <p>Factories, BBMP, Commercial Taxes, Fire Safety: each department runs its own software, from its own vendor, on its own database. When a business changes its registered address or its authorised signatory on the SWS, those copies drift apart, and someone re-enters the change by hand, department by department.</p>
+          <p>The obvious fix, one master database everyone reads and writes, isn't available. Departments have vendor contracts and workflows of their own, and direct database access to 40 systems is a security and bureaucratic non-starter. That constraint shaped everything: <strong>SanchaarSetu can only call APIs, receive webhooks, or poll.</strong> It's an adapter, not a replacement.</p>
+        </section>
+
+        <section id="flow" data-reveal>
+          <h2><span class="n">03</span>How an update <em>flows</em></h2>
+          <p>Send an update through the pipeline below. Then resend it to see idempotency drop the duplicate, or take a department offline to watch retries back off into the dead-letter queue.</p>
+          <div class="demo" data-demo="flow">
+            <div class="demo-head">
+              <p class="demo-title">Interactive: one update, end to end<span>Every step below happens in <code>app/full_main.py</code></span></p>
+              <div class="demo-controls">
+                <button class="dbtn primary" type="button" data-act="send">Send update</button>
+                <button class="dbtn" type="button" data-act="dup" disabled>Resend (duplicate)</button>
+                <button class="dbtn danger" type="button" data-act="offline" aria-pressed="false">Fire Safety offline</button>
+              </div>
+            </div>
+            <div class="flow-stage">
+              <div class="fnode"><b>SWS</b><span>webhook</span></div>
+              <div class="fnode"><b>Ingest</b><span>FastAPI · API key · Redis SET NX</span></div>
+              <div class="fnode"><b>Kafka</b><span>sanchaar-events</span></div>
+              <div class="fnode"><b>Consumer</b><span>conflict check · field map · deliver</span></div>
+              <div class="fnode"><b>Departments</b><ul class="depts"><li data-dept="factories">Factories</li><li data-dept="bbmp">BBMP</li><li data-dept="fire">Fire Safety</li></ul></div>
+              <span class="packet" aria-hidden="true"></span>
+            </div>
+            <div class="demo-foot">
+              <dl class="counters">
+                <div><dt>Delivered</dt><dd data-c="ok">0</dd></div>
+                <div><dt>Duplicates dropped</dt><dd data-c="dup">0</dd></div>
+                <div><dt>In DLQ</dt><dd data-c="dlq">0</dd></div>
+              </dl>
+              <ol class="log" aria-live="polite" aria-label="Pipeline log"></ol>
+            </div>
+            <p class="demo-note">A simplified simulation: business IDs, mapping scores and hashes are illustrative, and the 2–16 s retry delays are sped up.</p>
+          </div>
+        </section>
+
+        <section id="decisions" data-reveal>
+          <h2><span class="n">04</span>Design <em>decisions</em></h2>
+          <p>Each choice traded something away. These are the ones that shaped the system, from the repository's own trade-off notes.</p>
+          <div class="decisions">
+            <div class="decision spot">
+              <span class="k">4.1</span>
+              <h3>Idempotency by time window</h3>
+              <p>Source systems retry, so the same change arrives more than once. Remembering every event would grow forever, so the key hashes the business ID, event type and current 60-second window.</p>
+              <p><b>Trade-off:</b> a genuine second change to the same field inside a minute is dropped. Addresses don't change twice a minute.</p>
+            </div>
+            <div class="decision spot">
+              <span class="k">4.2</span>
+              <h3>Accept now, deliver later</h3>
+              <p>The webhook answers straight away and hands the event to Kafka, so five departments being down can't fail the SWS request.</p>
+              <p><b>Trade-off:</b> the SWS can't tell the user immediately whether every department got the update. That status lives on the dashboard.</p>
+            </div>
+            <div class="decision spot">
+              <span class="k">4.3</span>
+              <h3>Learned field mapping, human gate</h3>
+              <p>sentence-transformers match field names like <code>registered_address</code> to <code>address</code>. Scores of 0.85 or more apply automatically; lower ones wait for review. Emails, phone, Aadhaar and PAN numbers are scrubbed first.</p>
+              <p><b>Trade-off:</b> AI adds non-determinism, so approved mappings are stored and reused rather than re-inferred.</p>
+            </div>
+            <div class="decision spot">
+              <span class="k">4.4</span>
+              <h3>A 60-second conflict window</h3>
+              <p>If the SWS and a department change the same business within 60 seconds, delivery is held and an operator resolves it: SWS wins, last write wins, or a manual choice.</p>
+              <p><b>Trade-off:</b> updates 65 seconds apart are simply applied in order.</p>
+            </div>
+          </div>
+          <h3>The idempotency key, as written</h3>
+          <div class="code">
+            <div class="code-bar"><i><span></span></i>app/full_main.py</div>
+<pre><code><span class="kw">def</span> <span class="fn">make_idempotency_key</span>(ubid: str, event_type: str, ts: float, window_seconds: int = <span class="nu">60</span>) -&gt; str:
+    window = int(ts // window_seconds)
+    raw = <span class="st">f"{ubid}:{event_type}:{window}"</span>
+    <span class="kw">return</span> hashlib.sha256(raw.encode()).hexdigest()
+
+ok = <span class="kw">await</span> redis_client.set(idemp, <span class="st">"1"</span>, ex=<span class="nu">3600</span>, nx=<span class="kw">True</span>)
+<span class="kw">if not</span> ok:
+    <span class="kw">return</span> {<span class="st">"status"</span>: <span class="st">"duplicate"</span>, <span class="st">"idempotency_key"</span>: idemp}</code></pre>
+          </div>
+          <h3>An audit log you can't quietly edit</h3>
+          <p>Every audit row stores the previous row's hash and a SHA-256 over that hash plus its own fields. Change any past row and every hash after it stops matching.</p>
+        </section>
+
+        <section id="built" data-reveal>
+          <h2><span class="n">05</span>Built vs. <em>designed</em></h2>
+          <p>The repository's docs describe a production system; the code is a hackathon build. This is what actually runs.</p>
+          <table class="tbl">
+            <thead><tr><th>Component</th><th>Status</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Webhook ingest, Redis idempotency, API keys, rate limiting</td><td><span class="pill built">Built</span></td><td class="muted">FastAPI</td></tr>
+              <tr><td>Kafka delivery, retries with backoff, dead-letter queue, replay</td><td><span class="pill built">Built</span></td><td class="muted">aiokafka on Redpanda</td></tr>
+              <tr><td>Field mapping with review queue, PII scrubbing</td><td><span class="pill built">Built</span></td><td class="muted">String-similarity fallback</td></tr>
+              <tr><td>Conflict detection and resolution UI</td><td><span class="pill built">Built</span></td><td class="muted">In-memory 60 s window</td></tr>
+              <tr><td>Hash-chained audit log</td><td><span class="pill built">Built</span></td><td class="muted">PostgreSQL</td></tr>
+              <tr><td>API polling and snapshot diff</td><td><span class="pill built">Built</span></td><td class="muted">For systems without webhooks</td></tr>
+              <tr><td>Database change-data-capture (Debezium)</td><td><span class="pill plan">Designed</span></td><td class="muted">Placeholder only</td></tr>
+              <tr><td>Multi-department sagas (Temporal)</td><td><span class="pill plan">Designed</span></td><td class="muted">Not in the code</td></tr>
+              <tr><td>mTLS, Kubernetes, multi-broker Kafka</td><td><span class="pill plan">Designed</span></td><td class="muted">Production plan</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="results" data-reveal>
+          <h2><span class="n">06</span><em>Results</em></h2>
+          <p>An end-to-end suite (<code>test_e2e.py</code>) runs nine scenarios against the Docker Compose stack: SWS-to-department propagation, duplicate rejection, signatory and GSTIN updates, a simultaneous-update conflict through to resolution and requeue, a batch across many businesses, change-detection ingest, and DLQ replay.</p>
+          <p>The project won the AI for Bharat Hackathon (PAN IIT, ₹1,00,000) and was recognised by the Joint Directors of Karnataka's Department of Industry &amp; Commerce.</p>
+          <div class="todo"><p>Add one measured number and how you measured it, for example median SWS-to-department latency on the Compose stack. The "&lt;1 s" in ARCHITECTURE.md is a target, not a measurement.</p></div>
+        </section>
+
+        <section id="change" data-reveal>
+          <h2><span class="n">07</span>What I'd <em>change</em></h2>
+          <div class="todo">
+            <p>Found by reading the code. Keep, edit or drop each one:</p>
+            <ul>
+              <li><strong>Retries block the queue.</strong> The backoff is an <code>asyncio.sleep</code> inside the only consumer loop, so one department that's down holds up every other department's deliveries for up to 30 s per message. A delayed retry topic keeps the main loop moving.</li>
+              <li><strong>No partition key.</strong> Events are produced without a key, so Kafka doesn't keep one business's events in order, and the in-memory conflict window only works with a single consumer. Keying by business ID fixes both.</li>
+              <li><strong>The audit chain can fork.</strong> The writer reads the last hash, then inserts separately; two writers at once can chain off the same parent. An advisory lock or a single <code>INSERT … SELECT</code> closes the gap.</li>
+              <li><strong>Silent drops.</strong> A department that returns <code>200 OK</code> but discards the update is invisible today. A reconciliation job comparing SWS and department state would catch it.</li>
+            </ul>
+          </div>
+          <div class="refs">
+            <a class="link-arrow ext" href="https://github.com/TathagataSen06/SanchaarSetu" target="_blank" rel="noopener">Source code</a>
+            <a class="link-arrow ext" href="https://github.com/TathagataSen06/SanchaarSetu/blob/main/ARCHITECTURE.md" target="_blank" rel="noopener">ARCHITECTURE.md</a>
+            <a class="link-arrow ext" href="https://github.com/TathagataSen06/SanchaarSetu/blob/main/RISKS_AND_TRADEOFFS.md" target="_blank" rel="noopener">RISKS_AND_TRADEOFFS.md</a>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <a class="next-case" href="graphsentinel.html" data-reveal>
+      <span><small>Next case study</small><b>GraphSentinel</b></span>
+      <span class="ar" aria-hidden="true">→</span>
+    </a>
+    <footer class="site-foot">
+      <span>© 2026 Tathagata Sen · Mumbai, India</span>
+      <a href="../index.html#contact">Get in touch ↗</a>
+    </footer>
+  </div>
+</main>
+</body>
+</html>

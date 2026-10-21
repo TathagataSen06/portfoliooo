@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GraphSentinel — Case study · Tathagata Sen</title>
+<meta name="description" content="GraphSentinel: time-windowed graph walks and a graph + sequence model that find layering chains, round-trips and structuring, built by a team of four for iDEA 2.0.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://tathagatasen.vercel.app/work/graphsentinel.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='60' fill='%230a0a0a'/%3E%3Ccircle cx='60' cy='60' r='57' fill='none' stroke='%2389aacc' stroke-width='5'/%3E%3Ctext x='60' y='76' font-family='Georgia,serif' font-size='50' font-style='italic' fill='%23f5f5f5' text-anchor='middle'%3ETS%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GraphSentinel: finding layering and round-trips in a transaction graph">
+<meta property="og:description" content="Case study by Tathagata Sen, with an interactive walkthrough of the detectors.">
+<meta property="og:image" content="https://tathagatasen.vercel.app/graph-sentinel-dashboard.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../assets/site.js" defer></script>
+<script src="../assets/demos.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <nav class="nav-pill" aria-label="Main">
+    <a class="nav-mono" href="../index.html" aria-label="Home"><span>TS</span></a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <div class="nav-links">
+      <span class="nav-ind" aria-hidden="true"></span>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#work" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#honours">Honours</a>
+    </div>
+    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-sheet">Menu <i aria-hidden="true"></i></button>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a class="nav-cta" href="../index.html#contact">Say hi <span class="acc">↗</span></a>
+  </nav>
+  <div class="nav-sheet" id="nav-sheet">
+    <a href="../index.html#experience">Experience <span>01</span></a>
+    <a href="../index.html#work">Work <span>02</span></a>
+    <a href="../index.html#about">About <span>03</span></a>
+    <a href="../index.html#honours">Honours <span>04</span></a>
+    <a href="../index.html#contact">Contact <span>05</span></a>
+  </div>
+</header>
+
+<main id="main">
+  <header class="case-hero">
+    <div class="wrap">
+      <p class="crumbs" data-reveal><a href="../index.html#work">Work</a><span aria-hidden="true">/</span><span>Case study 02</span></p>
+      <h1 class="case-title" data-reveal style="--d:80ms">GraphSentinel</h1>
+      <p class="case-sub" data-reveal style="--d:160ms">Finding layering chains, round-trips and structuring in a transaction graph, for Union Bank of India's iDEA 2.0 challenge.</p>
+      <dl class="case-meta" data-reveal style="--d:240ms">
+        <div><dt>Context</dt><dd>iDEA 2.0 · Union Bank, problem statement PS3</dd></div>
+        <div><dt>Team</dt><dd>Demo Buddies, four people. My part: graph analytics &amp; database engineering</dd></div>
+        <div><dt>Built with</dt><dd>React, D3, Node.js, TensorFlow, PostgreSQL (Supabase)</dd></div>
+        <div><dt>Links</dt><dd><a href="https://github.com/TathagataSen06/graph-sentinel" target="_blank" rel="noopener">Source on GitHub ↗</a></dd></div>
+      </dl>
+      <figure class="cover" data-reveal style="--d:320ms;view-transition-name:cover-graphsentinel">
+        <img src="../graph-sentinel-dashboard.png" alt="GraphSentinel federated-learning view: participating bank nodes, alerts shared and per-round model performance" width="1253" height="707" decoding="async" style="height:auto;aspect-ratio:1253/668">
+      </figure>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="case-layout">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#glance">At a glance</a></li>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#detect">How detection works</a></li>
+          <li><a href="#arch">Architecture</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#built">Built vs. designed</a></li>
+          <li><a href="#change">What I'd change</a></li>
+        </ol>
+      </nav>
+
+      <article class="prose">
+        <section id="glance" data-reveal>
+          <h2><span class="n">01</span>At a <em>glance</em></h2>
+          <p>Rule-based anti-money-laundering checks look at transactions one at a time, so they miss patterns that only exist across accounts: money hopping through a chain of new accounts, or leaving and coming back in a loop. GraphSentinel treats transactions as a time-windowed graph, walks it for known laundering shapes, and scores accounts with a graph + sequence model. Investigators get a D3 fund-flow view and a goAML report export.</p>
+          <div class="tldr">
+            <div><b>5</b><span>laundering patterns asked for by the problem statement</span></div>
+            <div><b>9</b><span>classes in the scoring model: normal plus eight patterns</span></div>
+            <div><b>0.89</b><span>F1 score on the synthetic test set</span></div>
+          </div>
+          <div class="todo"><p>The team README lists your role as graph analytics &amp; database engineering. Name exactly what you built (the schema? the graph-walk detectors? the fund-flow view?). Interviewers will ask.</p></div>
+        </section>
+
+        <section id="problem" data-reveal>
+          <h2><span class="n">02</span>The <em>problem</em></h2>
+          <ul>
+            <li><strong>Multi-hop layering:</strong> funds moving rapidly through three or more accounts.</li>
+            <li><strong>Circular round-trips:</strong> money that leaves an account and comes back.</li>
+            <li><strong>Structuring:</strong> clusters of transfers kept just under the ₹10 lakh reporting threshold.</li>
+            <li><strong>Dormant reactivation:</strong> an account silent for months that suddenly moves money.</li>
+            <li><strong>KYC mismatch:</strong> behaviour that doesn't fit the customer's declared profile.</li>
+          </ul>
+          <p>The first two are invisible to per-transaction rules. They're paths in a graph.</p>
+        </section>
+
+        <section id="detect" data-reveal>
+          <h2><span class="n">03</span>How detection <em>works</em></h2>
+          <p>Pick a pattern to watch the detector walk a small synthetic graph, check each rule, and raise an alert. The thresholds are the real ones from the detection code.</p>
+          <div class="demo" data-demo="graph">
+            <div class="demo-head">
+              <p class="demo-title">Interactive: graph walks over a time window<span>Synthetic accounts and amounts</span></p>
+              <div class="demo-controls">
+                <button class="dbtn" type="button" data-pattern="layer" aria-pressed="false">Layering chain</button>
+                <button class="dbtn" type="button" data-pattern="round" aria-pressed="false">Round-trip</button>
+                <button class="dbtn" type="button" data-pattern="struct" aria-pressed="false">Structuring</button>
+              </div>
+            </div>
+            <div class="gs">
+              <svg class="gs-graph" viewBox="0 0 660 360" role="img" aria-labelledby="gs-t"><title id="gs-t">Synthetic transaction graph: a layering chain A to D, a round-trip E to G and back, and structured transfers from H</title><defs><marker id="gs-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="mk" d="M0,0 L10,5 L0,10 z"/></marker><marker id="gs-arrow-on" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="mk-on" d="M0,0 L10,5 L0,10 z"/></marker></defs><g class="edge" data-p="layer" data-i="0"><path d="M88.4,87.4 Q146.3,97.7 192.7,61.5"/><text x="146.6" y="102.7">₹12.0L</text></g><g class="edge" data-p="layer" data-i="1"><path d="M233.3,61.1 Q292.0,52.3 337.8,89.9"/><text x="292.2" y="55.3">₹11.5L</text></g><g class="edge" data-p="layer" data-i="2"><path d="M378.4,91.4 Q436.3,101.7 482.7,65.5"/><text x="436.6" y="106.7">₹11.0L</text></g><g class="edge" data-p="round" data-i="0"><path d="M112.4,265.5 Q147.0,304.2 198.9,302.9"/><text x="146.2" y="310.1">₹10.0L</text></g><g class="edge" data-p="round" data-i="1"><path d="M233.5,298.6 Q274.5,285.0 288.6,244.2"/><text x="276.9" y="291.5">₹9.2L</text></g><g class="edge" data-p="round" data-i="2"><path d="M286.2,230.7 Q197.2,209.1 117.8,254.7"/><text x="197.7" y="217.0">₹8.4L</text></g><g class="edge" data-p="struct" data-i="0"><path d="M471.8,249.2 Q507.3,204.1 564.6,200.7"/><text x="506.8" y="207.0">₹9.6L</text></g><g class="edge" data-p="struct" data-i="1"><path d="M473.9,259.8 Q529.7,241.0 581.1,269.8"/><text x="529.8" y="243.9">₹9.8L</text></g><g class="edge" data-p="struct" data-i="2"><path d="M470.0,269.6 Q488.4,307.7 529.8,315.9"/><text x="486.2" y="314.5">₹9.7L</text></g><g class="edge" data-p="struct" data-i="3"><path d="M449.5,276.2 Q456.2,297.8 438.7,312.0"/><text x="462.6" y="303.7">₹9.5L</text></g><g class="edge normal"><path d="M223.8,72.8 Q231.6,154.6 294.3,207.6"/></g><g class="edge normal"><path d="M515.0,76.2 Q564.8,110.5 572.9,170.4"/></g><g class="edge normal"><path d="M369.6,112.4 Q380.6,190.5 443.4,238.2"/></g><g class="node" data-p="layer"><circle cx="70" cy="92" r="16"/><text x="70" y="96.5">A</text></g><g class="node" data-p="layer"><circle cx="215" cy="56" r="16"/><text x="215" y="60.5">B</text></g><g class="node" data-p="layer"><circle cx="360" cy="96" r="16"/><text x="360" y="100.5">C</text></g><g class="node" data-p="layer"><circle cx="505" cy="60" r="16"/><text x="505" y="64.5">D</text></g><g class="node" data-p="round"><circle cx="95" cy="258" r="16"/><text x="95" y="262.5">E</text></g><g class="node" data-p="round"><circle cx="220" cy="312" r="16"/><text x="220" y="316.5">F</text></g><g class="node" data-p="round"><circle cx="305" cy="228" r="16"/><text x="305" y="232.5">G</text></g><g class="node" data-p="struct"><circle cx="455" cy="258" r="16"/><text x="455" y="262.5">H</text></g><g class="node" data-p="struct"><circle cx="585" cy="190" r="16"/><text x="585" y="194.5">I</text></g><g class="node" data-p="struct"><circle cx="604" cy="272" r="16"/><text x="604" y="276.5">J</text></g><g class="node" data-p="struct"><circle cx="548" cy="330" r="16"/><text x="548" y="334.5">K</text></g><g class="node" data-p="struct"><circle cx="432" cy="334" r="16"/><text x="432" y="338.5">L</text></g></svg>
+              <div class="gs-side">
+                <h4>Rule checks</h4>
+                <ol class="checks" aria-live="polite"></ol>
+                <div class="alert-slot" aria-live="polite"></div>
+              </div>
+            </div>
+            <p class="demo-note">Accounts, amounts and timings are made up for the demo; the rules and the confidence formula come from <code>backend/lib/detection.mjs</code>.</p>
+          </div>
+
+          <h3>Graph walks over a time window</h3>
+          <p>Transactions inside the window become an adjacency list keyed by sender, each account's outgoing edges sorted by time. A depth-first walk extends chains forward. A chain becomes a layering alert when it touches at least four accounts within 48 hours and, on average, each hop passes on at least 90% of what it received:</p>
+          <div class="code">
+            <div class="code-bar"><i><span></span></i>backend/lib/detection.mjs</div>
+<pre><code><span class="kw">if</span> (timeSpanHours &lt;= (pattern.time_window_hours || <span class="nu">48</span>) &amp;&amp; uniqueAccounts &gt;= <span class="nu">4</span> &amp;&amp; forwardRatio &gt;= <span class="nu">0.9</span>) {
+  <span class="cm">// …</span>
+  <span class="kw">const</span> confidence = <span class="fn">clamp</span>(<span class="nu">0.56</span> + path.length * <span class="nu">0.05</span> + forwardRatio * <span class="nu">0.2</span> + shellAccounts * <span class="nu">0.04</span>, <span class="nu">0</span>, <span class="nu">0.97</span>);</code></pre>
+          </div>
+          <p>Round-trips use a 72-hour window and need at least 75% of the money to return. Dormant reactivation needs 180+ days of silence. Every alert carries a plain-language narrative and the factors behind it, so an investigator sees <em>why</em>, not just a score.</p>
+
+          <h3>A learned scorer</h3>
+          <p>The model takes two views of an account. A GRU evolves over the last 10 graph snapshots (8 aggregate features each), an EvolveGCN-inspired block. Two LSTM layers read the account's last 24 transactions (11 features: amount, direction, time gap, channel, risk score, account age). The two encodings are fused into a nine-way classifier, and an LSTM decoder reconstructs the transaction sequence so unusual behaviour shows up as reconstruction error.</p>
+        </section>
+
+        <section id="arch" data-reveal>
+          <h2><span class="n">04</span><em>Architecture</em> as built</h2>
+          <div class="demo">
+            <div class="flow-stage">
+              <div class="fnode"><b>Transactions</b><span>simulator · synthetic seed data</span></div>
+              <div class="fnode"><b>API</b><span>Node.js · graph traversal</span></div>
+              <div class="fnode hit"><b>Detect</b><span>graph walks (JS) · TensorFlow model (Python)</span></div>
+              <div class="fnode"><b>Store</b><span>PostgreSQL (Supabase)</span></div>
+              <div class="fnode"><b>Investigate</b><span>React + D3 fund-flow graph · goAML XML export</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="results" data-reveal>
+          <h2><span class="n">05</span>Results, on <em>synthetic data</em></h2>
+          <div class="results">
+            <div class="result"><b>0.91</b><span>precision</span></div>
+            <div class="result"><b>0.88</b><span>recall</span></div>
+            <div class="result"><b>0.89</b><span>F1 score</span></div>
+            <div class="result"><b>−94%</b><span>false positives vs. threshold rules</span></div>
+          </div>
+          <p class="caveat">The data is fully synthetic, and the patterns the model is scored on were injected by the same generator it trained on. These numbers show the pipeline works end to end; they say little about a bank's real transactions.</p>
+          <div class="todo"><p>Confirm the metrics came from a held-out split, and define the "threshold-based rules" baseline behind −94%. If you can't, cut that tile.</p></div>
+        </section>
+
+        <section id="built" data-reveal>
+          <h2><span class="n">06</span>Built vs. <em>designed</em></h2>
+          <table class="tbl">
+            <thead><tr><th>Component</th><th>Status</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Fund-flow graph (D3), transaction simulator</td><td><span class="pill built">Built</span></td><td class="muted">React</td></tr>
+              <tr><td>Graph-walk and rule detectors</td><td><span class="pill built">Built</span></td><td class="muted">Node.js</td></tr>
+              <tr><td>Graph + sequence model</td><td><span class="pill built">Built</span></td><td class="muted">TensorFlow / Keras</td></tr>
+              <tr><td>Alert explanations</td><td><span class="pill built">Built</span></td><td class="muted">Hand-weighted factors, not computed SHAP values</td></tr>
+              <tr><td>goAML report export</td><td><span class="pill built">Built</span></td><td class="muted">XML for STR/CTR filings</td></tr>
+              <tr><td>Neo4j graph database</td><td><span class="pill plan">Designed</span></td><td class="muted">PostgreSQL used instead</td></tr>
+              <tr><td>Kafka + Flink streaming</td><td><span class="pill plan">Designed</span></td><td class="muted">Streams are simulated</td></tr>
+              <tr><td>Federated learning across banks</td><td><span class="pill plan">Designed</span></td><td class="muted">Simulated in the UI</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="change" data-reveal>
+          <h2><span class="n">07</span>What I'd <em>change</em></h2>
+          <div class="todo">
+            <p>Found by reading the code. Keep, edit or drop each one:</p>
+            <ul>
+              <li><strong>Test on data the generator didn't write.</strong> IBM's public AML transaction dataset (synthetic, but from an independent generator) or the Elliptic Bitcoin dataset (real, labelled) would show whether the detectors generalise.</li>
+              <li><strong>Calibrate the confidence.</strong> Alert confidence is a hand-tuned formula, so a score of 0.8 doesn't mean 80%. Fit it against labelled outcomes.</li>
+              <li><strong>Windows are relative to now.</strong> The detectors filter on <code>Date.now()</code>, so replaying last month's transactions finds nothing. Anchoring windows to event time would make backtesting possible.</li>
+            </ul>
+          </div>
+          <div class="refs">
+            <a class="link-arrow ext" href="https://github.com/TathagataSen06/graph-sentinel" target="_blank" rel="noopener">Source code</a>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <a class="next-case" href="barc-detector-pipeline.html" data-reveal>
+      <span><small>Next case study</small><b>Peak detection at BARC</b></span>
+      <span class="ar" aria-hidden="true">→</span>
+    </a>
+    <footer class="site-foot">
+      <span>© 2026 Tathagata Sen · Mumbai, India</span>
+      <a href="../index.html#contact">Get in touch ↗</a>
+    </footer>
+  </div>
+</main>
+</body>
+</html>
